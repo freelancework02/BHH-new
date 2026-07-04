@@ -1,105 +1,208 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, MapPin } from "lucide-react";
+import { 
+  Facebook, 
+  Instagram, 
+  Linkedin, 
+  Twitter, 
+  Youtube, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Clock, 
+  Heart, 
+  Printer, 
+  ArrowRight,
+  ShieldCheck
+} from "lucide-react";
 import Logo from "./Logo";
-import styles from "./Footer.module.css";
-import { site, footerLinks } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <>
-      <section className={styles.newsletter} aria-labelledby="newsletter-heading">
-        <div className={`container ${styles.newsletterInner}`}>
-          <h2 id="newsletter-heading" style={{ color: "#fff", margin: 0, fontSize: "1.15rem" }}>
-            Stay up to date with {site.shortName}. Sign up for our monthly newsletter.
-          </h2>
-          <form
-            className={styles.newsletterForm}
-            aria-label="Newsletter signup"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <label htmlFor="newsletter-name" className="visually-hidden">
-              Name
-            </label>
-            <input id="newsletter-name" name="name" type="text" placeholder="Name" required />
-            <label htmlFor="newsletter-email" className="visually-hidden">
-              Email
-            </label>
-            <input id="newsletter-email" name="email" type="email" placeholder="Email" required />
-            <button type="submit" className="btn btn--gradient">
-              Submit
-            </button>
-          </form>
-        </div>
-      </section>
+    <footer className="footer-luxury-section">
+      {/* Decorative ambient blobs */}
+      <div className="footer-luxury-bg-blob" aria-hidden="true" />
+      <div className="footer-luxury-bg-blob-2" aria-hidden="true" />
 
-      <footer className={styles.footer}>
+      {/* ====================================================
+         2. MAIN FOOTER CONTENT
+         ==================================================== */}
+      <div className="footer-main-content">
         <div className="container">
-          <div className={styles.grid}>
-            <div>
-              <h3>Our Office</h3>
-              <p style={{ display: "flex", gap: "0.5rem" }}>
-                <MapPin size={18} aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }} />
-                <span>
-                  {site.address.line1}
-                  <br />
-                  {site.address.city}, {site.address.state} {site.address.zip}
-                </span>
+          <div className="footer-grid">
+            
+            {/* Column 1: Brand & Socials */}
+            <div className="footer-column footer-column--brand">
+              <Logo variant="white" />
+              <p className="footer-brand-story">
+                Dedicated to enhancing the lives of seniors, veterans, and individuals with disabilities across PA with compassionate, professional in-home care.
               </p>
-            </div>
-            <div>
-              <h3>Quick Links</h3>
-              <ul>
-                {footerLinks.map((l) => (
-                  <li key={l.href}>
-                    <Link href={l.href}>{l.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3>Contact</h3>
-              <ul>
-                <li>
-                  <a href={site.phoneHref}>{site.phoneDisplay}</a>
-                </li>
-                <li>Fax: {site.faxDisplay}</li>
-                <li>
-                  <a href={`mailto:${site.email}`}>{site.email}</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3>We Serve</h3>
-              <ul>
-                {site.serviceAreas.map((a) => (
-                  <li key={a}>{a}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+              
+              {/* Social Media Circle Buttons */}
+              <div className="footer-social-row">
+                <a href="#" className="footer-social-btn" aria-label="Facebook">
+                  <Facebook size={16} aria-hidden="true" />
+                </a>
+                <a href="#" className="footer-social-btn" aria-label="Instagram">
+                  <Instagram size={16} aria-hidden="true" />
+                </a>
+                <a href="#" className="footer-social-btn" aria-label="LinkedIn">
+                  <Linkedin size={16} aria-hidden="true" />
+                </a>
+                <a href="#" className="footer-social-btn" aria-label="Twitter X">
+                  <Twitter size={16} aria-hidden="true" />
+                </a>
+                <a href="#" className="footer-social-btn" aria-label="YouTube">
+                  <Youtube size={16} aria-hidden="true" />
+                </a>
+              </div>
 
-          <div className={styles.bottom}>
-            <Logo variant="white" />
-            <p style={{ margin: 0 }}>
-              © {new Date().getFullYear()} {site.name}. All Rights Reserved.{" "}
-              <Link href="/privacy-policy">Privacy Policy</Link>
-            </p>
-            <nav className={styles.social} aria-label="Social media">
-              <a href="#" aria-label="Facebook">
-                <Facebook size={18} aria-hidden="true" />
-              </a>
-              <a href="#" aria-label="Twitter / X">
-                <Twitter size={18} aria-hidden="true" />
-              </a>
-              <a href="#" aria-label="Instagram">
-                <Instagram size={18} aria-hidden="true" />
-              </a>
-            </nav>
+              {/* Trust Badges */}
+              <div className="footer-trust-badges">
+                <span className="footer-trust-badge">
+                  <ShieldCheck size={12} className="footer-trust-badge-check" aria-hidden="true" />
+                  Licensed Agency
+                </span>
+                <span className="footer-trust-badge">
+                  <ShieldCheck size={12} className="footer-trust-badge-check" aria-hidden="true" />
+                  Fully Insured
+                </span>
+                <span className="footer-trust-badge">
+                  <ShieldCheck size={12} className="footer-trust-badge-check" aria-hidden="true" />
+                  Screened Caregivers
+                </span>
+              </div>
+            </div>
+
+            {/* Column 2: Quick Links */}
+            <div className="footer-column">
+              <h4>Quick Links</h4>
+              <ul className="footer-links-list">
+                <li><Link href="/">Home</Link></li>
+                <li><Link href="/about">About Us</Link></li>
+                <li><Link href="/services">Services</Link></li>
+                <li><Link href="/areas-we-serve">Areas We Serve</Link></li>
+                <li><Link href="/contact-us">Careers</Link></li>
+                <li><Link href="/blog">Blog</Link></li>
+                <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+                <li><Link href="/contact-us">Contact Us</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Services */}
+            <div className="footer-column">
+              <h4>Our Services</h4>
+              <ul className="footer-links-list">
+                <li><Link href="/services#personal-care">Personal Care</Link></li>
+                <li><Link href="/services#companion-care">Companion Care</Link></li>
+                <li><Link href="/services#respite-care">Respite Care</Link></li>
+                <li><Link href="/services#meal-prep">Meal Preparation</Link></li>
+                <li><Link href="/services#transportation">Transportation</Link></li>
+                <li><Link href="/services#housekeeping">Housekeeping Support</Link></li>
+                <li><Link href="/services#dementia-care">Dementia Care</Link></li>
+                <li><Link href="/services#veteran-care">Veteran Care</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact Office (Reformatted as clean list matches Apple/Stripe layout) */}
+            <div className="footer-column">
+              <h4>Contact Office</h4>
+              <ul className="footer-contact-list">
+                <li>
+                  <a href="https://maps.google.com/?q=1224+S+Queen+St+Suite+206+York+PA+17403" target="_blank" rel="noopener noreferrer" className="footer-contact-link-item">
+                    <div className="footer-contact-icon">
+                      <MapPin size={14} aria-hidden="true" />
+                    </div>
+                    <span>
+                      1224 S Queen St, Suite 206<br />York, PA 17403
+                    </span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="tel:+12232609042" className="footer-contact-link-item">
+                    <div className="footer-contact-icon">
+                      <Phone size={14} aria-hidden="true" />
+                    </div>
+                    <span>(223) 260-9042</span>
+                  </a>
+                </li>
+
+                <li>
+                  <div className="footer-contact-link-item">
+                    <div className="footer-contact-icon">
+                      <Printer size={14} aria-hidden="true" />
+                    </div>
+                    <span>Fax: (223) 210-3600</span>
+                  </div>
+                </li>
+
+                <li>
+                  <a href="mailto:blessedheartshca1@gmail.com" className="footer-contact-link-item">
+                    <div className="footer-contact-icon">
+                      <Mail size={14} aria-hidden="true" />
+                    </div>
+                    <span className="footer-contact-email-text">blessedheartshca1@gmail.com</span>
+                  </a>
+                </li>
+
+                <li>
+                  <div className="footer-contact-link-item">
+                    <div className="footer-contact-icon">
+                      <Clock size={14} aria-hidden="true" />
+                    </div>
+                    <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 5: Service Areas */}
+            <div className="footer-column">
+              <h4>Service Areas</h4>
+              <ul className="footer-links-list">
+                <li><Link href="/areas-we-serve">York County</Link></li>
+                <li><Link href="/areas-we-serve">Adams County</Link></li>
+                <li><Link href="/areas-we-serve">Lancaster County</Link></li>
+                <li><Link href="/areas-we-serve">Dauphin County</Link></li>
+                <li><Link href="/areas-we-serve">Cumberland County</Link></li>
+              </ul>
+              <Link href="/areas-we-serve" className="footer-view-all-link">
+                View All Areas
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+
+      {/* ====================================================
+         4. BOTTOM COPYRIGHT & LEGAL BAR
+         ==================================================== */}
+      <div className="footer-bottom-bar">
+        <div className="container">
+          <div className="footer-bottom-flex">
+            <div className="footer-copyright">
+              <p>© {new Date().getFullYear()} {site.name}. All Rights Reserved.</p>
+            </div>
+            
+            <div className="footer-legal-links">
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <span className="footer-legal-dot" aria-hidden="true">•</span>
+              <Link href="/privacy-policy">Terms of Use</Link>
+              <span className="footer-legal-dot" aria-hidden="true">•</span>
+              <Link href="/privacy-policy">Accessibility Statement</Link>
+            </div>
+
+            <div className="footer-signature">
+              <p>Designed with <Heart size={10} className="footer-signature-heart animate-pulse" aria-hidden="true" /> by Blessed Hearts Homecare</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
   );
 }
