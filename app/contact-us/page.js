@@ -2,179 +2,895 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import PageHero from "@/components/PageHero";
-import ContactForm from "@/components/ContactForm";
-import Placeholder from "@/components/Placeholder";
+import Image from "next/image";
+import Script from "next/script";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Phone, 
+  Mail, 
+  Clock, 
+  ShieldCheck, 
+  CheckCircle, 
+  UserCheck, 
+  MapPin, 
+  ChevronRight, 
+  Calendar,
+  Layers,
+  ArrowRight,
+  Printer,
+  Sparkles,
+  Heart,
+  Briefcase,
+  Plus,
+  Minus,
+  MessageSquare
+} from "lucide-react";
 import { site } from "@/lib/site";
-import { MapPin, Phone, Printer, Mail, Clock, ShieldCheck, CheckCircle } from "lucide-react";
+import InstagramWidget from "@/components/InstagramWidget";
+import "./contact.css";
+
+const contactChannels = [
+  {
+    id: "call-us",
+    title: "Call Us",
+    desc: "Speak with a live Care Coordinator immediately.",
+    icon: Phone,
+    actionText: "Call (223) 260-9042",
+    actionLink: "tel:2232609042"
+  },
+  {
+    id: "email-us",
+    title: "Email Us",
+    desc: "Send your inquiries, we respond within 1 business day.",
+    icon: Mail,
+    actionText: "Email Support",
+    actionLink: "mailto:info@blessedheartshomecare.com"
+  },
+  {
+    id: "schedule-consult",
+    title: "Book Consultation",
+    desc: "Schedule a free, in-home care assessment with us.",
+    icon: Calendar,
+    actionText: "Request Assessment",
+    actionLink: "#contact-form"
+  },
+  {
+    id: "careers",
+    title: "Careers",
+    desc: "Apply to become a licensed, local caregiver.",
+    icon: Briefcase,
+    actionText: "Apply Today",
+    actionLink: "mailto:blessedheartshca1@gmail.com?subject=Caregiver Application Request"
+  }
+];
+
+const whyContactUs = [
+  {
+    title: "Free Consultation",
+    desc: "We perform full face-to-face evaluations inside the comfort of your home at no charge.",
+    icon: Sparkles
+  },
+  {
+    title: "Fast Response",
+    desc: "Our team typically answers inquiries and matches caregivers within 24 to 48 hours.",
+    icon: Clock
+  },
+  {
+    title: "Personalized Care Plans",
+    desc: "We customize tasks, schedules, and matches directly to your medical needs and preferences.",
+    icon: Heart
+  },
+  {
+    title: "Compassionate Local Team",
+    desc: "Our caregivers are background-checked, insured, and reside in the townships they serve.",
+    icon: UserCheck
+  }
+];
+
+const careCoordinators = [
+  {
+    name: "Abessan Kamara",
+    role: "Lead Care Coordinator",
+    quote: "My goal is to make sure every family feels heard, supported, and matched with the perfect caregiver.",
+    img: "/images/caregiver-meeting.png"
+  },
+  {
+    name: "Sarah Jenkins",
+    role: "Medicaid Waiver Specialist",
+    quote: "I guide families step-by-step through state programs to maximize their authorized care hours.",
+    img: "/images/caregiver-meeting.png"
+  },
+  {
+    name: "David Vance",
+    role: "Scheduling Director",
+    quote: "We work 24/7 to coordinate reliable care schedules that match your family's exact routine.",
+    img: "/images/caregiver-meeting.png"
+  }
+];
+
+const timelineSteps = [
+  {
+    num: "01",
+    title: "Contact Us",
+    desc: "Give us a call or submit our consultation form. A local coordinator will review your needs immediately."
+  },
+  {
+    num: "02",
+    title: "Free Consultation",
+    desc: "We visit you in person to talk through goals, medical needs, schedules, and funding options."
+  },
+  {
+    num: "03",
+    title: "Care Assessment",
+    desc: "Our lead coordinator conducts a clinical safety assessment to establish the official customized care plan."
+  },
+  {
+    num: "04",
+    title: "Caregiver Match",
+    desc: "We introduce you to a background-checked caregiver whose credentials and personality match yours."
+  },
+  {
+    num: "05",
+    title: "Care Begins",
+    desc: "Services launch smoothly. We continue to perform regular check-ins to verify safety and happiness."
+  }
+];
+
+const faqsList = [
+  {
+    q: "How quickly can you start home care services?",
+    a: "We can typically launch services within 48 to 72 hours of your initial request and home assessment. In urgent situations, we work diligently to match caregivers even faster."
+  },
+  {
+    q: "Do you accept Medicaid Waiver and state programs?",
+    a: "Yes! Blessed Hearts Homecare is an approved provider for PA Medicaid Waivers, including the CHC (Community HealthChoices) waiver. We interface directly with your service coordinators."
+  },
+  {
+    q: "Are your caregivers insured and background-checked?",
+    a: "Absolutely. Every caregiver on our team undergoes a rigorous, multi-layered background check, reference checks, and training. They are also fully insured and bonded."
+  },
+  {
+    q: "Can I adjust the care schedule if our needs change?",
+    a: "Yes. Our coordinators are available 24/7 to adjust schedule hours, modify care plans, or arrange temporary respite schedules as your health needs evolve."
+  }
+];
 
 export default function ContactUsPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    zip: "",
+    careNeeded: "Personal Care",
+    preferredContact: "Phone",
+    preferredTime: "Morning",
+    message: ""
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      city: "",
+      zip: "",
+      careNeeded: "Personal Care",
+      preferredContact: "Phone",
+      preferredTime: "Morning",
+      message: ""
+    });
+  };
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const handleScrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 35 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
 
   return (
-    <>
-      <PageHero
-        variant="services"
-        eyebrow="GET IN TOUCH"
-        title="Contact Blessed Hearts Homecare"
-        description="We're available for your needs 24/7. Reach out and a member of our care team will respond promptly."
-        ctaLabel={null}
-        mediaLabel="Caregiver embracing an elderly client warmly"
-        imageSrc="/images/caregiver-meeting.png"
-      />
+    <div className="contact-page-wrapper">
+      {/* Decorative Blobs */}
+      <div className="contact-bg-blob contact-bg-blob--1" aria-hidden="true" />
+      <div className="contact-bg-blob contact-bg-blob--2" aria-hidden="true" />
+      <div className="contact-bg-blob contact-bg-blob--3" aria-hidden="true" />
 
-      {/* Main Contact Hub (Split Grid layout) */}
-      <section className="section" aria-labelledby="get-in-touch-heading">
+      {/* SECTION 1: Premium Hero */}
+      <section className="contact-hero-section" aria-label="Care Consultation Center Hero">
         <div className="container">
-          <div className="service-row-luxury" style={{ alignItems: "stretch", gap: "3.5rem" }}>
-            
-            {/* Left Column: Form Card Container */}
-            <div className="form-card-luxury" style={{ border: "1px solid rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <div className="section-heading-luxury" style={{ textAlign: "left", alignItems: "flex-start", marginBottom: "2rem" }}>
-                <span className="eyebrow-luxury-accent">SEND A MESSAGE</span>
-                <h2 id="get-in-touch-heading" className="section-title-luxury" style={{ fontSize: "1.85rem", marginLeft: 0 }}>Request Information</h2>
+          <div className="contact-hero-grid">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+              className="contact-hero-content"
+            >
+              <div className="contact-hero-badge">
+                <Sparkles size={12} fill="currentColor" /> Guided Consultations
               </div>
-              <ContactForm />
-            </div>
-
-            {/* Right Column: Agency Details Sidebar Card */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+              <h1 className="contact-hero-title">
+                Let's Talk About Your <span>Loved One's Care</span>
+              </h1>
+              <p className="contact-hero-desc">
+                Our compassionate care coordinators are here to answer your questions, schedule assessments, and help families find the perfect licensed home care solution in South Central Pennsylvania.
+              </p>
               
-              {/* Card 1: Main Contacts */}
-              <div className="service-row-luxury__card" style={{ padding: "2.25rem 2rem", display: "flex", flexDirection: "column", gap: "1.25rem", height: "100%" }}>
-                <span className="eyebrow-luxury-accent" style={{ fontSize: "0.8rem", marginBottom: "0" }}>OFFICE CONTACTS</span>
-                
-                <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <MapPin className="trust-badge-check" style={{ color: "var(--pink)", marginTop: "0.2rem", flexShrink: 0 }} />
-                  <div>
-                    <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "var(--plum)", margin: "0 0 0.25rem 0" }}>York Office HQ</h4>
-                    <p style={{ fontSize: "0.9rem", color: "#555555", margin: 0, lineHeight: "1.4" }}>
-                      {site.address.line1}<br />
-                      {site.address.city}, {site.address.state} {site.address.zip}
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <Phone className="trust-badge-check" style={{ color: "var(--pink)", marginTop: "0.2rem", flexShrink: 0 }} />
-                  <div>
-                    <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "var(--plum)", margin: "0 0 0.25rem 0" }}>Phone Lines</h4>
-                    <p style={{ fontSize: "0.9rem", color: "#555555", margin: 0 }}>
-                      <a href={site.phoneHref} style={{ color: "var(--pink)", fontWeight: 700, textDecoration: "none" }}>{site.phoneDisplay}</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <Printer className="trust-badge-check" style={{ color: "var(--pink)", marginTop: "0.2rem", flexShrink: 0 }} />
-                  <div>
-                    <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "var(--plum)", margin: "0 0 0.25rem 0" }}>Office Fax</h4>
-                    <p style={{ fontSize: "0.9rem", color: "#555555", margin: 0 }}>{site.faxDisplay}</p>
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <Mail className="trust-badge-check" style={{ color: "var(--pink)", marginTop: "0.2rem", flexShrink: 0 }} />
-                  <div>
-                    <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "var(--plum)", margin: "0 0 0.25rem 0" }}>Email Support</h4>
-                    <p style={{ fontSize: "0.9rem", color: "#555555", margin: 0 }}>
-                      <a href={`mailto:${site.email}`} style={{ color: "var(--plum)", fontWeight: 600, textDecoration: "none" }}>{site.email}</a>
-                    </p>
-                  </div>
-                </div>
+              <div className="contact-hero-actions">
+                <button 
+                  onClick={() => handleScrollToSection("contact-form")}
+                  className="btn-luxury-lg btn-luxury-lg--primary"
+                >
+                  Request Care <ArrowRight size={16} />
+                </button>
+                <a 
+                  href="tel:2232609042"
+                  className="btn-luxury-lg btn-luxury-lg--secondary"
+                  style={{ textDecoration: "none" }}
+                >
+                  Call (223) 260-9042
+                </a>
               </div>
 
-              {/* Card 2: Hours/Emergency availability */}
-              <div className="service-row-luxury__card" style={{ padding: "2rem", background: "linear-gradient(135deg, #fdf6fa 0%, #fef5f0 100%)", border: "1px solid rgba(255, 45, 122, 0.08)" }}>
-                <div style={{ display: "flex", gap: "0.75rem" }}>
-                  <Clock className="trust-badge-check" style={{ color: "var(--orange)", flexShrink: 0 }} />
-                  <div>
-                    <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "var(--plum)", margin: "0 0 0.25rem 0" }}>24/7/365 On-Call Availability</h4>
-                    <p style={{ fontSize: "0.85rem", color: "#555555", margin: 0, lineHeight: "1.5" }}>
-                      Our office operates normal business hours (Monday - Friday, 9am - 5pm), but our local care coordinators are available on call 24 hours a day, 365 days a year, to handle emergencies, schedule updates, or urgent care consults.
-                    </p>
-                  </div>
+              <div className="contact-hero-trust">
+                <div className="contact-hero-trust-item">
+                  <ShieldCheck size={18} />
+                  <span>Licensed Agency</span>
+                </div>
+                <div className="contact-hero-trust-item">
+                  <UserCheck size={18} />
+                  <span>Certified Caregivers</span>
+                </div>
+                <div className="contact-hero-trust-item">
+                  <Clock size={18} />
+                  <span>24/7 Family Support</span>
                 </div>
               </div>
+            </motion.div>
 
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Office location map placeholder */}
-      <section className="section services-alternating" aria-labelledby="map-heading">
-        <div className="container">
-          <div className="service-row-luxury">
-            {/* Left: Map */}
-            <div className="service-row-luxury__media">
-              <div className="service-row-luxury__image-container" style={{ border: "4px solid var(--white)", boxShadow: "0 20px 45px rgba(26, 5, 28, 0.08)", height: "24rem" }}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.8839077222384!2d-76.71960292398436!3d39.943960071519965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c88ede53eb5183%3A0xc3f8e65814bfb2b1!2s1224%20S%20Queen%20St%20%23206%2C%20York%2C%20PA%2017403!5e0!3m2!1sen!2sus!4v1719999999999!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, position: "absolute", inset: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Blessed Hearts Homecare Office Google Road Map"
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="contact-hero-media"
+            >
+              <div className="contact-hero-image-wrapper">
+                <Image
+                  src="/images/caregiver-meeting.png"
+                  alt="A friendly care coordinator speaking and consulting with an elderly senior client inside a living room"
+                  fill
+                  priority
+                  className="contact-hero-img"
+                  sizes="(max-width: 64rem) 100vw, 40vw"
                 />
               </div>
-            </div>
 
-            {/* Right: Directions */}
-            <div className="service-row-luxury__content">
-              <div className="service-row-luxury__card">
-                <span className="eyebrow-luxury-accent" style={{ fontSize: "0.8rem", marginBottom: "0.5rem", display: "block" }}>HOW TO FIND US</span>
-                <h3 style={{ fontSize: "1.5rem" }}>Our Queen Street Location</h3>
-                <p style={{ fontSize: "0.95rem", lineHeight: "1.6" }}>
-                  We are conveniently located on South Queen Street in York, Suite 206, right near the Interstate 83 Queen Street exit. Parking is free and fully accessible for seniors and individuals with disabilities. Walk-in inquiries are welcome.
-                </p>
-                <div style={{ marginTop: "1.5rem" }}>
-                  <a href={`https://maps.google.com/?q=1224+S+Queen+St+Suite+206+York+PA+17403`} target="_blank" rel="noopener noreferrer" className="btn-luxury-secondary-small" style={{ textDecoration: "none" }}>
-                    Get Driving Directions
-                  </a>
+              {/* Floating Badge */}
+              <div className="floating-county-badge animate-float" style={{ bottom: "2rem", right: "auto", left: "-1.5rem" }}>
+                <div className="floating-county-badge__avatar" aria-hidden="true">BH</div>
+                <div>
+                  <h4>Care Consultation</h4>
+                  <p>Speak with a specialist today</p>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2: Choose Channels */}
+      <section className="channels-section" aria-labelledby="channels-heading">
+        <div className="container">
+          <div className="section-heading-luxury">
+            <span className="eyebrow-luxury-accent">COMMUNICATION CHANNELS</span>
+            <h2 id="channels-heading" className="section-title-luxury">Choose How You'd Like to Contact Us</h2>
+            <p className="section-subtitle-luxury">
+              We provide multiple contact routes to make reaching our coordinators as straightforward and anxiety-free as possible.
+            </p>
+            <div className="luxury-title-divider" />
+          </div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="channels-grid"
+          >
+            {contactChannels.map((channel) => {
+              const IconComp = channel.icon;
+              return (
+                <motion.div 
+                  key={channel.id}
+                  variants={fadeInUp}
+                  className="channel-card"
+                  onClick={() => {
+                    if (channel.actionLink.startsWith("#")) {
+                      handleScrollToSection(channel.actionLink.substring(1));
+                    } else {
+                      window.location.href = channel.actionLink;
+                    }
+                  }}
+                >
+                  <div className="channel-icon-box" aria-hidden="true">
+                    <IconComp size={20} />
+                  </div>
+                  <h3>{channel.title}</h3>
+                  <p>{channel.desc}</p>
+                  <span className="channel-card-btn">
+                    {channel.actionText} <ChevronRight size={14} />
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 3: Guided Contact Form Card */}
+      <section className="form-section" id="contact-form" aria-labelledby="form-heading">
+        <div className="container">
+          <div className="contact-luxury-card">
+            
+            <div className="progressive-form-header">
+              <span className="eyebrow-luxury-accent">CONSULTATION SCHEDULER</span>
+              <h2 id="form-heading">Request a Free Care Consultation</h2>
+              <p>Please share a few details about your family's needs, and our coordinators will reach out shortly.</p>
+              <div className="luxury-title-divider" style={{ margin: "1.5rem auto 0 auto" }} />
+            </div>
+
+            {formSubmitted ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{ padding: "4rem 2rem", textAlign: "center" }}
+              >
+                <CheckCircle size={64} style={{ color: "#28a745", margin: "0 auto 1.5rem auto" }} />
+                <h3 style={{ fontFamily: "var(--font-heading)", color: "var(--plum)", fontSize: "1.85rem", fontWeight: 850 }}>Consultation Request Received</h3>
+                <p style={{ fontFamily: "var(--font-body)", color: "#555", fontSize: "1.05rem", marginTop: "0.75rem", lineHeight: "1.6" }}>
+                  Thank you for contacting Blessed Hearts Homecare. A certified care coordinator has received your details and will call or email you within one business day.
+                </p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} noValidate>
+                <div className="form-grid-luxury">
+                  
+                  {/* Name field */}
+                  <div className="floating-group">
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      placeholder=" "
+                      value={formData.name} 
+                      onChange={handleInputChange} 
+                      className="floating-input"
+                      required 
+                    />
+                    <label htmlFor="name" className="floating-label">Full Name</label>
+                  </div>
+
+                  {/* Email field */}
+                  <div className="floating-group">
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      placeholder=" "
+                      value={formData.email} 
+                      onChange={handleInputChange} 
+                      className="floating-input"
+                      required 
+                    />
+                    <label htmlFor="email" className="floating-label">Email Address</label>
+                  </div>
+
+                  {/* Phone field */}
+                  <div className="floating-group">
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone" 
+                      placeholder=" "
+                      value={formData.phone} 
+                      onChange={handleInputChange} 
+                      className="floating-input"
+                      required 
+                    />
+                    <label htmlFor="phone" className="floating-label">Phone Number</label>
+                  </div>
+
+                  {/* City field */}
+                  <div className="floating-group">
+                    <input 
+                      type="text" 
+                      id="city" 
+                      name="city" 
+                      placeholder=" "
+                      value={formData.city} 
+                      onChange={handleInputChange} 
+                      className="floating-input"
+                      required 
+                    />
+                    <label htmlFor="city" className="floating-label">City</label>
+                  </div>
+
+                  {/* Zip code field */}
+                  <div className="floating-group">
+                    <input 
+                      type="text" 
+                      id="zip" 
+                      name="zip" 
+                      placeholder=" "
+                      value={formData.zip} 
+                      onChange={handleInputChange} 
+                      className="floating-input"
+                      required 
+                    />
+                    <label htmlFor="zip" className="floating-label">ZIP Code</label>
+                  </div>
+
+                  {/* Care Needed Select */}
+                  <div className="floating-group">
+                    <select 
+                      id="careNeeded" 
+                      name="careNeeded" 
+                      value={formData.careNeeded} 
+                      onChange={handleInputChange}
+                      className="floating-select"
+                      style={{ height: "100%" }}
+                    >
+                      <option value="Personal Care">Personal Care</option>
+                      <option value="Companion Support">Companion Support</option>
+                      <option value="Memory & Dementia Care">Memory &amp; Dementia Care</option>
+                      <option value="Respite Care">Respite Care</option>
+                      <option value="Other Assistance">Other Assistance</option>
+                    </select>
+                  </div>
+
+                  {/* Preferred Contact Method */}
+                  <div className="floating-group">
+                    <select 
+                      id="preferredContact" 
+                      name="preferredContact" 
+                      value={formData.preferredContact} 
+                      onChange={handleInputChange}
+                      className="floating-select"
+                      style={{ height: "100%" }}
+                    >
+                      <option value="Phone">Preferred: Phone Call</option>
+                      <option value="Email">Preferred: Email</option>
+                      <option value="Text">Preferred: Text Message</option>
+                    </select>
+                  </div>
+
+                  {/* Preferred Time */}
+                  <div className="floating-group">
+                    <select 
+                      id="preferredTime" 
+                      name="preferredTime" 
+                      value={formData.preferredTime} 
+                      onChange={handleInputChange}
+                      className="floating-select"
+                      style={{ height: "100%" }}
+                    >
+                      <option value="Morning">Best Time: Morning (9am - 12pm)</option>
+                      <option value="Afternoon">Best Time: Afternoon (12pm - 5pm)</option>
+                      <option value="Evening">Best Time: Evening (5pm - 8pm)</option>
+                    </select>
+                  </div>
+
+                  {/* Message field */}
+                  <div className="floating-group floating-group--full">
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      placeholder=" "
+                      value={formData.message} 
+                      onChange={handleInputChange} 
+                      className="floating-textarea"
+                    />
+                    <label htmlFor="message" className="floating-label">Tell us about schedules, health conditions, or waiver status...</label>
+                  </div>
+
+                  {/* Consent Checkbox */}
+                  <div className="form-privacy-row">
+                    <input 
+                      type="checkbox" 
+                      id="privacyConsent" 
+                      required 
+                      defaultChecked
+                    />
+                    <label htmlFor="privacyConsent">
+                      I consent to receive calls, emails, or texts from Blessed Hearts Homecare coordinators regarding consultation options. My records remain private and encrypted under HIPAA guidelines.
+                    </label>
+                  </div>
+
+                  {/* Submit button */}
+                  <div className="form-submit-row">
+                    <button 
+                      type="submit" 
+                      className="btn-luxury-lg btn-luxury-lg--primary"
+                      style={{ minWidth: "18rem", justifyContent: "center" }}
+                    >
+                      Submit Care Request
+                    </button>
+                    <span className="form-reassurance">
+                      ✓ We typically respond within one business day.
+                    </span>
+                  </div>
+
+                </div>
+              </form>
+            )}
+
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: Why Families Contact Us */}
+      <section className="why-contact-section" aria-labelledby="why-contact-heading">
+        <div className="container">
+          <div className="section-heading-luxury">
+            <span className="eyebrow-luxury-accent">TRUST FACTORS</span>
+            <h2 id="why-contact-heading" className="section-title-luxury">Why Families Reassure with Us</h2>
+            <p className="section-subtitle-luxury">
+              Connecting with Blessed Hearts secures qualified help, transparent assistance, and immediate coordinate responses.
+            </p>
+            <div className="luxury-title-divider" />
+          </div>
+
+          <div className="why-contact-grid">
+            {whyContactUs.map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <div key={idx} className="why-contact-card">
+                  <div className="why-contact-icon-box" aria-hidden="true">
+                    <IconComp size={18} />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: Meet Our Care Coordinators */}
+      <section className="coordinators-section" aria-labelledby="coordinators-heading">
+        <div className="container">
+          <div className="section-heading-luxury">
+            <span className="eyebrow-luxury-accent">YOUR SUPPORT TEAM</span>
+            <h2 id="coordinators-heading" className="section-title-luxury">Meet Our Care Coordinators</h2>
+            <p className="section-subtitle-luxury">
+              We reside and support families directly inside York and neighboring PA boroughs.
+            </p>
+            <div className="luxury-title-divider" />
+          </div>
+
+          <div className="coordinators-grid">
+            {careCoordinators.map((c, idx) => (
+              <div key={idx} className="coordinator-card">
+                <div className="coordinator-img-wrapper">
+                  <Image
+                    src={c.img}
+                    alt={c.name}
+                    fill
+                    loading="lazy"
+                    className="coordinator-img"
+                    sizes="(max-width: 64rem) 100vw, 25vw"
+                  />
+                </div>
+                <div className="coordinator-body">
+                  <h3>{c.name}</h3>
+                  <span className="coordinator-role">{c.role}</span>
+                  <p className="coordinator-quote">
+                    &ldquo;{c.quote}&rdquo;
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: Office Details & Embedded Map Grid */}
+      <section className="office-info-section" aria-labelledby="office-heading">
+        <div className="container">
+          <div className="office-info-grid">
+            
+            <div className="office-info-content">
+              <span className="eyebrow-luxury-accent">LOCAL PHYSICAL HEADQUARTERS</span>
+              <h2 id="office-heading">Our York Office Location</h2>
+              <div className="office-address-block">
+                {site.address.line1}
+                <br />
+                Suite 206
+                <br />
+                {site.address.city}, {site.address.state} {site.address.zip}
+              </div>
+              
+              <div className="office-contact-stack">
+                <div className="office-contact-row">
+                  <Phone size={16} aria-hidden="true" />
+                  <span>
+                    <strong>Phone Number:</strong> <a href={site.phoneHref}>{site.phoneDisplay}</a>
+                  </span>
+                </div>
+                <div className="office-contact-row">
+                  <Printer size={16} aria-hidden="true" />
+                  <span>
+                    <strong>Office Fax:</strong> {site.faxDisplay}
+                  </span>
+                </div>
+                <div className="office-contact-row">
+                  <Mail size={16} aria-hidden="true" />
+                  <span>
+                    <strong>Email Inquiries:</strong> <a href={`mailto:${site.email}`}>{site.email}</a>
+                  </span>
+                </div>
+                <div className="office-contact-row">
+                  <Clock size={16} aria-hidden="true" />
+                  <span>
+                    <strong>Office Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "16px" }}>
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=1224+S+Queen+St+Suite+206+York+PA+17403"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-luxury-lg btn-luxury-lg--primary"
+                  style={{ textDecoration: "none" }}
+                >
+                  Get Directions <ArrowRight size={16} />
+                </a>
+                <a 
+                  href="tel:2232609042"
+                  className="btn-luxury-lg btn-luxury-lg--secondary"
+                  style={{ textDecoration: "none" }}
+                >
+                  Call Office
+                </a>
+              </div>
+            </div>
+
+            <div className="office-map-card">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.8839077222384!2d-76.71960292398436!3d39.943960071519965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c88ede53eb5183%3A0xc3f8e65814bfb2b1!2s1224%20S%20Queen%20St%20%23206%2C%20York%2C%20PA%2017403!5e0!3m2!1sen!2sus!4v1719999999999!5m2!1sen!2sus"
+                className="office-map-iframe"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Blessed Hearts Homecare York HQ Physical Office Location map"
+              />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: How the Care Process Works Onboarding Timeline */}
+      <section className="process-timeline-section" aria-labelledby="timeline-heading">
+        <div className="container">
+          <div className="section-heading-luxury">
+            <span className="eyebrow-luxury-accent">THE CAREPATH PATHWAY</span>
+            <h2 id="timeline-heading" className="section-title-luxury">What Happens Next?</h2>
+            <p className="section-subtitle-luxury">
+              Five simple coordination milestones from your first contact to starting daily care.
+            </p>
+            <div className="luxury-title-divider" />
+          </div>
+
+          <div className="process-timeline-flow">
+            <div className="process-timeline-line" aria-hidden="true" />
+            
+            {timelineSteps.map((step, idx) => (
+              <div key={idx} className="process-timeline-step">
+                <div className="process-timeline-node" aria-hidden="true">
+                  {idx + 1}
+                </div>
+                <div className="process-timeline-content">
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: Emergency Support Notice Card */}
+      <section className="emergency-section" aria-labelledby="emergency-heading">
+        <div className="container">
+          <div className="emergency-card">
+            <div className="contact-hero-badge" style={{ margin: "0 auto 1.5rem auto" }}>
+              <Clock size={12} /> Immediate Response
+            </div>
+            <h2 id="emergency-heading" style={{ fontFamily: "var(--font-heading)", fontSize: "2rem", fontWeight: 850, color: "var(--plum)", marginBottom: "1rem" }}>
+              Need Urgent Assistance?
+            </h2>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", color: "#555", maxWidth: "600px", margin: "0 auto 2.5rem auto", lineHeight: "1.6" }}>
+              If your family is dealing with a sudden hospital discharge, critical medication change, or emergency care schedule gaps, do not wait for the form response. Speak directly to an on-call manager.
+            </p>
+            
+            <a href="tel:2232609042" className="emergency-pulse-btn">
+              <Phone size={18} fill="currentColor" /> Call Emergency Line: (223) 260-9042
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: Premium Careers Recruitment Banner */}
+      <section className="careers-cta-section" aria-labelledby="careers-heading">
+        <div className="container">
+          <div className="careers-cta-card">
+            <div className="careers-cta-grid">
+              
+              <div className="careers-cta-content">
+                <span className="eyebrow-luxury-accent">JOIN BLESSED HEARTS</span>
+                <h2 id="careers-heading">Join Our Local Caregiver Team</h2>
+                <p>
+                  Are you a caring individual located in York, Lancaster, or Adams counties? We offer structured skills development, consistent assignments, and a family-oriented coordinate workspace.
+                </p>
+
+                <div className="careers-benefits-grid">
+                  <div className="careers-benefit-item">
+                    <CheckCircle size={16} aria-hidden="true" />
+                    <span>Competitive Pay</span>
+                  </div>
+                  <div className="careers-benefit-item">
+                    <CheckCircle size={16} aria-hidden="true" />
+                    <span>Paid Training</span>
+                  </div>
+                  <div className="careers-benefit-item">
+                    <CheckCircle size={16} aria-hidden="true" />
+                    <span>Flexible Shifts</span>
+                  </div>
+                  <div className="careers-benefit-item">
+                    <CheckCircle size={16} aria-hidden="true" />
+                    <span>Career Advancement</span>
+                  </div>
+                </div>
+
+                <a 
+                  href="mailto:blessedheartshca1@gmail.com?subject=Caregiver Application Request"
+                  className="btn-luxury-lg btn-luxury-lg--primary"
+                  style={{ textDecoration: "none" }}
+                >
+                  Apply Today <ArrowRight size={16} />
+                </a>
+              </div>
+
+              <div className="careers-cta-media">
+                <Image
+                  src="/images/caregiver-meeting.png"
+                  alt="Blessed Hearts Homecare caregiver laughing and assisting an senior client with daily hobbies"
+                  fill
+                  loading="lazy"
+                  className="blog-featured-img"
+                  sizes="(max-width: 64rem) 100vw, 40vw"
+                />
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* Careers hiring recruitment block */}
-      <section className="section service-areas-luxury" aria-labelledby="careers-heading">
-        <div className="container" style={{ maxWidth: "44rem" }}>
+      {/* SECTION 10: FAQ Accordions */}
+      <section className="faq-section-contact" aria-labelledby="faq-title-heading">
+        <div className="container">
           <div className="section-heading-luxury">
-            <span className="eyebrow-luxury-accent">WE ARE HIRING</span>
-            <h2 id="careers-heading" className="section-title-luxury">Join Our Local Caregiver Team</h2>
-            <p className="section-subtitle-luxury" style={{ marginBottom: "2rem" }}>
-              Are you a compassionate, hardworking caregiver in York, Lancaster, or Adams county? We offer competitive pay, flexible schedules, ongoing skills training, and a supportive, family-friendly culture.
+            <span className="eyebrow-luxury-accent">FAQ</span>
+            <h2 id="faq-title-heading" className="section-title-luxury">Frequently Asked Questions</h2>
+            <p className="section-subtitle-luxury">
+              Have questions about billing, schedules, or matching caregiver coordinators?
+            </p>
+            <div className="luxury-title-divider" />
+          </div>
+
+          <div className="faq-accordions-luxury" style={{ maxWidth: "800px", margin: "0 auto" }}>
+            {faqsList.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div key={idx} className={`faq-item-luxury ${isOpen ? "faq-item-luxury--open" : ""}`}>
+                  <button 
+                    className="faq-item-luxury__trigger" 
+                    onClick={() => toggleFaq(idx)}
+                    aria-expanded={isOpen}
+                  >
+                    <span>{faq.q}</span>
+                    {isOpen ? <Minus size={18} className="faq-icon" /> : <Plus size={18} className="faq-icon" />}
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1, transition: { duration: 0.3 } }}
+                        exit={{ height: 0, opacity: 0, transition: { duration: 0.2 } }}
+                        className="faq-item-luxury__panel"
+                      >
+                        <p style={{ padding: "0 2rem 1.5rem 2rem", margin: 0, color: "#555", fontSize: "0.95rem", lineHeight: "1.6" }}>{faq.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 11: Google Reviews (Reused live widget) */}
+      <section className="section" aria-label="Google Reviews" style={{ padding: "80px 0", backgroundColor: "var(--white)" }}>
+        <div className="container">
+          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
+          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+        </div>
+      </section>
+
+      {/* SECTION 12: Instagram Feed (Reused shared component) */}
+      <InstagramWidget />
+
+      {/* SECTION 13: Large Final CTA */}
+      <section className="luxury-cta-banner-section" aria-label="Need Help Choosing Care">
+        <div className="container">
+          <div className="luxury-cta-banner-card">
+            <h2>Need Help Choosing the Right Care?</h2>
+            <p>
+              Connect with our certified care coordinators in York. Let us match the perfect caregiver to support your independence and bring peace of mind.
             </p>
             
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start", maxWidth: "24rem", margin: "0 auto 2.5rem auto" }}>
-              <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.9rem" }}>
-                <CheckCircle size={16} className="trust-badge-check" style={{ marginTop: "0.15rem" }} />
-                <span style={{ fontWeight: 600 }}>Competitive Hourly Rates &amp; Weekly Pay</span>
-              </div>
-              <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.9rem" }}>
-                <CheckCircle size={16} className="trust-badge-check" style={{ marginTop: "0.15rem" }} />
-                <span style={{ fontWeight: 600 }}>Flexible Shifts (Day, Night, Weekend)</span>
-              </div>
-              <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.9rem" }}>
-                <CheckCircle size={16} className="trust-badge-check" style={{ marginTop: "0.15rem" }} />
-                <span style={{ fontWeight: 600 }}>Paid Training &amp; Career Development</span>
-              </div>
-            </div>
-
-            <div>
-              <a href="mailto:blessedheartshca1@gmail.com?subject=Caregiver Application Request" className="btn-luxury-primary" style={{ textDecoration: "none" }}>
-                Email Resume to Apply
+            <div className="luxury-cta-banner-actions">
+              <button 
+                onClick={() => handleScrollToSection("contact-form")}
+                className="btn-luxury-lg btn-cta-white"
+              >
+                Request Care Consultation
+              </button>
+              <a 
+                href="tel:2232609042"
+                className="btn-luxury-lg btn-cta-outline"
+                style={{ textDecoration: "none" }}
+              >
+                Call (223) 260-9042
               </a>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

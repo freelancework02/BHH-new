@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, User, ArrowRight, Heart } from "lucide-react";
@@ -37,20 +36,9 @@ function formatDate(d) {
 }
 
 export default function KnowledgeHub() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
   // We select the first post as Featured, and the next three as Standard Cards
   const featuredPost = blogPosts[0];
   const standardPosts = blogPosts.slice(1, 4);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail("");
-    }
-  };
 
   return (
     <section className="hub-luxury-section" aria-labelledby="hub-heading">
@@ -189,38 +177,13 @@ export default function KnowledgeHub() {
           ))}
         </div>
 
-        {/* 3. Footer CTA & Newsletter Subscription */}
+        {/* 3. Footer CTA */}
         <div className="hub-cta-area">
           <div className="hub-cta-buttons">
             <Link href="/blog" className="btn-luxury-primary btn-luxury-cta" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               View All Articles
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
-          </div>
-
-          <div className="hub-newsletter-box">
-            <h4>Subscribe to our Newsletter</h4>
-            <p>Get senior wellness guides and local PA waiver updates directly in your inbox.</p>
-            {subscribed ? (
-              <div className="hub-newsletter-success" role="alert">
-                <span aria-hidden="true">✓</span> Thank you for subscribing to Blessed Hearts resources!
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="hub-newsletter-form">
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="hub-newsletter-input"
-                  aria-label="Email address for newsletter subscription"
-                />
-                <button type="submit" className="hub-newsletter-submit-btn">
-                  Subscribe
-                </button>
-              </form>
-            )}
           </div>
         </div>
 

@@ -253,10 +253,13 @@ export default function AboutClient() {
       <section className="about-values-section" aria-labelledby="values-heading">
         <div className="container">
           <div className="section-heading-luxury">
-            <span className="eyebrow-luxury-accent">OUR GUIDING PRINCIPLES</span>
+            <span className="eyebrow-luxury-accent" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+              <Sparkles size={14} /> OUR GUIDING PRINCIPLES <Sparkles size={14} />
+            </span>
             <h2 id="values-heading" className="section-title-luxury">
               Our Pillars of Care
             </h2>
+            <div className="luxury-title-divider" />
             <p className="section-subtitle-luxury">
               These five core values serve as our daily standard, guiding every client interaction and home visit we coordinate.
             </p>
@@ -270,48 +273,63 @@ export default function AboutClient() {
             className="about-values-grid"
           >
             {/* Card 1: Compassion */}
-            <motion.div variants={fadeInUp} className="about-value-card">
+            <motion.div variants={fadeInUp} className="about-value-card card-compassion">
+              <div className="about-value-number">01</div>
               <div className="about-value-icon-wrapper">
-                <Heart size={22} className="about-value-icon" />
+                <Heart size={24} className="about-value-icon" />
               </div>
               <h3>Compassion</h3>
               <p>Approaching every client with patience, warmth, and active empathy, matching caregiver personalities to encourage natural friendships.</p>
+              <div className="about-value-accent-line" />
+              <div className="about-value-card-glow" />
             </motion.div>
 
             {/* Card 2: Integrity */}
-            <motion.div variants={fadeInUp} className="about-value-card">
+            <motion.div variants={fadeInUp} className="about-value-card card-integrity">
+              <div className="about-value-number">02</div>
               <div className="about-value-icon-wrapper">
-                <ShieldCheck size={22} className="about-value-icon" />
+                <ShieldCheck size={24} className="about-value-icon" />
               </div>
               <h3>Integrity</h3>
               <p>Adhering to strict professional standards, transparent billing practices, and open communications with client families.</p>
+              <div className="about-value-accent-line" />
+              <div className="about-value-card-glow" />
             </motion.div>
 
             {/* Card 3: Respect */}
-            <motion.div variants={fadeInUp} className="about-value-card">
+            <motion.div variants={fadeInUp} className="about-value-card card-respect">
+              <div className="about-value-number">03</div>
               <div className="about-value-icon-wrapper">
-                <Users size={22} className="about-value-icon" />
+                <Users size={24} className="about-value-icon" />
               </div>
               <h3>Respect</h3>
               <p>Honoring client decisions, cultural background, and daily habits, preserving personal choice in all care coordinate decisions.</p>
+              <div className="about-value-accent-line" />
+              <div className="about-value-card-glow" />
             </motion.div>
 
             {/* Card 4: Dignity */}
-            <motion.div variants={fadeInUp} className="about-value-card">
+            <motion.div variants={fadeInUp} className="about-value-card card-dignity">
+              <div className="about-value-number">04</div>
               <div className="about-value-icon-wrapper">
-                <Award size={22} className="about-value-icon" />
+                <Award size={24} className="about-value-icon" />
               </div>
               <h3>Dignity</h3>
               <p>Supporting seniors with daily personal care with absolute privacy, helping them maintain control and independence at home.</p>
+              <div className="about-value-accent-line" />
+              <div className="about-value-card-glow" />
             </motion.div>
 
             {/* Card 5: Reliability */}
-            <motion.div variants={fadeInUp} className="about-value-card">
+            <motion.div variants={fadeInUp} className="about-value-card card-reliability">
+              <div className="about-value-number">05</div>
               <div className="about-value-icon-wrapper">
-                <Clock size={22} className="about-value-icon" />
+                <Clock size={24} className="about-value-icon" />
               </div>
               <h3>Reliability</h3>
               <p>Providing 100% background-checked standby caregivers, clock-in tracking metrics, and 24/7 coordinator support.</p>
+              <div className="about-value-accent-line" />
+              <div className="about-value-card-glow" />
             </motion.div>
           </motion.div>
         </div>

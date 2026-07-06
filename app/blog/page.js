@@ -2,11 +2,24 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Script from "next/script";
 import PageHero from "@/components/PageHero";
-import Placeholder from "@/components/Placeholder";
 import CTASection from "@/components/CTASection";
+import InstagramWidget from "@/components/InstagramWidget";
 import { blogPosts } from "@/lib/site";
-import { Calendar, ArrowRight, BookOpen, Layers, ShieldCheck } from "lucide-react";
+import { 
+  Calendar, 
+  ArrowRight, 
+  BookOpen, 
+  Layers, 
+  ShieldCheck, 
+  Mail, 
+  Phone, 
+  Heart,
+  ChevronRight
+} from "lucide-react";
+import "./blog.css";
 
 function formatDate(d) {
   return new Date(d).toLocaleDateString("en-US", {
@@ -44,7 +57,7 @@ export default function BlogIndexPage() {
   const standardPosts = activeCategory === "all" ? filteredPosts.slice(1) : filteredPosts;
 
   return (
-    <>
+    <div className="blog-page-wrapper">
       <PageHero
         variant="services"
         eyebrow="RESOURCES &amp; GUIDES"
@@ -56,17 +69,16 @@ export default function BlogIndexPage() {
       />
 
       {/* Blog Resource Hub Section */}
-      <section className="section why-us-luxury" aria-labelledby="latest-articles-heading">
+      <section className="section" style={{ padding: "80px 0" }} aria-labelledby="latest-articles-heading">
         <div className="container">
           
           {/* Category Filter Tabs */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "3.5rem" }}>
+          <div className="blog-filter-container">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={activeCategory === cat.id ? "btn-luxury-primary-small" : "btn-luxury-secondary-small"}
-                style={{ cursor: "pointer", border: "none", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+                className={`blog-filter-btn ${activeCategory === cat.id ? "blog-filter-btn--active" : ""}`}
               >
                 {cat.id === "all" && <Layers size={14} />}
                 {cat.id === "waiver" && <ShieldCheck size={14} />}
@@ -82,40 +94,45 @@ export default function BlogIndexPage() {
               <div className="section-heading-luxury" style={{ alignItems: "flex-start", textAlign: "left", marginBottom: "1.5rem" }}>
                 <span className="eyebrow-luxury-accent">FEATURED ARTICLE</span>
               </div>
-              <div className="service-row-luxury" style={{ gap: "3.5rem" }}>
+              <div className="blog-featured-row">
                 {/* Thumbnail */}
-                <div className="service-row-luxury__media">
-                  <div className="service-row-luxury__image-container" style={{ height: "22rem" }}>
-                    <Placeholder label={featuredPost.title} />
-                  </div>
+                <div className="blog-featured-media">
+                  <Image
+                    src="/images/caregiver-meeting.png"
+                    alt={featuredPost.title}
+                    fill
+                    priority
+                    className="blog-featured-img"
+                    sizes="(max-width: 64rem) 100vw, 50vw"
+                  />
                 </div>
 
                 {/* Content */}
-                <div className="service-row-luxury__content">
-                  <div className="service-row-luxury__card" style={{ height: "100%", justifyContent: "center", display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "0.85rem", color: "#666666", marginBottom: "0.75rem" }}>
-                      <Calendar size={14} className="trust-badge-check" />
+                <div className="blog-featured-content">
+                  <div className="blog-meta-row">
+                    <div className="blog-meta-date">
+                      <Calendar size={14} className="trust-badge-check" style={{ color: "var(--pink)" }} />
                       <time dateTime={featuredPost.date}>{formatDate(featuredPost.date)}</time>
-                      <span style={{ color: "var(--pink)", fontWeight: 700, marginLeft: "0.5rem", textTransform: "uppercase", fontSize: "0.75rem" }}>
-                        {featuredPost.categoryId === "waiver" ? "Medicaid Waiver" : "Caregiver Tips"}
-                      </span>
                     </div>
+                    <span className="blog-category-badge">
+                      {featuredPost.categoryId === "waiver" ? "Medicaid Waiver" : "Caregiver Tips"}
+                    </span>
+                  </div>
 
-                    <h3 style={{ fontSize: "1.6rem", fontWeight: 800, color: "var(--plum)", lineHeight: "1.3", marginBottom: "1rem" }}>
-                      <Link href={`/blog/${featuredPost.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
-                        {featuredPost.title}
-                      </Link>
-                    </h3>
+                  <h3 className="blog-featured-title">
+                    <Link href={`/blog/${featuredPost.slug}`}>
+                      {featuredPost.title}
+                    </Link>
+                  </h3>
 
-                    <p style={{ fontSize: "1rem", color: "#555555", lineHeight: "1.6", marginBottom: "2rem" }}>
-                      {featuredPost.excerpt}
-                    </p>
+                  <p className="blog-featured-excerpt">
+                    {featuredPost.excerpt}
+                  </p>
 
-                    <div>
-                      <Link href={`/blog/${featuredPost.slug}`} className="btn-luxury-primary-small" style={{ textDecoration: "none" }}>
-                        Read Article <ArrowRight size={14} style={{ marginLeft: "0.25rem" }} />
-                      </Link>
-                    </div>
+                  <div>
+                    <Link href={`/blog/${featuredPost.slug}`} className="btn-luxury-lg btn-luxury-lg--primary" style={{ display: "inline-flex", textDecoration: "none", padding: "0.85rem 1.75rem", fontSize: "0.85rem" }}>
+                      Read Article <ArrowRight size={14} style={{ marginLeft: "0.25rem" }} />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -130,34 +147,45 @@ export default function BlogIndexPage() {
           </div>
 
           {standardPosts.length > 0 ? (
-            <div className="why-us-grid-luxury" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))", gap: "2rem" }}>
+            <div className="blog-grid">
               {standardPosts.map((post) => (
-                <div key={post.slug} className="review-card-luxury" style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ borderRadius: "1rem", overflow: "hidden", minHeight: "11rem", marginBottom: "1.25rem", position: "relative" }}>
-                    <Placeholder label={post.title} />
+                <article key={post.slug} className="blog-card">
+                  <div className="blog-card-media">
+                    <Image
+                      src="/images/caregiver-meeting.png"
+                      alt={post.title}
+                      fill
+                      loading="lazy"
+                      className="blog-card-img"
+                      sizes="(max-width: 48rem) 100vw, 30vw"
+                    />
                   </div>
                   
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "0.8rem", color: "#666666", marginBottom: "0.75rem" }}>
-                    <Calendar size={14} className="trust-badge-check" />
-                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <div className="blog-card-body">
+                    <div className="blog-meta-row">
+                      <div className="blog-meta-date">
+                        <Calendar size={14} style={{ color: "var(--pink)" }} />
+                        <time dateTime={post.date}>{formatDate(post.date)}</time>
+                      </div>
+                    </div>
+
+                    <h3 className="blog-card-title">
+                      <Link href={`/blog/${post.slug}`}>
+                        {post.title}
+                      </Link>
+                    </h3>
+
+                    <p className="blog-card-excerpt">
+                      {post.excerpt}
+                    </p>
+
+                    <div style={{ marginTop: "auto" }}>
+                      <Link href={`/blog/${post.slug}`} className="btn-luxury-secondary-small" style={{ textDecoration: "none", width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                        Read Article <ArrowRight size={14} />
+                      </Link>
+                    </div>
                   </div>
-
-                  <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--plum)", lineHeight: "1.35", marginBottom: "0.85rem" }}>
-                    <Link href={`/blog/${post.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
-                      {post.title}
-                    </Link>
-                  </h3>
-
-                  <p style={{ fontSize: "0.9rem", color: "#555555", lineHeight: "1.6", marginBottom: "1.5rem", flexGrow: 1 }}>
-                    {post.excerpt}
-                  </p>
-
-                  <div>
-                    <Link href={`/blog/${post.slug}`} className="btn-luxury-secondary-small" style={{ textDecoration: "none", width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
-                      Read Article <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                </div>
+                </article>
               ))}
             </div>
           ) : (
@@ -167,7 +195,77 @@ export default function BlogIndexPage() {
         </div>
       </section>
 
+      {/* SECTION: Discover How Blessed Hearts Homecare Enhances Lives */}
+      <section className="blog-info-section" aria-labelledby="blog-info-title">
+        <div className="container">
+          <div className="blog-info-grid">
+            
+            <div className="blog-info-content">
+              <div className="areas-hero-badge" style={{ display: "inline-flex", alignItems: "center", gap: "6px", backgroundColor: "rgba(255, 45, 122, 0.08)", padding: "0.5rem 1rem", borderRadius: "100px", color: "var(--pink)", fontWeight: 750, fontSize: "0.8rem", textTransform: "uppercase" }}>
+                <Heart size={12} fill="currentColor" /> Elevating Senior Life
+              </div>
+              <h2 id="blog-info-title" className="blog-info-title">
+                How Blessed Hearts Homecare Enhances Your Loved One’s Life
+              </h2>
+              <p className="blog-info-desc">
+                At Blessed Hearts Homecare, we are deeply committed to delivering high-quality, licensed in-home care services that prioritize the comfort, security, and personal dignity of our clients. Our dedicated caregiving team focuses on providing attentive, fully personalized support that helps seniors live active and fulfilling lives in their own homes.
+              </p>
+              <p className="blog-info-desc" style={{ marginBottom: "2.5rem" }}>
+                Discover how our customized home care plans can ease daily tasks and bring vital peace of mind to your family. Ready to discuss your loved one’s specific care goals?
+              </p>
+              <div>
+                <Link href="/contact-us" className="btn-luxury-lg btn-luxury-lg--primary" style={{ display: "inline-flex", textDecoration: "none" }}>
+                  Schedule Consultation <ChevronRight size={16} />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Card Panel */}
+            <div className="blog-info-card">
+              <h3>Get In Touch</h3>
+              <p>
+                Have questions about licensed hours, Medicaid Waiver support, or scheduling? Reach out to our local coordinators today.
+              </p>
+
+              <div className="blog-info-contacts">
+                <div className="blog-contact-row">
+                  <Phone size={16} style={{ color: "var(--pink)" }} />
+                  <span>
+                    <strong>Call Us:</strong> <a href="tel:2232609042">(223) 260-9042</a>
+                  </span>
+                </div>
+                <div className="blog-contact-row">
+                  <Mail size={16} style={{ color: "var(--pink)" }} />
+                  <span>
+                    <strong>Email:</strong> <a href="mailto:info@blessedheartshomecare.com">info@blessedheartshomecare.com</a>
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ borderTop: "1px solid rgba(0, 0, 0, 0.06)", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#666", lineHeight: "1.5" }}>
+                <p style={{ margin: 0, fontStyle: "italic" }}>
+                  Take the first step towards securing compassionate, reliable home care. We look forward to hearing from you!
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: Google Reviews (Elfsight Widget) */}
+      <section className="section" aria-label="Google Reviews" style={{ padding: "80px 0", backgroundColor: "var(--white)" }}>
+        <div className="container">
+          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
+          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+        </div>
+      </section>
+
+      {/* SECTION: Instagram Widget */}
+      <InstagramWidget />
+
+      {/* FOOTER CTA SECTION */}
       <CTASection />
-    </>
+    </div>
   );
 }

@@ -1,0 +1,957 @@
+/* ==========================================
+   BLESSED HEARTS CARE CONSULTATION CENTER STYLES
+   ========================================== */
+
+.contact-page-wrapper {
+  background-color: var(--white);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', 'Open Sans', sans-serif;
+}
+
+/* Background blobs */
+.contact-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 1;
+  opacity: 0.35;
+}
+
+.contact-bg-blob--1 {
+  width: 50rem;
+  height: 50rem;
+  background: radial-gradient(circle, rgba(255, 45, 122, 0.15) 0%, rgba(255, 122, 26, 0.05) 100%);
+  top: -15rem;
+  right: -10rem;
+}
+
+.contact-bg-blob--2 {
+  width: 45rem;
+  height: 45rem;
+  background: radial-gradient(circle, rgba(90, 26, 94, 0.08) 0%, rgba(255, 90, 60, 0.04) 100%);
+  bottom: 25rem;
+  left: -15rem;
+}
+
+.contact-bg-blob--3 {
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(circle, rgba(255, 90, 60, 0.1) 0%, rgba(90, 26, 94, 0.02) 100%);
+  top: 50%;
+  right: -10rem;
+}
+
+/* SECTION 1: Premium Hero */
+.contact-hero-section {
+  padding: 120px 0 80px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.contact-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 45, 122, 0.08);
+  border: 1px solid rgba(255, 45, 122, 0.15);
+  color: var(--pink);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.contact-hero-title {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 850;
+  color: var(--plum);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.contact-hero-title span {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-hero-desc {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 2.5rem;
+}
+
+.contact-hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-hero-trust {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.contact-hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 750;
+  color: var(--plum);
+}
+
+.contact-hero-trust-item svg {
+  color: var(--pink);
+}
+
+.contact-hero-media {
+  position: relative;
+  width: 100%;
+}
+
+.contact-hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 30rem;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 4px solid var(--white);
+  box-shadow: 0 25px 55px rgba(90, 26, 94, 0.08);
+}
+
+.contact-hero-img {
+  object-fit: cover;
+}
+
+/* SECTION 2: Choose Channels */
+.channels-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.channel-card {
+  background: var(--white);
+  border-radius: 32px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(90, 26, 94, 0.01);
+  border: 1px solid rgba(90, 26, 94, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  cursor: pointer;
+}
+
+.channel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 48px rgba(90, 26, 94, 0.05);
+  border-color: rgba(255, 45, 122, 0.15);
+}
+
+.channel-icon-box {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 20px;
+  background: var(--gradient-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pink);
+  margin-bottom: 2rem;
+}
+
+.channel-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--plum);
+  margin-bottom: 0.5rem;
+}
+
+.channel-card p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.channel-card-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--pink);
+  transition: transform 0.2s ease;
+}
+
+.channel-card:hover .channel-card-btn {
+  transform: translateX(4px);
+}
+
+/* SECTION 3: Premium Form Card */
+.form-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-luxury-card {
+  background: var(--white);
+  border-radius: 40px;
+  padding: 4rem 3.5rem;
+  box-shadow: 0 25px 65px rgba(90, 26, 94, 0.04);
+  border: 1px solid rgba(90, 26, 94, 0.05);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.progressive-form-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.progressive-form-header h2 {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 850;
+  color: var(--plum);
+  margin-bottom: 0.75rem;
+}
+
+.progressive-form-header p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: #555;
+}
+
+.form-grid-luxury {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.floating-group {
+  position: relative;
+  width: 100%;
+}
+
+.floating-group--full {
+  grid-column: 1 / -1;
+}
+
+.floating-input, .floating-select, .floating-textarea {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--plum);
+  background: var(--gray-light);
+  border: 1.5px solid rgba(90, 26, 94, 0.04);
+  border-radius: 16px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.floating-textarea {
+  resize: vertical;
+  min-height: 8.5rem;
+}
+
+.floating-input:focus, .floating-select:focus, .floating-textarea:focus {
+  background: var(--white);
+  border-color: var(--pink);
+  box-shadow: 0 10px 25px rgba(255, 45, 122, 0.05);
+}
+
+.floating-label {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #777;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+/* Floating behavior */
+.floating-input:focus ~ .floating-label,
+.floating-input:not(:placeholder-shown) ~ .floating-label,
+.floating-textarea:focus ~ .floating-label,
+.floating-textarea:not(:placeholder-shown) ~ .floating-label {
+  top: -0.65rem;
+  left: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--pink);
+  background: var(--white);
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.form-privacy-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.form-privacy-row input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 6px;
+  border: 1.5px solid rgba(90, 26, 94, 0.2);
+  accent-color: var(--pink);
+  margin-top: 0.15rem;
+  cursor: pointer;
+}
+
+.form-privacy-row label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.form-submit-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+.form-reassurance {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* SECTION 4: Why Families Contact Us */
+.why-contact-section {
+  padding: 80px 0;
+  background-color: var(--gray-light);
+  position: relative;
+  z-index: 2;
+}
+
+.why-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.why-contact-card {
+  background: var(--white);
+  border-radius: 32px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(90, 26, 94, 0.01);
+  border: 1px solid rgba(90, 26, 94, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.why-contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(90, 26, 94, 0.04);
+  border-color: rgba(255, 45, 122, 0.15);
+}
+
+.why-contact-icon-box {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 18px;
+  background: rgba(255, 45, 122, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pink);
+  margin-bottom: 1.75rem;
+}
+
+.why-contact-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--plum);
+  margin-bottom: 0.75rem;
+}
+
+.why-contact-card p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* SECTION 5: Meet Our Care Coordinators */
+.coordinators-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.coordinators-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.coordinator-card {
+  background: var(--white);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(90, 26, 94, 0.01);
+  border: 1px solid rgba(90, 26, 94, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+.coordinator-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(90, 26, 94, 0.04);
+  border-color: rgba(255, 45, 122, 0.15);
+}
+
+.coordinator-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 16rem;
+  background: var(--gray-light);
+}
+
+.coordinator-img {
+  object-fit: cover;
+}
+
+.coordinator-body {
+  padding: 2rem 1.5rem;
+}
+
+.coordinator-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--plum);
+  margin-bottom: 0.25rem;
+}
+
+.coordinator-role {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 750;
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.coordinator-quote {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #555;
+  font-style: italic;
+}
+
+/* SECTION 6: Office Details & Embedded Map */
+.office-info-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.office-info-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.office-info-content h2 {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 850;
+  color: var(--plum);
+  margin-bottom: 1.5rem;
+}
+
+.office-address-block {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: var(--pink);
+  line-height: 1.4;
+  margin-bottom: 2rem;
+}
+
+.office-contact-stack {
+  display: grid;
+  gap: 18px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.office-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.office-contact-row strong {
+  color: var(--plum);
+}
+
+.office-contact-row a {
+  color: var(--pink);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.office-map-card {
+  position: relative;
+  width: 100%;
+  height: 28rem;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 4px solid var(--white);
+  box-shadow: 0 25px 55px rgba(90, 26, 94, 0.08);
+}
+
+.office-map-iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* SECTION 7: How the Care Process Works Onboarding Timeline */
+.process-timeline-section {
+  padding: 100px 0;
+  background-color: var(--gray-light);
+  position: relative;
+  z-index: 2;
+}
+
+.process-timeline-flow {
+  position: relative;
+  max-width: 900px;
+  margin: 4rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.process-timeline-line {
+  position: absolute;
+  left: 27px;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background: var(--gradient);
+  z-index: 1;
+}
+
+.process-timeline-step {
+  display: flex;
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+  align-items: flex-start;
+}
+
+.process-timeline-node {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 850;
+  box-shadow: 0 8px 20px rgba(255, 45, 122, 0.25);
+  flex-shrink: 0;
+}
+
+.process-timeline-content {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 10px 25px rgba(90, 26, 94, 0.01);
+  border: 1px solid rgba(90, 26, 94, 0.04);
+  flex-grow: 1;
+}
+
+.process-timeline-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--plum);
+  margin-bottom: 0.5rem;
+}
+
+.process-timeline-content p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* SECTION 8: Emergency Support Notice Card */
+.emergency-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.emergency-card {
+  background: linear-gradient(135deg, #fdf6fa 0%, #fef5f0 100%);
+  border-radius: 40px;
+  padding: 3.5rem;
+  border: 1.5px solid rgba(255, 45, 122, 0.15);
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(255, 45, 122, 0.03);
+}
+
+.emergency-pulse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gradient);
+  color: var(--white) !important;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  padding: 1.1rem 2.5rem;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  box-shadow: 0 10px 25px rgba(255, 45, 122, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: pulse-glow 2.5s infinite;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 122, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(255, 45, 122, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 122, 0);
+  }
+}
+
+/* SECTION 9: Premium Careers Recruitment Banner */
+.careers-cta-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.careers-cta-card {
+  background: var(--white);
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 25px 65px rgba(90, 26, 94, 0.05);
+  border: 1px solid rgba(90, 26, 94, 0.05);
+}
+
+.careers-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.careers-cta-content {
+  padding: 4.5rem;
+}
+
+.careers-cta-content h2 {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 850;
+  color: var(--plum);
+  margin-bottom: 1.25rem;
+}
+
+.careers-cta-content p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+.careers-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 3rem;
+}
+
+.careers-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 750;
+  color: var(--plum);
+}
+
+.careers-benefit-item svg {
+  color: #28a745;
+  flex-shrink: 0;
+}
+
+.careers-cta-media {
+  position: relative;
+  width: 100%;
+  height: 32rem;
+}
+
+/* SECTION 10: FAQ Accordions in Contact */
+.faq-section-contact {
+  padding: 80px 0;
+  background-color: var(--gray-light);
+  position: relative;
+  z-index: 2;
+}
+
+/* SECTION 13: Final CTA Banner */
+.luxury-cta-banner-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-cta-banner-card {
+  background: var(--gradient);
+  border-radius: 40px;
+  padding: 5rem 4rem;
+  text-align: center;
+  color: var(--white);
+  box-shadow: 0 25px 55px rgba(255, 45, 122, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-cta-banner-card h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 850;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.luxury-cta-banner-card p {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.65;
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+  opacity: 0.95;
+}
+
+.luxury-cta-banner-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================== */
+
+@media (max-width: 78rem) {
+  .contact-hero-grid {
+    gap: 40px;
+  }
+  
+  .channels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .why-contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .office-info-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 64rem) {
+  .contact-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 50px;
+  }
+  
+  .contact-hero-content {
+    align-items: center;
+  }
+  
+  .contact-hero-desc {
+    text-align: center;
+  }
+  
+  .contact-hero-actions {
+    justify-content: center;
+  }
+  
+  .contact-hero-trust {
+    justify-content: center;
+  }
+  
+  .contact-hero-media {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .contact-hero-image-wrapper {
+    height: 24rem;
+  }
+  
+  .coordinators-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 400px;
+  }
+  
+  .office-info-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .office-info-content {
+    text-align: center;
+  }
+  
+  .office-contact-stack {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .office-map-card {
+    height: 22rem;
+  }
+  
+  .careers-cta-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .careers-cta-content {
+    padding: 3rem;
+  }
+  
+  .careers-cta-media {
+    height: 22rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .channels-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .why-contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-luxury-card {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .form-grid-luxury {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .contact-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .process-timeline-line {
+    left: 17px;
+  }
+  
+  .process-timeline-node {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+  
+  .process-timeline-content {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .luxury-cta-banner-card {
+    padding: 3.5rem 1.5rem;
+  }
+  
+  .luxury-cta-banner-card h2 {
+    font-size: 1.85rem;
+  }
+}

@@ -20,7 +20,7 @@ import {
   Home,
   Shield
 } from "lucide-react";
-import PageHero from "@/components/PageHero";
+import HeroSection from "@/components/HeroSection";
 import Placeholder from "@/components/Placeholder";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTASection";
@@ -39,13 +39,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <PageHero
-        variant="luxury"
-        title="Compassionate In-Home Care, Designed Around Your Family"
-        description="Blessed Hearts Homecare offers professional, compassionate in-home care services, companion care, and respite care designed to support independence at home with professional caregivers."
-        mediaLabel="Compassionate caregivers smiling with a senior client at home"
-        imageSrc="/images/newheader.png"
-      />
+      <HeroSection />
 
       <section className="services-luxury-section" aria-labelledby="services-overview-heading">
         {/* Ambient gradient backdrops */}
