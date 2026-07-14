@@ -7,6 +7,7 @@ import Script from "next/script";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import InstagramWidget from "@/components/InstagramWidget";
+import GoogleReviews from "@/components/GoogleReviews";
 import { blogPosts } from "@/lib/site";
 import { 
   Calendar, 
@@ -253,11 +254,10 @@ export default function BlogIndexPage() {
         </div>
       </section>
 
-      {/* SECTION: Google Reviews (Elfsight Widget) */}
+      {/* SECTION: Google Reviews (CUSTOM CLONE) */}
       <section className="section" aria-label="Google Reviews" style={{ padding: "80px 0", backgroundColor: "var(--white)" }}>
         <div className="container">
-          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
-          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+          <GoogleReviews />
         </div>
       </section>
 

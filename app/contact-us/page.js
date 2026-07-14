@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { site } from "@/lib/site";
 import InstagramWidget from "@/components/InstagramWidget";
+import GoogleReviews from "@/components/GoogleReviews";
 import "./contact.css";
 
 const contactChannels = [
@@ -157,38 +158,103 @@ const faqsList = [
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     city: "",
     zip: "",
-    careNeeded: "Personal Care",
+    reasonForContact: "",
     preferredContact: "Phone",
     preferredTime: "Morning",
-    message: ""
+    message: "",
+    privacyConsent: false
   });
+  const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData({ ...formData, [name]: checked });
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newErrors = {};
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required.";
+    }
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required.";
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email address is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required.";
+    } else {
+      const digits = formData.phone.replace(/\D/g, "");
+      if (digits.length < 10) {
+        newErrors.phone = "Please enter a valid 10-digit phone number.";
+      }
+    }
+    if (!formData.city.trim()) {
+      newErrors.city = "City is required.";
+    }
+    if (!formData.zip.trim()) {
+      newErrors.zip = "ZIP code is required.";
+    } else if (!/^\d{5}(-\d{4})?$/.test(formData.zip.trim())) {
+      newErrors.zip = "Please enter a valid ZIP code.";
+    }
+    if (!formData.reasonForContact) {
+      newErrors.reasonForContact = "Please select a reason for contact.";
+    }
+    if (!formData.privacyConsent) {
+      newErrors.privacyConsent = "You must agree to the terms and conditions.";
+    }
+
+    setErrors(newErrors);
+
+    const isValid = Object.keys(newErrors).length === 0;
+    if (!isValid) {
+      const firstErrorKey = Object.keys(newErrors)[0];
+      const errorEl = document.getElementById(firstErrorKey);
+      if (errorEl) {
+        errorEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+
     setFormSubmitted(true);
     setFormData({
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phone: "",
       city: "",
       zip: "",
-      careNeeded: "Personal Care",
+      reasonForContact: "",
       preferredContact: "Phone",
       preferredTime: "Morning",
-      message: ""
+      message: "",
+      privacyConsent: false
     });
+    setErrors({});
   };
 
   const toggleFaq = (index) => {
@@ -383,19 +449,40 @@ export default function ContactUsPage() {
               <form onSubmit={handleSubmit} noValidate>
                 <div className="form-grid-luxury">
                   
-                  {/* Name field */}
+                  {/* First Name field */}
                   <div className="floating-group">
                     <input 
                       type="text" 
-                      id="name" 
-                      name="name" 
+                      id="firstName" 
+                      name="firstName" 
                       placeholder=" "
-                      value={formData.name} 
+                      value={formData.firstName} 
                       onChange={handleInputChange} 
-                      className="floating-input"
+                      className={`floating-input ${errors.firstName ? 'input-error' : ''}`}
                       required 
                     />
-                    <label htmlFor="name" className="floating-label">Full Name</label>
+                    <label htmlFor="firstName" className="floating-label">
+                      First Name <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.firstName && <span className="error-message">{errors.firstName}</span>}
+                  </div>
+
+                  {/* Last Name field */}
+                  <div className="floating-group">
+                    <input 
+                      type="text" 
+                      id="lastName" 
+                      name="lastName" 
+                      placeholder=" "
+                      value={formData.lastName} 
+                      onChange={handleInputChange} 
+                      className={`floating-input ${errors.lastName ? 'input-error' : ''}`}
+                      required 
+                    />
+                    <label htmlFor="lastName" className="floating-label">
+                      Last Name <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.lastName && <span className="error-message">{errors.lastName}</span>}
                   </div>
 
                   {/* Email field */}
@@ -407,10 +494,13 @@ export default function ContactUsPage() {
                       placeholder=" "
                       value={formData.email} 
                       onChange={handleInputChange} 
-                      className="floating-input"
+                      className={`floating-input ${errors.email ? 'input-error' : ''}`}
                       required 
                     />
-                    <label htmlFor="email" className="floating-label">Email Address</label>
+                    <label htmlFor="email" className="floating-label">
+                      Email Address <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.email && <span className="error-message">{errors.email}</span>}
                   </div>
 
                   {/* Phone field */}
@@ -422,10 +512,13 @@ export default function ContactUsPage() {
                       placeholder=" "
                       value={formData.phone} 
                       onChange={handleInputChange} 
-                      className="floating-input"
+                      className={`floating-input ${errors.phone ? 'input-error' : ''}`}
                       required 
                     />
-                    <label htmlFor="phone" className="floating-label">Phone Number</label>
+                    <label htmlFor="phone" className="floating-label">
+                      Phone Number <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.phone && <span className="error-message">{errors.phone}</span>}
                   </div>
 
                   {/* City field */}
@@ -437,10 +530,13 @@ export default function ContactUsPage() {
                       placeholder=" "
                       value={formData.city} 
                       onChange={handleInputChange} 
-                      className="floating-input"
+                      className={`floating-input ${errors.city ? 'input-error' : ''}`}
                       required 
                     />
-                    <label htmlFor="city" className="floating-label">City</label>
+                    <label htmlFor="city" className="floating-label">
+                      City <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.city && <span className="error-message">{errors.city}</span>}
                   </div>
 
                   {/* Zip code field */}
@@ -452,28 +548,35 @@ export default function ContactUsPage() {
                       placeholder=" "
                       value={formData.zip} 
                       onChange={handleInputChange} 
-                      className="floating-input"
+                      className={`floating-input ${errors.zip ? 'input-error' : ''}`}
                       required 
                     />
-                    <label htmlFor="zip" className="floating-label">ZIP Code</label>
+                    <label htmlFor="zip" className="floating-label">
+                      ZIP Code <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.zip && <span className="error-message">{errors.zip}</span>}
                   </div>
 
-                  {/* Care Needed Select */}
+                  {/* Reason for Contact dropdown */}
                   <div className="floating-group">
                     <select 
-                      id="careNeeded" 
-                      name="careNeeded" 
-                      value={formData.careNeeded} 
+                      id="reasonForContact" 
+                      name="reasonForContact" 
+                      value={formData.reasonForContact} 
                       onChange={handleInputChange}
-                      className="floating-select"
+                      className={`floating-select ${errors.reasonForContact ? 'input-error' : ''}`}
                       style={{ height: "100%" }}
+                      required
                     >
-                      <option value="Personal Care">Personal Care</option>
-                      <option value="Companion Support">Companion Support</option>
-                      <option value="Memory & Dementia Care">Memory &amp; Dementia Care</option>
-                      <option value="Respite Care">Respite Care</option>
-                      <option value="Other Assistance">Other Assistance</option>
+                      <option value="" disabled>Please Select</option>
+                      <option value="I need home care services">I need home care services</option>
+                      <option value="I'd like to transfer/not happy with my current agency">I'd like to transfer/not happy with my current agency</option>
+                      <option value="I'm looking for a job">I'm looking for a job</option>
                     </select>
+                    <label htmlFor="reasonForContact" className={`floating-label ${formData.reasonForContact ? 'floating-label--floated' : ''}`}>
+                      Reason for Contact <span className="error-star" aria-hidden="true">*</span>
+                    </label>
+                    {errors.reasonForContact && <span className="error-message">{errors.reasonForContact}</span>}
                   </div>
 
                   {/* Preferred Contact Method */}
@@ -526,13 +629,21 @@ export default function ContactUsPage() {
                     <input 
                       type="checkbox" 
                       id="privacyConsent" 
+                      name="privacyConsent"
+                      checked={formData.privacyConsent}
+                      onChange={handleCheckboxChange}
+                      className={errors.privacyConsent ? "input-error" : ""}
                       required 
-                      defaultChecked
                     />
                     <label htmlFor="privacyConsent">
-                      I consent to receive calls, emails, or texts from Blessed Hearts Homecare coordinators regarding consultation options. My records remain private and encrypted under HIPAA guidelines.
+                      By checking this box, texting START to <a href="tel:2232609042" style={{ color: "var(--pink)", fontWeight: "bold" }}>223-260-9042</a>, or providing verbal consent, you agree to receive informational text messages (appointment reminders, scheduling updates, service notifications, and account information) from Blessed Hearts Homecare. Msg frequency varies. Msg &amp; data rates may apply. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. Reply HELP for help or email <a href="mailto:info@blessedheartshomecare.com" style={{ color: "var(--pink)", fontWeight: "bold" }}>info@blessedheartshomecare.com</a> for support. Reply STOP to opt out at any time. Privacy Policy: <Link href="/privacy-policy" style={{ color: "var(--pink)", fontWeight: "bold" }}>www.blessedheartshomecare.com/privacy-policy</Link> <span className="error-star" aria-hidden="true">*</span>
                     </label>
                   </div>
+                  {errors.privacyConsent && (
+                    <div style={{ gridColumn: "1 / -1", marginTop: "-15px" }}>
+                      <span className="error-message">{errors.privacyConsent}</span>
+                    </div>
+                  )}
 
                   {/* Submit button */}
                   <div className="form-submit-row">
@@ -853,11 +964,10 @@ export default function ContactUsPage() {
         </div>
       </section>
 
-      {/* SECTION 11: Google Reviews (Reused live widget) */}
+      {/* SECTION 11: Google Reviews (CUSTOM CLONE) */}
       <section className="section" aria-label="Google Reviews" style={{ padding: "80px 0", backgroundColor: "var(--white)" }}>
         <div className="container">
-          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
-          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+          <GoogleReviews />
         </div>
       </section>
 

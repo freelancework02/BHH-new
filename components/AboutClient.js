@@ -27,6 +27,8 @@ import {
 import { site } from "@/lib/site";
 import Testimonials from "@/components/Testimonials";
 import InstagramWidget from "@/components/InstagramWidget";
+import GoogleReviews from "@/components/GoogleReviews";
+
 
 // Count Up component for stats
 function Counter({ value, duration = 2 }) {
@@ -649,12 +651,11 @@ export default function AboutClient() {
       <Testimonials />
 
       {/* ====================================================
-         SECTION 10: GOOGLE REVIEWS (REUSED ELFSIGHT WIDGET)
+         SECTION 10: GOOGLE REVIEWS (CUSTOM CLONE)
          ==================================================== */}
       <section className="section" aria-label="Google Reviews">
         <div className="container">
-          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
-          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+          <GoogleReviews />
         </div>
       </section>
 

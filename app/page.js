@@ -27,6 +27,8 @@ import CTASection from "@/components/CTASection";
 import ServiceAreasSearch from "@/components/ServiceAreasSearch";
 import InstagramWidget from "@/components/InstagramWidget";
 import KnowledgeHub from "@/components/KnowledgeHub";
+import GoogleReviews from "@/components/GoogleReviews";
+
 import { services, site } from "@/lib/site";
 
 export const metadata = {
@@ -494,8 +496,7 @@ export default function HomePage() {
 
       <section className="section" aria-label="Google Reviews">
         <div className="container">
-          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
-          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+          <GoogleReviews />
         </div>
       </section>
 

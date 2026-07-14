@@ -87,6 +87,7 @@ export default function Footer() {
                 <li><Link href="/contact-us">Careers</Link></li>
                 <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+                <li><Link href="/terms-conditions">Terms & Conditions</Link></li>
                 <li><Link href="/contact-us">Contact Us</Link></li>
               </ul>
             </div>
@@ -140,11 +141,11 @@ export default function Footer() {
                 </li>
 
                 <li>
-                  <a href="mailto:blessedheartshca1@gmail.com" className="footer-contact-link-item">
+                  <a href={`mailto:${site.email}`} className="footer-contact-link-item">
                     <div className="footer-contact-icon">
                       <Mail size={14} aria-hidden="true" />
                     </div>
-                    <span className="footer-contact-email-text">blessedheartshca1@gmail.com</span>
+                    <span className="footer-contact-email-text" style={{ wordBreak: "break-all", whiteSpace: "normal" }}>{site.email}</span>
                   </a>
                 </li>
 
@@ -191,7 +192,7 @@ export default function Footer() {
             <div className="footer-legal-links">
               <Link href="/privacy-policy">Privacy Policy</Link>
               <span className="footer-legal-dot" aria-hidden="true">•</span>
-              <Link href="/privacy-policy">Terms of Use</Link>
+              <Link href="/terms-conditions">Terms & Conditions</Link>
               <span className="footer-legal-dot" aria-hidden="true">•</span>
               <Link href="/privacy-policy">Accessibility Statement</Link>
             </div>

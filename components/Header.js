@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import styles from "./Header.module.css";
 import { navLinks, site } from "@/lib/site";
+import { countiesData } from "@/lib/countiesData";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -50,17 +51,53 @@ export default function Header() {
           className={`${styles.nav} ${open ? styles.navOpen : ""}`}
           aria-label="Primary"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.navLink}
-              aria-current={pathname === link.href ? "page" : undefined}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            if (link.href === "/areas-we-serve") {
+              return (
+                <div key={link.href} className={styles.dropdownContainer}>
+                  <Link
+                    href={link.href}
+                    className={`${styles.navLink} ${styles.dropdownTrigger}`}
+                    aria-current={pathname.startsWith("/areas-we-serve") ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                    <ChevronDown size={14} className={styles.chevron} />
+                  </Link>
+                  <div className={styles.dropdownMenu}>
+                    <Link
+                      href="/areas-we-serve"
+                      className={styles.dropdownItem}
+                      onClick={() => setOpen(false)}
+                    >
+                      All Counties
+                    </Link>
+                    {Object.values(countiesData).map((county) => (
+                      <Link
+                        key={county.slug}
+                        href={`/areas-we-serve/${county.slug}`}
+                        className={styles.dropdownItem}
+                        onClick={() => setOpen(false)}
+                      >
+                        {county.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={styles.navLink}
+                aria-current={pathname === link.href ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <Link href="/contact-us" className="btn btn--gradient" onClick={() => setOpen(false)}>
             Request Care
           </Link>

@@ -27,6 +27,7 @@ import {
 import Script from "next/script";
 import { site } from "@/lib/site";
 import InstagramWidget from "@/components/InstagramWidget";
+import GoogleReviews from "@/components/GoogleReviews";
 import "./areas.css";
 
 const countyMunicipalities = [
@@ -84,6 +85,61 @@ const countyMunicipalities = [
     cities: ["Harrisburg", "Hershey", "Middletown", "Lower Paxton", "Steelton", "Hummelstown", "Penbrook", "Paxtang", "Highspire"],
     status: "Active Coverage",
     notes: "Active care service network covering the state capital and surrounding boroughs."
+  },
+  {
+    id: "lebanon",
+    name: "Lebanon County",
+    badge: "Active Standby",
+    communities: "10 Communities",
+    distance: "34 miles from HQ",
+    caregivers: "18+ Local Caregivers",
+    cities: ["Lebanon City", "Palmyra", "Annville", "Myerstown", "Cornwall", "Campbelltown", "Cleona", "Jonestown"],
+    status: "Active Coverage",
+    notes: "Active coverage supporting seniors and families throughout Lebanon and Palmyra."
+  },
+  {
+    id: "perry",
+    name: "Perry County",
+    badge: "Active Standby",
+    communities: "8 Communities",
+    distance: "38 miles from HQ",
+    caregivers: "15+ Local Caregivers",
+    cities: ["Bloomfield", "Newport", "Marysville", "Duncannon", "Landisburg", "Liverpool", "Millerstown", "New Buffalo"],
+    status: "Active Coverage",
+    notes: "Reliable caregiver matching for Perry County residential and rural areas."
+  },
+  {
+    id: "berks",
+    name: "Berks County",
+    badge: "Immediate Care Available",
+    communities: "16 Communities",
+    distance: "40 miles from HQ",
+    caregivers: "28+ Local Caregivers",
+    cities: ["Reading", "Wyomissing", "Kutztown", "Boyertown", "Hamburg", "Birdsboro", "West Reading", "Shillington"],
+    status: "Active Coverage",
+    notes: "Serving families throughout Reading, Wyomissing, and surrounding Berks boroughs."
+  },
+  {
+    id: "lehigh",
+    name: "Lehigh County",
+    badge: "Immediate Care Available",
+    communities: "14 Communities",
+    distance: "55 miles from HQ",
+    caregivers: "25+ Local Caregivers",
+    cities: ["Allentown", "Bethlehem", "Emmaus", "Whitehall", "Macungie", "Catasauqua", "Coplay", "Slatington"],
+    status: "Active Coverage",
+    notes: "Top-tier home care coordination serving Allentown and the Lehigh Valley."
+  },
+  {
+    id: "northampton",
+    name: "Northampton County",
+    badge: "Immediate Care Available",
+    communities: "12 Communities",
+    distance: "58 miles from HQ",
+    caregivers: "20+ Local Caregivers",
+    cities: ["Bethlehem", "Easton", "Nazareth", "Bangor", "Northampton", "Hellertown", "Wind Gap", "Pen Argyl"],
+    status: "Active Coverage",
+    notes: "Professional non-medical companion and personal care in Easton, Bethlehem, and Nazareth."
   }
 ];
 
@@ -677,11 +733,10 @@ export default function AreasPage() {
         </div>
       </section>
 
-      {/* SECTION 10: Google Reviews (Reused Elfsight Widget) */}
+      {/* SECTION 10: Google Reviews (CUSTOM CLONE) */}
       <section className="section" aria-label="Google Reviews">
         <div className="container">
-          <div className="elfsight-app-a24d1ea9-52fe-4ced-ba8a-79f9eccdc222" data-elfsight-app-lazy></div>
-          <Script src="https://elfsightcdn.com/platform.js" strategy="afterInteractive" />
+          <GoogleReviews />
         </div>
       </section>
 

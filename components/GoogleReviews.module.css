@@ -1,0 +1,914 @@
+/* Blessed Hearts Homecare - Google Reviews Premium Redesign */
+
+/* Styling Tokens & Container */
+.reviewsSection {
+  --primary-gradient: linear-gradient(135deg, #FF2D7A 0%, #FF5A3C 50%, #FF7A1A 100%);
+  --color-heading: #5A1A5E;
+  --color-body: #4B5563;
+  --color-bg-alt: #FFF8FA;
+  --card-radius: 32px;
+  
+  position: relative;
+  width: 100%;
+  padding: 100px 24px;
+  background-color: var(--color-bg-alt);
+  background-image: radial-gradient(rgba(90, 26, 94, 0.04) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  overflow: hidden;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Background Blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.12;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blob1 {
+  top: 10%;
+  left: -50px;
+  width: 350px;
+  height: 350px;
+  background: #FF2D7A;
+}
+
+.blob2 {
+  bottom: 15%;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: #FF7A1A;
+}
+
+.blob3 {
+  top: 45%;
+  left: 35%;
+  width: 400px;
+  height: 400px;
+  background: #5A1A5E;
+  opacity: 0.08;
+}
+
+/* Watermark SVG Heart background */
+.heartWatermark {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  width: 180px;
+  height: 180px;
+  opacity: 0.025;
+  color: var(--color-heading);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heartWatermarkRight {
+  position: absolute;
+  bottom: 30%;
+  right: 5%;
+  width: 220px;
+  height: 220px;
+  opacity: 0.025;
+  color: #FF5A3C;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating Elements Container (Desktop only) */
+.floatingContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.floatingCard {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  padding: 12px 20px;
+  box-shadow: 0 10px 30px rgba(90, 26, 94, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-heading);
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.floatingCard:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(90, 26, 94, 0.1);
+}
+
+.float1 { top: 12%; left: 8%; }
+.float2 { top: 40%; right: 7%; }
+.float3 { bottom: 35%; left: 4%; }
+.float4 { bottom: 12%; right: 10%; }
+
+/* Core Layout Container */
+.contentContainer {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* SECTION HEADER */
+.sectionHeader {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.sectionHeader h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.titleUnderline {
+  width: 80px;
+  height: 5px;
+  background: var(--primary-gradient);
+  border-radius: 10px;
+}
+
+.sectionHeader p {
+  font-size: 1.15rem;
+  color: var(--color-body);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* GOOGLE RATING HERO CARD (TOP TRUST BAR) */
+.heroCard {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--card-radius);
+  padding: 32px 48px;
+  box-shadow: 0 20px 40px rgba(90, 26, 94, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.googleBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.googleLogoText {
+  font-family: 'Product Sans', 'Google Sans', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+}
+
+.reviewsLabel {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-left: 6px;
+  letter-spacing: -0.2px;
+}
+
+.ratingDisplay {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-left: 2px solid rgba(90, 26, 94, 0.1);
+  padding-left: 32px;
+}
+
+.ratingNumber {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1;
+}
+
+.ratingStarsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.starsRow {
+  display: flex;
+  gap: 3px;
+  color: #FBBC05;
+}
+
+.reviewsCountText {
+  font-size: 0.9rem;
+  color: var(--color-body);
+  font-weight: 500;
+}
+
+/* Gradient CTA Buttons */
+.ctaButton {
+  background: var(--primary-gradient);
+  background-size: 200% auto;
+  color: #ffffff;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 9999px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(255, 45, 122, 0.25);
+  transition: all 0.4s ease;
+}
+
+.ctaButton:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(255, 45, 122, 0.4);
+}
+
+.ctaButton svg {
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover svg {
+  transform: translateX(4px);
+}
+
+/* STATISTICS ROW */
+.statsRowGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.statCard {
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--card-radius);
+  padding: 32px 24px;
+  box-shadow: 0 15px 35px rgba(90, 26, 94, 0.03);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.statCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(90, 26, 94, 0.08);
+}
+
+.statIconContainer {
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: rgba(255, 248, 250, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF5A3C;
+  font-size: 1.5rem;
+  box-shadow: inset 0 2px 5px rgba(255, 45, 122, 0.05);
+}
+
+.statVal {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: 0.95rem;
+  color: var(--color-body);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* FEATURED REVIEW CARD */
+.featuredSection {
+  width: 100%;
+}
+
+.featuredCardOuter {
+  background: var(--primary-gradient);
+  padding: 2.5px;
+  border-radius: var(--card-radius);
+  box-shadow: 0 25px 50px rgba(90, 26, 94, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featuredCardOuter:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 70px rgba(90, 26, 94, 0.15);
+}
+
+.featuredCardInner {
+  background: #ffffff;
+  border-radius: calc(var(--card-radius) - 2px);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.quoteDecoration {
+  position: absolute;
+  top: 24px;
+  right: 48px;
+  color: rgba(90, 26, 94, 0.05);
+  pointer-events: none;
+}
+
+.featuredImageCol {
+  width: 35%;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 4 / 3;
+}
+
+.featuredImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredContentCol {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.featuredBadge {
+  background: rgba(255, 240, 245, 1);
+  color: #FF2D7A;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  align-self: flex-start;
+}
+
+.featuredStarsRow {
+  display: flex;
+  gap: 4px;
+  color: #FBBC05;
+}
+
+.featuredText {
+  font-size: 1.35rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-heading);
+  font-style: italic;
+  margin: 0;
+}
+
+.featuredAuthorRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(90, 26, 94, 0.08);
+  padding-top: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.featuredProfile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.featuredAvatarWrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #FF5A3C;
+}
+
+.featuredAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.featuredName {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-heading);
+}
+
+.featuredVerifiedBadge {
+  color: #1a73e8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.featuredDate {
+  font-size: 0.85rem;
+  color: var(--color-body);
+}
+
+.featuredFooterBrand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--color-body);
+  font-weight: 600;
+}
+
+.featuredGoogleIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* REVIEWS GRID */
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.reviewCard {
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--card-radius);
+  padding: 36px;
+  box-shadow: 0 15px 35px rgba(90, 26, 94, 0.025);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.reviewCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(90, 26, 94, 0.08);
+}
+
+.cardHeader {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.reviewCard:hover .avatarWrapper {
+  transform: scale(1.08);
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(90, 26, 94, 0.05);
+}
+
+.avatarLetter {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.googleBadge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  padding: 3px;
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.authorNameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.authorName {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-heading);
+}
+
+.verifiedBadge {
+  width: 15px;
+  height: 15px;
+  color: #1a73e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewTime {
+  font-size: 0.8rem;
+  color: var(--color-body);
+}
+
+.cardStars {
+  display: flex;
+  gap: 3px;
+  color: #FBBC05;
+}
+
+/* Star Shimmer Animation */
+.shimmerStar {
+  animation: starPulse 2.5s infinite ease-in-out;
+}
+
+.shimmerStar:nth-child(2) { animation-delay: 0.2s; }
+.shimmerStar:nth-child(3) { animation-delay: 0.4s; }
+.shimmerStar:nth-child(4) { animation-delay: 0.6s; }
+.shimmerStar:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes starPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.25); }
+}
+
+.reviewText {
+  font-size: 0.95rem;
+  color: var(--color-body);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.reviewCardPhotoWrapper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin-top: 8px;
+  aspect-ratio: 16 / 10;
+}
+
+.reviewCardPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.reviewCard:hover .reviewCardPhoto {
+  transform: scale(1.04);
+}
+
+.cardFooter {
+  border-top: 1px solid rgba(90, 26, 94, 0.06);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-body);
+}
+
+.footerVerifiedLabel {
+  letter-spacing: -0.1px;
+}
+
+.footerGoogleIcon {
+  width: 14px;
+  height: 14px;
+}
+
+/* BOTTOM CTA SECTION */
+.ctaContainer {
+  background: var(--primary-gradient);
+  background-size: 150% auto;
+  border-radius: var(--card-radius);
+  padding: 60px 48px;
+  box-shadow: 0 25px 50px rgba(255, 45, 122, 0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.ctaBlob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.ctaBlob1 {
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+}
+
+.ctaBlob2 {
+  bottom: -150px;
+  right: -50px;
+  width: 350px;
+  height: 350px;
+}
+
+.ctaContainer h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctaBtnPrimary {
+  background: #ffffff;
+  color: #FF2D7A;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctaBtnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background: var(--color-bg-alt);
+}
+
+.ctaBtnSecondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 14px 34px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ctaBtnSecondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 1024px) {
+  .reviewsSection {
+    padding: 80px 20px;
+  }
+  
+  .contentContainer {
+    gap: 48px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 2.3rem;
+  }
+  
+  .heroCard {
+    padding: 24px 36px;
+  }
+  
+  .statsRowGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .featuredCardInner {
+    flex-direction: column;
+    padding: 36px;
+    gap: 28px;
+  }
+  
+  .featuredImageCol {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+  
+  .reviewsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .floatingCard {
+    display: none; /* Hide floating items on medium screens to keep it clean */
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+  
+  .heroCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+  }
+  
+  .heroLeft {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .ratingDisplay {
+    border-left: none;
+    border-top: 1px solid rgba(90, 26, 94, 0.1);
+    padding-left: 0;
+    padding-top: 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .ctaButton {
+    width: 100%;
+  }
+  
+  .reviewsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .ctaContainer {
+    padding: 40px 24px;
+  }
+  
+  .ctaContainer h3 {
+    font-size: 1.8rem;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .ctaBtnPrimary, .ctaBtnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsRowGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .statCard {
+    padding: 24px 16px;
+  }
+  
+  .featuredCardInner {
+    padding: 24px;
+  }
+  
+  .featuredText {
+    font-size: 1.15rem;
+  }
+  
+  .reviewCard {
+    padding: 24px;
+  }
+}

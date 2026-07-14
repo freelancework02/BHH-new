@@ -955,3 +955,38 @@
     font-size: 1.85rem;
   }
 }
+
+/* Form validation error styling */
+.input-error {
+  border-color: #d9534f !important;
+  background-color: #fff9f9 !important;
+}
+
+.error-message {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #d9534f;
+  margin-top: 0.35rem;
+  margin-left: 0.5rem;
+  display: block;
+}
+
+.error-star {
+  color: #d9534f;
+  margin-left: 2px;
+}
+
+/* Floating labels for select dropdowns */
+.floating-label--floated,
+.floating-select:focus ~ .floating-label {
+  top: -0.65rem !important;
+  left: 1.25rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  color: var(--pink) !important;
+  background: var(--white) !important;
+  padding: 0 8px !important;
+  border-radius: 4px !important;
+  z-index: 2 !important;
+}
+
