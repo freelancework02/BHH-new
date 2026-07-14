@@ -66,7 +66,7 @@ export default function BlogIndexPage() {
         description="Practical guidance on senior care, caregiving, and navigating home care options in Pennsylvania."
         ctaLabel={null}
         mediaLabel="Caregiver reading with a senior client"
-        imageSrc="/images/caregiver-meeting.png"
+        imageSrc="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
       />
 
       {/* Blog Resource Hub Section */}
@@ -99,7 +99,7 @@ export default function BlogIndexPage() {
                 {/* Thumbnail */}
                 <div className="blog-featured-media">
                   <Image
-                    src="/images/caregiver-meeting.png"
+                    src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt={featuredPost.title}
                     fill
                     priority
@@ -153,7 +153,7 @@ export default function BlogIndexPage() {
                 <article key={post.slug} className="blog-card">
                   <div className="blog-card-media">
                     <Image
-                      src="/images/caregiver-meeting.png"
+                      src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                       alt={post.title}
                       fill
                       loading="lazy"

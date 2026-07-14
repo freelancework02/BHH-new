@@ -7,10 +7,10 @@ import { blogPosts } from "@/lib/site";
 
 // Map slugs to standard local assets
 const postImages = {
-  "medicaid-waiver-programs-pa": "/images/caregiver-meeting.png",
-  "signs-loved-one-needs-home-care": "/images/caregiver-kitchen.png",
-  "caregiver-burnout-family-caregivers": "/images/caregiver-client-warm.png",
-  "creating-safe-home-for-seniors": "/images/caregiver-walker.png",
+  "medicaid-waiver-programs-pa": "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
+  "signs-loved-one-needs-home-care": "https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
+  "caregiver-burnout-family-caregivers": "https://plus.unsplash.com/premium_photo-1664475811964-75af7d90ee4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
+  "creating-safe-home-for-seniors": "https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D",
 };
 
 const postCategories = {
@@ -69,7 +69,7 @@ export default function KnowledgeHub() {
             <div className="hub-featured-media">
               <div className="hub-featured-image-wrapper">
                 <Image
-                  src={postImages[featuredPost.slug] || "/images/caregiver-meeting.png"}
+                  src={postImages[featuredPost.slug] || "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"}
                   alt={featuredPost.title}
                   fill
                   sizes="(max-width: 68rem) 100vw, 50vw"
@@ -129,7 +129,7 @@ export default function KnowledgeHub() {
               <div className="hub-card-media">
                 <div className="hub-card-image-wrapper">
                   <Image
-                    src={postImages[post.slug] || "/images/caregiver-kitchen.png"}
+                    src={postImages[post.slug] || "https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"}
                     alt={post.title}
                     fill
                     sizes="(max-width: 48rem) 100vw, (max-width: 68rem) 50vw, 33vw"

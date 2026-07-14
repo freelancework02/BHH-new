@@ -93,19 +93,19 @@ const careCoordinators = [
     name: "Abessan Kamara",
     role: "Lead Care Coordinator",
     quote: "My goal is to make sure every family feels heard, supported, and matched with the perfect caregiver.",
-    img: "/images/caregiver-meeting.png"
+    img: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
   },
   {
     name: "Sarah Jenkins",
     role: "Medicaid Waiver Specialist",
     quote: "I guide families step-by-step through state programs to maximize their authorized care hours.",
-    img: "/images/caregiver-meeting.png"
+    img: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
   },
   {
     name: "David Vance",
     role: "Scheduling Director",
     quote: "We work 24/7 to coordinate reliable care schedules that match your family's exact routine.",
-    img: "/images/caregiver-meeting.png"
+    img: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
   }
 ];
 
@@ -350,7 +350,7 @@ export default function ContactUsPage() {
             >
               <div className="contact-hero-image-wrapper">
                 <Image
-                  src="/images/caregiver-meeting.png"
+                  src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                   alt="A friendly care coordinator speaking and consulting with an elderly senior client inside a living room"
                   fill
                   priority
@@ -573,7 +573,7 @@ export default function ContactUsPage() {
                       <option value="I'd like to transfer/not happy with my current agency">I'd like to transfer/not happy with my current agency</option>
                       <option value="I'm looking for a job">I'm looking for a job</option>
                     </select>
-                    <label htmlFor="reasonForContact" className={`floating-label ${formData.reasonForContact ? 'floating-label--floated' : ''}`}>
+                    <label htmlFor="reasonForContact" className="floating-label floating-label--floated">
                       Reason for Contact <span className="error-star" aria-hidden="true">*</span>
                     </label>
                     {errors.reasonForContact && <span className="error-message">{errors.reasonForContact}</span>}
@@ -906,7 +906,7 @@ export default function ContactUsPage() {
 
               <div className="careers-cta-media">
                 <Image
-                  src="/images/caregiver-meeting.png"
+                  src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                   alt="Blessed Hearts Homecare caregiver laughing and assisting an senior client with daily hobbies"
                   fill
                   loading="lazy"

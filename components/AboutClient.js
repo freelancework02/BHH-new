@@ -136,7 +136,7 @@ export default function AboutClient() {
 
               <div className="about-hero-image-wrapper">
                 <Image
-                  src="/images/hero-caregiver.png"
+                  src="https://plus.unsplash.com/premium_photo-1681996583708-b7fca2e8ed2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZWNhcmV8ZW58MHwxfDB8fHww"
                   alt="Blessed Hearts Homecare professional caregiver supporting an elderly senior client"
                   fill
                   sizes="(max-width: 68rem) 100vw, 550px"
@@ -195,7 +195,7 @@ export default function AboutClient() {
             >
               <div className="about-story-image-container">
                 <Image
-                  src="/images/caregiver-meeting.png"
+                  src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                   alt="Blessed Hearts clinical directors planning customized home care schedule"
                   fill
                   sizes="(max-width: 68rem) 100vw, 500px"
@@ -359,7 +359,7 @@ export default function AboutClient() {
               <div className="about-trust-media">
                 <div className="about-trust-image-wrapper">
                   <Image
-                    src="/images/caregiver-walker.png"
+                    src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
                     alt="A caregiver assisting a senior client safely using a walker"
                     fill
                     sizes="(max-width: 68rem) 100vw, 550px"
@@ -389,7 +389,7 @@ export default function AboutClient() {
               <div className="about-trust-media">
                 <div className="about-trust-image-wrapper">
                   <Image
-                    src="/images/caregiver-kitchen.png"
+                    src="https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt="Caregiver preparing meals in client kitchen with senior"
                     fill
                     sizes="(max-width: 68rem) 100vw, 550px"
@@ -419,7 +419,7 @@ export default function AboutClient() {
               <div className="about-trust-media">
                 <div className="about-trust-image-wrapper">
                   <Image
-                    src="/images/caregiver-client-warm.png"
+                    src="https://plus.unsplash.com/premium_photo-1664475811964-75af7d90ee4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt="A friendly caregiver interacting warmly with an older woman"
                     fill
                     sizes="(max-width: 68rem) 100vw, 550px"
@@ -449,7 +449,7 @@ export default function AboutClient() {
               <div className="about-trust-media">
                 <div className="about-trust-image-wrapper">
                   <Image
-                    src="/images/caregiver-meeting.png"
+                    src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt="Local York PA care coordination meeting"
                     fill
                     sizes="(max-width: 68rem) 100vw, 550px"

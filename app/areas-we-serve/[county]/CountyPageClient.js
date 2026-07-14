@@ -259,7 +259,7 @@ export default function CountyPageClient({ data }) {
             >
               <div className="areas-hero-image-wrapper">
                 <Image
-                  src="/images/hero-caregiver.png"
+                  src={data.heroImage || "https://images.unsplash.com/photo-1773227055624-07b515ba87c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvbWVjYXJlfGVufDB8fDB8fHww"}
                   alt={`Licensed caregiver providing professional support in ${data.name}`}
                   fill
                   priority

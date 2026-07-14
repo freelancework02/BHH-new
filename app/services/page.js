@@ -43,7 +43,7 @@ const servicesList = [
     icon: <Heart size={24} />,
     class: "row-personal",
     watermark: "PC",
-    image: "/images/hero-caregiver.png",
+    image: "https://plus.unsplash.com/premium_photo-1681996583708-b7fca2e8ed2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZWNhcmV8ZW58MHwxfDB8fHww",
     desc: "Respectful, professional assistance with daily activities to support dignity and safety at home. Our trained caregivers assist with personal routines like bathing, dressing, grooming, toileting, and safe mobility.",
     whoBenefits: "Seniors recovering from illness, living with limited mobility, or experiencing age-related physical decline.",
     benefits: "Dignity-first protocols, fall risk reduction, professional physical transfer techniques.",
@@ -64,7 +64,7 @@ const servicesList = [
     icon: <Users size={24} />,
     class: "row-companion",
     watermark: "CC",
-    image: "/images/caregiver-client-warm.png",
+    image: "https://plus.unsplash.com/premium_photo-1664475811964-75af7d90ee4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Active companionship and mental stimulation to combat social isolation. We share conversations, assist with hobbies, play board games, read books, and encourage positive daily interaction.",
     whoBenefits: "Seniors living alone who require light social engagement, companion ship, or cognitive exercises.",
     benefits: "Reduces isolation-related depression, encourages emotional wellness, keeps minds sharp.",
@@ -85,7 +85,7 @@ const servicesList = [
     icon: <UtensilsCrossed size={24} />,
     class: "row-mealprep",
     watermark: "MP",
-    image: "/images/caregiver-kitchen.png",
+    image: "https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Nutritious, warm, home-cooked meals planned around your loved one's dietary guidelines. Caregivers handle grocery planning, prep, cooking, and kitchen cleanup.",
     whoBenefits: "Individuals with severe arthritis, diabetes, heart conditions, or difficulty standing to cook safely.",
     benefits: "Fresh nutrient intake, safe kitchen appliance operation, customized health diets.",
@@ -106,7 +106,7 @@ const servicesList = [
     icon: <Car size={24} />,
     class: "row-transport",
     watermark: "TS",
-    image: "/images/caregiver-meeting.png",
+    image: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Accompanied rides to keep clients active and engaged in their community. We drive to doctor appointments, local pharmacies, grocery stores, and family events.",
     whoBenefits: "Seniors who no longer drive and wish to maintain their weekly schedules independently.",
     benefits: "Safe transition in and out of vehicles, complete caregiver accompaniment during visits.",
@@ -127,7 +127,7 @@ const servicesList = [
     icon: <Home size={24} />,
     class: "row-housekeeping",
     watermark: "LH",
-    image: "/images/caregiver-kitchen.png",
+    image: "https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Maintaining a clean, safe, and hazard-free home environment. We help with laundry, washing dishes, dusting, taking out the trash, and organizing walking pathways.",
     whoBenefits: "Individuals at risk of falling due to clutter, or those unable to manage daily heavy chores.",
     benefits: "Direct fall prevention, sanitary living spaces, organized home flow.",
@@ -148,7 +148,7 @@ const servicesList = [
     icon: <Clock size={24} />,
     class: "row-medication",
     watermark: "MR",
-    image: "/images/caregiver-client-warm.png",
+    image: "https://plus.unsplash.com/premium_photo-1664475811964-75af7d90ee4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Timely reminders to ensure your loved one adheres to their medication schedules. We help verify pill organizer usage, track dosage times, and log compliance.",
     whoBenefits: "Seniors taking multiple daily prescriptions who experience mild cognitive decline.",
     benefits: "Prevents missed doses, avoids accidental double-dosing, logs schedule compliance.",
@@ -169,7 +169,7 @@ const servicesList = [
     icon: <Brain size={24} />,
     class: "row-alzheimers",
     watermark: "AC",
-    image: "/images/caregiver-client-warm.png",
+    image: "https://plus.unsplash.com/premium_photo-1664475811964-75af7d90ee4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Dedicated memory support designed to manage confusion, prevent wandering, and maintain a comforting, stable home environment.",
     whoBenefits: "Seniors diagnosed with progressive Alzheimer's disease.",
     benefits: "De-escalation trained support, certified dementia care coordinators, wander prevention.",
@@ -190,7 +190,7 @@ const servicesList = [
     icon: <Sparkles size={24} />,
     class: "row-dementia",
     watermark: "DC",
-    image: "/images/caregiver-meeting.png",
+    image: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Specialized, non-pharmaceutical home care focused on cognitive enrichment, sensory exercises, and patient communication to help manage progressive memory loss.",
     whoBenefits: "Seniors experiencing early-to-late stage general cognitive decline.",
     benefits: "Preserves daily independent habits, supports active memory retention, maintains comfort.",
@@ -211,7 +211,7 @@ const servicesList = [
     icon: <Layers size={24} />,
     class: "row-respite",
     watermark: "RC",
-    image: "/images/caregiver-meeting.png",
+    image: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Crucial temporary coverage for family caregivers. Take a break, travel, work, or rest while our professional caregivers provide reliable in-home care.",
     whoBenefits: "Family members who need relief from the daily physical and emotional demands of caregiving.",
     benefits: "Prevents caregiver burnout, maintains care quality, provides peace of mind.",
@@ -232,7 +232,7 @@ const servicesList = [
     icon: <UserRound size={24} />,
     class: "row-disability",
     watermark: "DS",
-    image: "/images/caregiver-walker.png",
+    image: "https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D",
     desc: "Compassionate, custom assistance for adults and children with physical or developmental disabilities, supporting independence and active community participation.",
     whoBenefits: "Individuals of any age with physical paralysis, developmental delay, cerebral palsy, or autism.",
     benefits: "Medicaid Waiver approved, customized sensory integration, lifestyle support.",
@@ -253,7 +253,7 @@ const servicesList = [
     icon: <Award size={24} />,
     class: "row-veteran",
     watermark: "VC",
-    image: "/images/caregiver-meeting.png",
+    image: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D",
     desc: "Honoring veterans and their surviving spouses with dedicated, non-medical home care. We help coordinate care programs funded through VA Aid & Attendance benefits.",
     whoBenefits: "Eligible military veterans and surviving spouses who require assistance with ADLs.",
     benefits: "VA Aid & Attendance specialist coordinators, zero out-of-pocket options.",
@@ -274,7 +274,7 @@ const servicesList = [
     icon: <ShieldCheck size={24} />,
     class: "row-24hour",
     watermark: "24",
-    image: "/images/hero-caregiver.png",
+    image: "https://plus.unsplash.com/premium_photo-1681996583708-b7fca2e8ed2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZWNhcmV8ZW58MHwxfDB8fHww",
     desc: "Continuous around-the-clock monitoring and personal assistance to guarantee client safety, peace of mind, and emergency preparedness day or night.",
     whoBenefits: "Individuals with advanced neurological conditions, severe fall risks, or hospice patients.",
     benefits: "Certified wake-staff shifts, coordinator monitoring metrics, 24/7 standby support.",
@@ -444,7 +444,7 @@ export default function ServicesPage() {
             >
               <div className="services-hero-image-wrapper">
                 <Image
-                  src="/images/hero-caregiver.png"
+                  src="https://plus.unsplash.com/premium_photo-1681996583708-b7fca2e8ed2a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZWNhcmV8ZW58MHwxfDB8fHww"
                   alt="Friendly caregiver smiling and supporting a senior client in a bright, modern living room"
                   fill
                   priority
@@ -704,7 +704,7 @@ export default function ServicesPage() {
               <div className="faq-media-luxury__blob" aria-hidden="true" />
               <div className="faq-media-luxury__image-wrapper">
                 <Image
-                  src="/images/caregiver-meeting.png"
+                  src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                   alt="Care coordinator smiling while consulting with senior client in a warm home"
                   fill
                   sizes="(max-width: 56rem) 100vw, 45vw"

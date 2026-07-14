@@ -226,7 +226,7 @@ export default function HomePage() {
             {/* Image card wrapper */}
             <div className="services-luxury-image-container">
               <Image
-                src="/images/caregiver-walker.png"
+                src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
                 alt="Caregiver supporting senior client walking with walker"
                 fill
                 sizes="(max-width: 56rem) 100vw, 40vw"
@@ -273,7 +273,7 @@ export default function HomePage() {
                 <div className="why-luxury-media__backdrop-blob" aria-hidden="true" />
                 <div className="why-luxury-image-container">
                   <Image
-                    src="/images/caregiver-meeting.png"
+                    src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt="Caregiver meeting senior client for a screening interview"
                     fill
                     sizes="(max-width: 56rem) 100vw, 45vw"
@@ -313,7 +313,7 @@ export default function HomePage() {
                 <div className="why-luxury-media__backdrop-blob" aria-hidden="true" />
                 <div className="why-luxury-image-container">
                   <Image
-                    src="/images/caregiver-kitchen.png"
+                    src="https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt="Caregiver preparing a custom healthy meal in client's kitchen"
                     fill
                     sizes="(max-width: 56rem) 100vw, 45vw"
@@ -353,7 +353,7 @@ export default function HomePage() {
                 <div className="why-luxury-media__backdrop-blob" aria-hidden="true" />
                 <div className="why-luxury-image-container">
                   <Image
-                    src="/images/caregiver-client-warm.png"
+                    src="https://plus.unsplash.com/premium_photo-1664475811964-75af7d90ee4b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
                     alt="Smiling caregiver sitting and chatting warmly with a senior client"
                     fill
                     sizes="(max-width: 56rem) 100vw, 45vw"
@@ -393,7 +393,7 @@ export default function HomePage() {
                 <div className="why-luxury-media__backdrop-blob" aria-hidden="true" />
                 <div className="why-luxury-image-container">
                   <Image
-                    src="/images/caregiver-walker.png"
+                    src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
                     alt="Caregiver supporting senior client walking with walker"
                     fill
                     sizes="(max-width: 56rem) 100vw, 45vw"
@@ -447,7 +447,7 @@ export default function HomePage() {
 
             <div className="about-luxury-image-container">
               <Image
-                src="/images/caregiver-walker.png"
+                src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
                 alt="Friendly professional caregiver supporting senior client walking with walker"
                 fill
                 sizes="(max-width: 56rem) 100vw, 45vw"
