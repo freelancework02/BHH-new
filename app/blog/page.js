@@ -6,7 +6,6 @@ import Image from "next/image";
 import Script from "next/script";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
-import InstagramWidget from "@/components/InstagramWidget";
 import GoogleReviews from "@/components/GoogleReviews";
 import { blogPosts } from "@/lib/site";
 import { 
@@ -260,9 +259,6 @@ export default function BlogIndexPage() {
           <GoogleReviews />
         </div>
       </section>
-
-      {/* SECTION: Instagram Widget */}
-      <InstagramWidget />
 
       {/* FOOTER CTA SECTION */}
       <CTASection />

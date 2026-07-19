@@ -484,7 +484,7 @@ export default function AboutClient() {
       <section className="about-standards-section" aria-labelledby="standards-heading">
         <div className="container">
           <div className="section-heading-luxury">
-            <span className="eyebrow-luxury-accent text-gradient" style={{ filter: "brightness(1.5)" }}>SAFETY PROTOCOLS</span>
+            <span className="eyebrow-luxury-accent" style={{ color: "#ffa04d", WebkitTextFillColor: "#ffa04d", background: "none", WebkitBackgroundClip: "initial", backgroundClip: "initial" }}>SAFETY PROTOCOLS</span>
             <h2 id="standards-heading" className="section-title-luxury text-white">
               Our Caregiver Standards
             </h2>

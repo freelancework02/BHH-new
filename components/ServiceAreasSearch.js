@@ -11,6 +11,11 @@ const counties = [
   { name: "Adams County", status: "Active Coverage" },
   { name: "Cumberland County", status: "Active Coverage" },
   { name: "Dauphin County", status: "Active Coverage" },
+  { name: "Lebanon County", status: "Active Coverage" },
+  { name: "Perry County", status: "Active Coverage" },
+  { name: "Berks County", status: "Active Coverage" },
+  { name: "Lehigh County", status: "Active Coverage" },
+  { name: "Northampton County", status: "Active Coverage" },
 ];
 
 export default function ServiceAreasSearch() {
@@ -112,7 +117,7 @@ export default function ServiceAreasSearch() {
               {/* Floating information badges */}
               <div className="areas-floating-badge areas-floating-badge--1 animate-float">
                 <span className="areas-floating-badge__icon" aria-hidden="true">❤️</span>
-                <span>Serving 5+ Counties</span>
+                <span>Serving 10+ Counties</span>
               </div>
 
             </div>

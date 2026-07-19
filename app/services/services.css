@@ -563,6 +563,15 @@
   border-left-color: #14b8a6;
 }
 
+.row-employment .core-services-icon-circle {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(67, 56, 202, 0.05) 100%);
+  color: #4f46e5;
+}
+.row-employment .core-meta-block {
+  border-left-color: #4f46e5;
+}
+
+
 
 
 /* SECTION 5: Why Blessed Hearts is Different (Vertical Timeline) */

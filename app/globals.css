@@ -5231,7 +5231,7 @@ a.footer-contact-link-item:hover {
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 2.25rem;
-  color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.15);
   line-height: 1;
 }
 
@@ -5520,7 +5520,7 @@ a.footer-contact-link-item:hover {
 
 
 /* ================================================================
-   BHH HERO SECTION — Appended
+   BHH HERO SECTION ï¿½ Appended
 ================================================================ */
 
 /* ================================================================
@@ -6397,4 +6397,32 @@ a.footer-contact-link-item:hover {
   .bhh-hero__feature-strip {
     padding-bottom: 1.5rem;
   }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--pink) 0%, var(--coral) 50%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Fix caregiver standards title visibility in dark section */
+.about-standards-section .section-title-luxury {
+  color: var(--white) !important;
+}
+
+/* Custom scrollbar to match BHH color theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #3c0c3e;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--pink) 0%, var(--orange) 100%);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--orange) 0%, var(--pink) 100%);
 }

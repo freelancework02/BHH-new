@@ -25,16 +25,15 @@ import Placeholder from "@/components/Placeholder";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTASection";
 import ServiceAreasSearch from "@/components/ServiceAreasSearch";
-import InstagramWidget from "@/components/InstagramWidget";
 import KnowledgeHub from "@/components/KnowledgeHub";
 import GoogleReviews from "@/components/GoogleReviews";
 
 import { services, site } from "@/lib/site";
 
 export const metadata = {
-  title: `In-Home Care Services in York, PA | ${site.name}`,
+  title: `Home Care Services in Pennsylvania | ${site.name}`,
   description:
-    "Blessed Hearts Homecare offers professional, compassionate in-home care services, companion care, housekeeping, and Medicaid waiver caregiver options in York, PA.",
+    "Trusted in-home senior care across South Central & Eastern PA. Serving 10 counties. Call today for a free consultation.",
   alternates: { canonical: "/" },
 };
 
@@ -499,8 +498,6 @@ export default function HomePage() {
           <GoogleReviews />
         </div>
       </section>
-
-      <InstagramWidget />
 
       <CTASection />
     </>

@@ -26,7 +26,6 @@ import {
   MessageSquare
 } from "lucide-react";
 import { site } from "@/lib/site";
-import InstagramWidget from "@/components/InstagramWidget";
 import GoogleReviews from "@/components/GoogleReviews";
 import "./contact.css";
 
@@ -970,9 +969,6 @@ export default function ContactUsPage() {
           <GoogleReviews />
         </div>
       </section>
-
-      {/* SECTION 12: Instagram Feed (Reused shared component) */}
-      <InstagramWidget />
 
       {/* SECTION 13: Large Final CTA */}
       <section className="luxury-cta-banner-section" aria-label="Need Help Choosing Care">

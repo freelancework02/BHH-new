@@ -26,7 +26,6 @@ import {
   Check
 } from "lucide-react";
 import { site } from "@/lib/site";
-import InstagramWidget from "@/components/InstagramWidget";
 import GoogleReviews from "@/components/GoogleReviews";
 import "../areas.css";
 
@@ -128,7 +127,12 @@ const timelineSteps = [
   }
 ];
 
-export default function CountyPageClient({ data }) {
+export default function CountyPageClient({ data, city }) {
+  const cityName = city ? city.charAt(0).toUpperCase() + city.slice(1) : "";
+  const displayLocation = city ? `${cityName}, PA` : data.name;
+  const heroTitle = city ? `Home Care in ${cityName}, PA` : data.heroTitle;
+  const heroSubtitle = city ? `Reliable in-home care for seniors in ${cityName}, PA and surrounding ${data.name}. Companion, personal & 24 hour care. Call for a free in-home assessment.` : data.heroSubtitle;
+
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ firstName: "", lastName: "", phone: "", email: "", message: "" });
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -217,13 +221,13 @@ export default function CountyPageClient({ data }) {
               className="areas-hero-content"
             >
               <div className="areas-hero-badge">
-                <Compass size={12} /> Serving {data.name}
+                <Compass size={12} /> Serving {displayLocation}
               </div>
               <h1 className="areas-hero-title">
-                {data.heroTitle}
+                {heroTitle}
               </h1>
               <p className="areas-hero-desc">
-                {data.heroSubtitle}
+                {heroSubtitle}
               </p>
               <div className="areas-hero-actions">
                 <button 
@@ -273,7 +277,7 @@ export default function CountyPageClient({ data }) {
                 <div className="floating-county-badge__avatar" aria-hidden="true">BH</div>
                 <div>
                   <h4>Blessed Hearts</h4>
-                  <p>Trusted Care in {data.name}</p>
+                  <p>Trusted Care in {displayLocation}</p>
                 </div>
               </div>
             </motion.div>
@@ -541,9 +545,6 @@ export default function CountyPageClient({ data }) {
           <GoogleReviews />
         </div>
       </section>
-
-      {/* SECTION 9: Instagram Feed */}
-      <InstagramWidget />
 
       {/* SECTION 10: Final CTA */}
       <section className="luxury-cta-banner-section" aria-label="Find Care Banner" style={{ paddingBottom: "100px" }}>

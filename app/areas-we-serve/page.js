@@ -26,7 +26,6 @@ import {
 } from "lucide-react";
 import Script from "next/script";
 import { site } from "@/lib/site";
-import InstagramWidget from "@/components/InstagramWidget";
 import GoogleReviews from "@/components/GoogleReviews";
 import "./areas.css";
 
@@ -840,6 +839,11 @@ export default function AreasPage() {
                         <option value="Adams">Adams County</option>
                         <option value="Cumberland">Cumberland County</option>
                         <option value="Dauphin">Dauphin County</option>
+                        <option value="Lebanon">Lebanon County</option>
+                        <option value="Perry">Perry County</option>
+                        <option value="Berks">Berks County</option>
+                        <option value="Lehigh">Lehigh County</option>
+                        <option value="Northampton">Northampton County</option>
                       </select>
                     </div>
                   </div>
@@ -871,9 +875,6 @@ export default function AreasPage() {
           </div>
         </div>
       </section>
-
-      {/* SECTION 12: Instagram Feed (Reused shared component) */}
-      <InstagramWidget />
 
       {/* SECTION 13: Large CTA Banner */}
       <section className="luxury-cta-banner-section" aria-label="Find Care Banner">
