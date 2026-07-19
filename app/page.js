@@ -392,7 +392,7 @@ export default function HomePage() {
                 <div className="why-luxury-media__backdrop-blob" aria-hidden="true" />
                 <div className="why-luxury-image-container">
                   <Image
-                    src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
+                    src="/images/image.jpg"
                     alt="Caregiver supporting senior client walking with walker"
                     fill
                     sizes="(max-width: 56rem) 100vw, 45vw"
@@ -446,7 +446,7 @@ export default function HomePage() {
 
             <div className="about-luxury-image-container">
               <Image
-                src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
+                src="/images/image2.jpg"
                 alt="Friendly professional caregiver supporting senior client walking with walker"
                 fill
                 sizes="(max-width: 56rem) 100vw, 45vw"

@@ -359,7 +359,7 @@ export default function AboutClient() {
               <div className="about-trust-media">
                 <div className="about-trust-image-wrapper">
                   <Image
-                    src="https://plus.unsplash.com/premium_photo-1663134144095-a1cf58ce152f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbWVjYXJlfGVufDB8MXwwfHx8MA%3D%3D"
+                    src="/images/image.jpg"
                     alt="A caregiver assisting a senior client safely using a walker"
                     fill
                     sizes="(max-width: 68rem) 100vw, 550px"
