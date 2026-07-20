@@ -218,8 +218,10 @@
   transition: transform 0.25s ease;
 }
 
-.dropdownContainer:hover .desktopChevron {
-  transform: rotate(180deg);
+@media (min-width: 62.01rem) {
+  .dropdownContainer:hover .desktopChevron {
+    transform: rotate(180deg);
+  }
 }
 
 .dropdownMobileToggle {
@@ -257,10 +259,12 @@
   z-index: 101;
 }
 
-.dropdownContainer:hover .dropdownMenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+@media (min-width: 62.01rem) {
+  .dropdownContainer:hover .dropdownMenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .dropdownItem {
@@ -339,6 +343,7 @@
     font-size: 1.05rem;
     padding: 0.5rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+    white-space: normal;
   }
 }
 

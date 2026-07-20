@@ -69,7 +69,7 @@ export default function KnowledgeHub() {
             <div className="hub-featured-media">
               <div className="hub-featured-image-wrapper">
                 <Image
-                  src={postImages[featuredPost.slug] || "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"}
+                  src={featuredPost.image || postImages[featuredPost.slug] || "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60"}
                   alt={featuredPost.title}
                   fill
                   sizes="(max-width: 68rem) 100vw, 50vw"
@@ -129,7 +129,7 @@ export default function KnowledgeHub() {
               <div className="hub-card-media">
                 <div className="hub-card-image-wrapper">
                   <Image
-                    src={postImages[post.slug] || "https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"}
+                    src={post.image || postImages[post.slug] || "https://images.unsplash.com/photo-1765896387387-0538bc9f997e?w=600&auto=format&fit=crop&q=60"}
                     alt={post.title}
                     fill
                     sizes="(max-width: 48rem) 100vw, (max-width: 68rem) 50vw, 33vw"

@@ -98,7 +98,7 @@ export default function BlogIndexPage() {
                 {/* Thumbnail */}
                 <div className="blog-featured-media">
                   <Image
-                    src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
+                    src={featuredPost.image || "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60"}
                     alt={featuredPost.title}
                     fill
                     priority
@@ -152,7 +152,7 @@ export default function BlogIndexPage() {
                 <article key={post.slug} className="blog-card">
                   <div className="blog-card-media">
                     <Image
-                      src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
+                      src={post.image || "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60"}
                       alt={post.title}
                       fill
                       loading="lazy"
