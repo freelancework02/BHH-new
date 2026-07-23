@@ -6423,3 +6423,23 @@ a.footer-contact-link-item:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--orange) 0%, var(--pink) 100%);
 }
+
+/* Global Form Validation Error Styling */
+.input-error {
+  border-color: #d9534f !important;
+  background-color: #fff9f9 !important;
+}
+
+.error-message {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #d9534f;
+  margin-top: 0.35rem;
+  margin-left: 0.5rem;
+  display: block;
+}
+
+.error-star {
+  color: #d9534f;
+  margin-left: 2px;
+}

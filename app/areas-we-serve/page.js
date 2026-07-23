@@ -220,17 +220,50 @@ export default function AreasPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", county: "York", message: "" });
+  const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const handleValidation = () => {
+    let tempErrors = {};
+    if (!formData.name.trim()) tempErrors.name = "Full name is required.";
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      tempErrors.email = "Email address is required.";
+    } else if (!emailRegex.test(formData.email)) {
+      tempErrors.email = "Please enter a valid email address.";
+    }
+
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (!formData.phone.trim()) {
+      tempErrors.phone = "Phone number is required.";
+    } else if (cleanPhone.length < 10) {
+      tempErrors.phone = "Please enter a valid 10-digit phone number.";
+    }
+
+    if (!formData.county) {
+      tempErrors.county = "County is required.";
+    }
+
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setFormData({ name: "", phone: "", email: "", county: "York", message: "" });
+    if (handleValidation()) {
+      setFormSubmitted(true);
+      setFormData({ name: "", phone: "", email: "", county: "York", message: "" });
+      setErrors({});
+    }
   };
 
   const toggleFaq = (index) => {
@@ -552,8 +585,6 @@ export default function AreasPage() {
               <div className="office-address-block">
                 {site.address.line1}
                 <br />
-                Suite 206
-                <br />
                 {site.address.city}, {site.address.state} {site.address.zip}
               </div>
               <p className="office-description">
@@ -796,8 +827,10 @@ export default function AreasPage() {
                         value={formData.name} 
                         onChange={handleInputChange} 
                         placeholder="John Doe" 
+                        className={errors.name ? "input-error" : ""}
                         required 
                       />
+                      {errors.name && <span className="error-message">{errors.name}</span>}
                     </div>
 
                     <div className="field-luxury">
@@ -809,8 +842,10 @@ export default function AreasPage() {
                         value={formData.phone} 
                         onChange={handleInputChange} 
                         placeholder="(555) 000-0000" 
+                        className={errors.phone ? "input-error" : ""}
                         required 
                       />
+                      {errors.phone && <span className="error-message">{errors.phone}</span>}
                     </div>
 
                     <div className="field-luxury">
@@ -822,8 +857,10 @@ export default function AreasPage() {
                         value={formData.email} 
                         onChange={handleInputChange} 
                         placeholder="john@example.com" 
+                        className={errors.email ? "input-error" : ""}
                         required 
                       />
+                      {errors.email && <span className="error-message">{errors.email}</span>}
                     </div>
 
                     <div className="field-luxury">
@@ -833,6 +870,7 @@ export default function AreasPage() {
                         name="county" 
                         value={formData.county} 
                         onChange={handleInputChange}
+                        className={errors.county ? "input-error" : ""}
                       >
                         <option value="York">York County</option>
                         <option value="Lancaster">Lancaster County</option>
@@ -845,6 +883,7 @@ export default function AreasPage() {
                         <option value="Lehigh">Lehigh County</option>
                         <option value="Northampton">Northampton County</option>
                       </select>
+                      {errors.county && <span className="error-message">{errors.county}</span>}
                     </div>
                   </div>
 
