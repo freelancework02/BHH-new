@@ -46,21 +46,6 @@ export default function FAQClient({ faqGroups, site }) {
               </Link>
             </div>
           </div>
-
-          <div className="faq-page-hero__aside" aria-label="Blessed Hearts Homecare support details">
-            <div className="faq-page-stat">
-              <span>48-72 hrs</span>
-              <p>Typical care start after assessment</p>
-            </div>
-            <div className="faq-page-stat">
-              <span>10 counties</span>
-              <p>Licensed support across South Central and Eastern PA</p>
-            </div>
-            <div className="faq-page-stat">
-              <span>4-hour</span>
-              <p>Minimum visit for flexible weekly care plans</p>
-            </div>
-          </div>
         </div>
       </section>
 

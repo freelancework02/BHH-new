@@ -1881,14 +1881,18 @@ textarea:focus-visible,
 }
 
 .faq-page-hero__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
-  gap: 3rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .faq-page-hero__content {
-  max-width: 48rem;
+  max-width: 52rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .faq-page-hero__content h1 {
@@ -1902,14 +1906,21 @@ textarea:focus-visible,
 }
 
 .faq-page-hero__content p {
-  max-width: 43rem;
-  margin: 0;
+  max-width: 44rem;
+  margin: 0 auto;
   color: #555555;
   font-size: 1.08rem;
   line-height: 1.75;
 }
 
-.faq-page-hero__actions,
+.faq-page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
 .faq-page-cta__actions {
   display: flex;
   flex-wrap: wrap;

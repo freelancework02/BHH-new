@@ -42,7 +42,8 @@ export default function Logo({ variant = "color", title = "Blessed Hearts Homeca
           display: "flex", 
           flexDirection: "column", 
           justifyContent: "center",
-          lineHeight: "1.15"
+          lineHeight: "1.15",
+          whiteSpace: "nowrap"
         }}
       >
         <span 

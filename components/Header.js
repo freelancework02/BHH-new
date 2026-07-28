@@ -58,7 +58,7 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.bar}`}>
-        <Link href="/" aria-label={`${site.name} home`} onClick={() => setOpen(false)}>
+        <Link href="/" aria-label={`${site.name} home`} className={styles.logoLink} onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
@@ -131,7 +131,7 @@ export default function Header() {
               </Link>
             );
           })}
-          <Link href="/contact-us" className="btn btn--gradient" onClick={() => setOpen(false)}>
+          <Link href="/contact-us" className={`btn btn--gradient ${styles.navCta}`} onClick={() => setOpen(false)}>
             Request Care
           </Link>
         </nav>
