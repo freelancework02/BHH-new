@@ -6,6 +6,7 @@ export default function sitemap() {
     "/about",
     "/services",
     "/areas-we-serve",
+    "/faq",
     "/privacy-policy",
     "/contact-us",
     "/blog",
