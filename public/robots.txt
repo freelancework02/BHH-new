@@ -1,0 +1,95 @@
+# ==============================================================================
+# Robots.txt for Blessed Hearts Homecare (https://www.blessedheartshca.com)
+# Configured for standard search engines (Google, Bing) and AI search agents
+# (SearchGPT, ChatGPT, Perplexity, Claude, Gemini, Apple Intelligence, Copilot)
+# ==============================================================================
+
+# Standard Web Crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# OpenAI / ChatGPT / SearchGPT
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Perplexity AI Search
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Apple Intelligence / Siri
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Google Gemini & Extended AI
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+User-agent: GoogleOther
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Microsoft Copilot / Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# XML Sitemap
+Sitemap: https://www.blessedheartshca.com/sitemap.xml
+Host: https://www.blessedheartshca.com

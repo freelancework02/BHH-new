@@ -171,7 +171,26 @@ const homePageJsonLd = {
     closes: "17:00",
   },
   priceRange: "$$",
-  paymentAccepted: ["Medicaid", "Private Pay", "Long-Term Care Insurance"],
+  paymentAccepted: [
+    "Medicaid",
+    "Community HealthChoices (CHC)",
+    "Private Pay",
+    "Long-Term Care Insurance",
+    "Veterans Aid & Attendance",
+  ],
+  slogan: "Compassionate In-Home Senior Care Designed Around Your Family",
+  knowsAbout: [
+    "In-Home Senior Care",
+    "Non-Medical Home Care",
+    "Personal Care Aide Services",
+    "Elderly Companion Care",
+    "Alzheimer's and Dementia Care at Home",
+    "Respite Care for Family Caregivers",
+    "24-Hour and Live-In Caregiver Services",
+    "Pennsylvania Medicaid Waiver Programs",
+    "Community HealthChoices (CHC) Home Care",
+    "Senior Care in York, Lancaster, Harrisburg and South Central PA",
+  ],
 };
 
 
