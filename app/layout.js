@@ -103,9 +103,9 @@ const jsonLd = {
         "Licensed home care agency providing compassionate in-home care services across South Central & Eastern Pennsylvania.",
       // TODO: Replace these with your actual social media profile URLs
       sameAs: [
-        // "https://www.facebook.com/blessedheartshomecare",
-        // "https://www.instagram.com/blessedheartshomecare",
-        // "https://www.linkedin.com/company/blessedheartshomecare",
+        // "https://www.facebook.com/blessedheartshca",
+        // "https://www.instagram.com/blessedheartshca",
+        // "https://www.linkedin.com/company/blessedheartshca",
       ],
       contactPoint: {
         "@type": "ContactPoint",

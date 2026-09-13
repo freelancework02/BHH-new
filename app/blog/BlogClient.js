@@ -6,7 +6,7 @@ import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import GoogleReviews from "@/components/GoogleReviews";
-import { blogPosts } from "@/lib/site";
+import { blogPosts, site } from "@/lib/site";
 import { 
   Calendar, 
   ArrowRight, 
@@ -236,7 +236,7 @@ export default function BlogClient() {
                 <div className="blog-contact-row">
                   <Mail size={16} style={{ color: "var(--pink)" }} />
                   <span>
-                    <strong>Email:</strong> <a href="mailto:info@blessedheartshomecare.com">info@blessedheartshomecare.com</a>
+                    <strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a>
                   </span>
                 </div>
               </div>

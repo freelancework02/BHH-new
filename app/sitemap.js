@@ -9,7 +9,7 @@ import { countiesData, citiesData } from "@/lib/countiesData";
  * a 1-to-1 matching self-referencing canonical tag.
  */
 export default function sitemap() {
-  const baseUrl = site.url; // https://www.blessedheartshomecare.com
+  const baseUrl = site.url; // https://www.blessedheartshca.com
   const currentDate = new Date().toISOString().split("T")[0];
 
   // 1. Core Top-Level Pages

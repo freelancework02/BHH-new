@@ -203,7 +203,7 @@ export default function TermsConditionsPage() {
             The following disclosure is presented to all consumers at the point of opt-in:
           </p>
           <p style={{ fontStyle: "italic", borderLeft: "4px solid #ccc", paddingLeft: "1rem" }}>
-            "By checking this box, texting START to {site.phoneDisplay} or providing verbal consent, you agree to receive informational text messages (appointment reminders, scheduling updates, service notifications, and account information) from {site.name}. Msg frequency varies. Msg &amp; data rates may apply. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. Reply HELP for help or email <a href={`mailto:${site.email}`}>{site.email}</a> for support. Reply STOP to opt out at any time. Privacy Policy: <a href="/privacy-policy">www.blessedheartshomecare.com/privacy-policy</a> | Terms &amp; Conditions: <a href="/terms-conditions">www.blessedheartshomecare.com/terms-conditions</a>"
+            "By checking this box, texting START to {site.phoneDisplay} or providing verbal consent, you agree to receive informational text messages (appointment reminders, scheduling updates, service notifications, and account information) from {site.name}. Msg frequency varies. Msg &amp; data rates may apply. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. Reply HELP for help or email <a href={`mailto:${site.email}`}>{site.email}</a> for support. Reply STOP to opt out at any time. Privacy Policy: <a href="/privacy-policy">www.blessedheartshca.com/privacy-policy</a> | Terms &amp; Conditions: <a href="/terms-conditions">www.blessedheartshca.com/terms-conditions</a>"
           </p>
         </div>
       </section>
