@@ -31,15 +31,157 @@ import GoogleReviews from "@/components/GoogleReviews";
 import { services, site } from "@/lib/site";
 
 export const metadata = {
-  title: `Home Care Services in Pennsylvania | ${site.name}`,
+  title: `Home Care Services Near Me in York, PA | In-Home Senior Care | ${site.name}`,
   description:
-    "Trusted in-home senior care across South Central & Eastern PA. Serving 10 counties. Call today for a free consultation.",
+    "Looking for home care near me in York, PA? Blessed Hearts Homecare provides licensed in-home senior care services including personal care, companion care, dementia & Alzheimer's care, respite care, and Medicaid waiver support. Serving York, Lancaster, Harrisburg, and 10 PA counties. Call (223) 260-9042 for a free consultation.",
+  keywords: [
+    // HIGH VOLUME — "near me" queries (110K+ monthly US searches)
+    "home care near me",
+    "home care services near me",
+    "in-home care near me",
+    "senior care near me",
+    "caregiver near me",
+    "elderly care near me",
+    "home health aide near me",
+
+    // HIGH VOLUME — general (22K-90K monthly searches)
+    "home care services",
+    "in-home care services",
+    "senior care services",
+    "home care agency",
+    "home health care",
+    "caregiver services",
+    "elderly care services",
+    "senior home care",
+
+    // MEDIUM VOLUME — service-specific (3K-14K monthly)
+    "personal care aide",
+    "companion care services",
+    "dementia care at home",
+    "alzheimers care at home",
+    "respite care services",
+    "24 hour home care",
+    "live-in care",
+
+    // LOCAL GEO — Pennsylvania-specific (500-5K monthly)
+    "home care York PA",
+    "home care agency York PA",
+    "in-home care York PA",
+    "senior home care York PA",
+    "home care Lancaster PA",
+    "home care Harrisburg PA",
+    "home care Pennsylvania",
+    "Medicaid home care PA",
+    "Medicaid waiver caregiver PA",
+    "Community HealthChoices PA",
+    "home care for veterans PA",
+    "elder care York County PA",
+    "home care Cumberland County PA",
+    "home care Dauphin County PA",
+    "senior care South Central PA",
+
+    // LONG-TAIL — high conversion (100-1K monthly)
+    "how much does home care cost in PA",
+    "home care vs assisted living",
+    "signs parent needs home care",
+    "find caregiver for elderly parent PA",
+    "Medicaid waiver home care Pennsylvania",
+    "home care agency hiring near me",
+    "non-medical home care services",
+    "aging in place services Pennsylvania",
+  ],
   alternates: { canonical: "/" },
+  openGraph: {
+    title: `In-Home Senior Care Services in York, PA | ${site.name}`,
+    description:
+      "Licensed, compassionate in-home senior care including personal care, companion care, dementia care, and Medicaid waiver support across York, Lancaster, Harrisburg & 10 PA counties. Free consultation.",
+    url: site.url,
+    type: "website",
+    siteName: site.name,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Home Care Services Near Me | ${site.name} — York, PA`,
+    description:
+      "Licensed in-home senior care: personal care, companion care, dementia care & Medicaid waiver support across 10 PA counties. Free consultation.",
+  },
 };
+
+// Homepage-specific structured data — HomeHealthService for rich results
+const homePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  additionalType: "https://schema.org/HomeHealthCareService",
+  "@id": `${site.url}/#homeservice`,
+  name: site.name,
+  url: site.url,
+  telephone: "+1-223-260-9042",
+  email: site.email,
+  description:
+    "Blessed Hearts Homecare is a licensed home care agency in York, PA providing professional in-home senior care services including personal care, companion care, dementia care, respite care, light housekeeping, meal preparation, and transportation across 10 Pennsylvania counties.",
+  image: `${site.url}/images/logo-horizontal-official.png`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.line1,
+    addressLocality: site.address.city,
+    addressRegion: site.address.state,
+    postalCode: site.address.zip,
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 39.9440,
+    longitude: -76.7196,
+  },
+  areaServed: [
+    ...site.serviceAreas.map((area) => ({
+      "@type": "AdministrativeArea",
+      name: area + ", Pennsylvania",
+    })),
+    { "@type": "City", name: "York, PA" },
+    { "@type": "City", name: "Lancaster, PA" },
+    { "@type": "City", name: "Harrisburg, PA" },
+    { "@type": "City", name: "Reading, PA" },
+    { "@type": "City", name: "Allentown, PA" },
+    { "@type": "City", name: "Bethlehem, PA" },
+    { "@type": "City", name: "Mechanicsburg, PA" },
+    { "@type": "City", name: "Carlisle, PA" },
+    { "@type": "City", name: "Gettysburg, PA" },
+    { "@type": "City", name: "Hershey, PA" },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "In-Home Care Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Personal Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Companion Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dementia & Alzheimer's Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Respite Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "24-Hour & Live-In Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Light Housekeeping" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Meal Preparation" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Transportation Support" } },
+    ],
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+  },
+  priceRange: "$$",
+  paymentAccepted: ["Medicaid", "Private Pay", "Long-Term Care Insurance"],
+};
+
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
+      />
       <HeroSection />
 
       <section className="services-luxury-section" aria-labelledby="services-overview-heading">
@@ -65,7 +207,7 @@ export default function HomePage() {
 
             <div className="services-luxury-grid">
 
-              <div className="service-luxury-card">
+              <Link href="/personal-care" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <Bath size={22} className="service-luxury-card__icon" />
@@ -78,9 +220,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/companion-care" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <HeartHandshake size={22} className="service-luxury-card__icon" />
@@ -93,9 +235,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <Utensils size={22} className="service-luxury-card__icon" />
@@ -108,9 +250,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <Brush size={22} className="service-luxury-card__icon" />
@@ -123,9 +265,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <Car size={22} className="service-luxury-card__icon" />
@@ -138,9 +280,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <Bell size={22} className="service-luxury-card__icon" />
@@ -153,9 +295,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <ShieldCheck size={22} className="service-luxury-card__icon" />
@@ -168,9 +310,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <Accessibility size={22} className="service-luxury-card__icon" />
@@ -183,9 +325,9 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
-              <div className="service-luxury-card">
+              <Link href="/services" className="service-luxury-card" style={{ textDecoration: "none", color: "inherit" }}>
                 <div className="service-luxury-card__top">
                   <div className="service-luxury-card__icon-container">
                     <ShoppingBag size={22} className="service-luxury-card__icon" />
@@ -198,7 +340,7 @@ export default function HomePage() {
                 <div className="service-luxury-card__arrow-wrapper">
                   <ArrowRight size={16} className="service-luxury-card__arrow" />
                 </div>
-              </div>
+              </Link>
 
             </div>
 

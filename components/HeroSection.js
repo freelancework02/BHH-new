@@ -173,12 +173,10 @@ export default function HeroSection() {
             >
               Compassionate
               <br />
-              In-Home Care,
+              In-Home Senior Care
               <br />
               <span className="bhh-hero__heading-highlight">
-                Designed Around
-                <br />
-                Your Family
+                In York &amp; Central PA
               </span>
             </motion.h1>
 
@@ -187,9 +185,7 @@ export default function HeroSection() {
               className="bhh-hero__desc"
               {...(prefersReducedMotion ? {} : fadeUp(0.32))}
             >
-              Blessed Hearts Homecare provides personalized in-home care that helps
-              seniors and adults with disabilities live safely, comfortably, and
-              independently in the place they love most&mdash;their home.
+              Looking for trusted in-home care near you? Blessed Hearts Homecare provides licensed senior home care, personal care aides, companion care, dementia support, and Medicaid waiver assistance across York, Lancaster, Harrisburg, and 10 PA counties.
             </motion.p>
 
             {/* CTA Buttons */}

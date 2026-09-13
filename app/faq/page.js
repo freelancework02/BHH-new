@@ -3,19 +3,36 @@ import { flatFaqItems, faqGroups } from "@/lib/faqData";
 import { site } from "@/lib/site";
 
 export const metadata = {
-  title: "Home Care FAQ in Pennsylvania",
+  title: `Home Care FAQs: Costs, Medicaid Waiver, Hours & Caregiver Questions | ${site.name}`,
   description:
-    "Answers to common home care questions about cost, Medicare, Medicaid CHC, caregivers, schedules, services, and licensing in Pennsylvania.",
+    "Got questions about in-home care in Pennsylvania? Find answers on home care costs per hour, Medicaid CHC waiver coverage, Medicare vs Medicaid, caregiver vetting, and 24/7 schedules.",
+  keywords: [
+    "how much does home care cost in PA",
+    "home care cost per hour Pennsylvania",
+    "does Medicaid pay for home care in PA",
+    "Medicaid waiver caregiver PA",
+    "Community HealthChoices PA home care",
+    "difference between home health and home care",
+    "home care FAQs",
+    "hire caregiver for parent PA",
+    "24 hour care cost PA",
+  ],
   alternates: {
     canonical: "/faq",
   },
   openGraph: {
-    title: `Home Care FAQ in Pennsylvania | ${site.name}`,
+    title: `Home Care FAQs: Costs, Medicaid & Services in PA | ${site.name}`,
     description:
-      "Get clear answers about home care costs, Medicaid CHC, caregiver screening, scheduling, services, and local licensing.",
+      "Clear, expert answers about home care costs in Pennsylvania, Medicaid waiver eligibility, caregiver vetting, and customized care schedules.",
     url: `${site.url}/faq`,
     type: "website",
     siteName: site.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Home Care FAQs | ${site.name}`,
+    description:
+      "Answers to top questions about PA in-home senior care costs, Medicaid waiver, and hiring a caregiver.",
   },
 };
 

@@ -19,9 +19,24 @@ export async function generateMetadata({ params, searchParams }) {
   const description = isCity ? citiesData[city].metaDescription : data.metaDescription;
   const canonicalUrl = isCity ? `/${city}-pa-home-care` : `/areas-we-serve/${data.slug}`;
 
+  const locationName = isCity ? `${city.charAt(0).toUpperCase() + city.slice(1)}, PA` : `${data.name}, PA`;
+
   return {
     title,
     description,
+    keywords: [
+      `home care ${locationName}`,
+      `in-home care ${locationName}`,
+      `senior care ${locationName}`,
+      `home care agency ${locationName}`,
+      `caregiver services ${locationName}`,
+      `home health aide ${locationName}`,
+      `elderly care ${locationName}`,
+      `personal care aide ${locationName}`,
+      "home care near me",
+      "senior home care Pennsylvania",
+      "Medicaid waiver caregiver PA",
+    ],
     alternates: {
       canonical: canonicalUrl,
     },

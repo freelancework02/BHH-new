@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
-import { blogPosts } from "@/lib/site";
+import { blogPosts, site } from "@/lib/site";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 
 export function generateStaticParams() {
@@ -12,10 +12,45 @@ export function generateStaticParams() {
 export function generateMetadata({ params }) {
   const post = blogPosts.find((p) => p.slug === params.slug);
   if (!post) return {};
+
+  const canonicalUrl = `/blog/${post.slug}`;
+
   return {
-    title: post.title,
+    title: `${post.title} | ${site.name}`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
+    keywords: [
+      post.title,
+      "home care Pennsylvania",
+      "senior care PA",
+      "caregiver support Pennsylvania",
+      "Medicaid waiver PA",
+      "elderly care advice",
+    ],
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: `${post.title} | ${site.name}`,
+      description: post.excerpt,
+      url: `${site.url}${canonicalUrl}`,
+      type: "article",
+      publishedTime: post.date,
+      siteName: site.name,
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: post.image ? [post.image] : [],
+    },
   };
 }
 
@@ -32,9 +67,79 @@ export default function BlogPostPage({ params }) {
   if (!post) notFound();
 
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const canonicalUrl = `/blog/${post.slug}`;
+
+  // Article + BreadcrumbList structured data
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${site.url}${canonicalUrl}/#article`,
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.date,
+        dateModified: post.date,
+        url: `${site.url}${canonicalUrl}`,
+        image: post.image || undefined,
+        author: {
+          "@type": "Organization",
+          name: site.name,
+          url: site.url,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: site.name,
+          url: site.url,
+          logo: {
+            "@type": "ImageObject",
+            url: `${site.url}/images/logo-horizontal-official.png`,
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${site.url}${canonicalUrl}`,
+        },
+        isPartOf: {
+          "@id": `${site.url}/#website`,
+        },
+        articleSection: "Home Care",
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${site.url}${canonicalUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: site.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${site.url}/blog`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: `${site.url}${canonicalUrl}`,
+          },
+        ],
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <PageHero
         variant="services"
         eyebrow="BLOG ARTICLE"
@@ -67,6 +172,17 @@ export default function BlogPostPage({ params }) {
             {post.content.map((para, i) => (
               <p key={i} style={{ marginBottom: "1.5rem" }}>{para}</p>
             ))}
+          </div>
+
+          {/* Internal links for SEO */}
+          <div style={{ marginTop: "2.5rem", padding: "2rem", backgroundColor: "var(--gray-light, #f8f8f8)", borderRadius: "16px" }}>
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--plum)", marginBottom: "1rem" }}>Related Services & Resources</h3>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+              <li><Link href="/services" style={{ color: "var(--pink)", fontWeight: 600, textDecoration: "none", fontSize: "0.9rem" }}>Our Services →</Link></li>
+              <li><Link href="/areas-we-serve" style={{ color: "var(--pink)", fontWeight: 600, textDecoration: "none", fontSize: "0.9rem" }}>Areas We Serve →</Link></li>
+              <li><Link href="/faq" style={{ color: "var(--pink)", fontWeight: 600, textDecoration: "none", fontSize: "0.9rem" }}>FAQ →</Link></li>
+              <li><Link href="/contact-us" style={{ color: "var(--pink)", fontWeight: 600, textDecoration: "none", fontSize: "0.9rem" }}>Free Consultation →</Link></li>
+            </ul>
           </div>
         </div>
       </article>

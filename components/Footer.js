@@ -42,20 +42,15 @@ export default function Footer() {
               
               {/* Social Media Circle Buttons */}
               <div className="footer-social-row">
-                <a href="#" className="footer-social-btn" aria-label="Facebook">
+                {/* TODO: Replace # with your actual social media profile URLs */}
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Facebook">
                   <Facebook size={16} aria-hidden="true" />
                 </a>
-                <a href="#" className="footer-social-btn" aria-label="Instagram">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Instagram">
                   <Instagram size={16} aria-hidden="true" />
                 </a>
-                <a href="#" className="footer-social-btn" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="LinkedIn">
                   <Linkedin size={16} aria-hidden="true" />
-                </a>
-                <a href="#" className="footer-social-btn" aria-label="Twitter X">
-                  <Twitter size={16} aria-hidden="true" />
-                </a>
-                <a href="#" className="footer-social-btn" aria-label="YouTube">
-                  <Youtube size={16} aria-hidden="true" />
                 </a>
               </div>
 
@@ -165,11 +160,14 @@ export default function Footer() {
             <div className="footer-column">
               <h4>Service Areas</h4>
               <ul className="footer-links-list">
-                <li><Link href="/areas-we-serve">York County</Link></li>
-                <li><Link href="/areas-we-serve">Adams County</Link></li>
-                <li><Link href="/areas-we-serve">Lancaster County</Link></li>
-                <li><Link href="/areas-we-serve">Dauphin County</Link></li>
-                <li><Link href="/areas-we-serve">Cumberland County</Link></li>
+                <li><Link href="/areas-we-serve/york">York County</Link></li>
+                <li><Link href="/areas-we-serve/adams">Adams County</Link></li>
+                <li><Link href="/areas-we-serve/lancaster">Lancaster County</Link></li>
+                <li><Link href="/areas-we-serve/dauphin">Dauphin County</Link></li>
+                <li><Link href="/areas-we-serve/cumberland">Cumberland County</Link></li>
+                <li><Link href="/areas-we-serve/lebanon">Lebanon County</Link></li>
+                <li><Link href="/areas-we-serve/berks">Berks County</Link></li>
+                <li><Link href="/areas-we-serve/lehigh">Lehigh County</Link></li>
               </ul>
               <Link href="/areas-we-serve" className="footer-view-all-link">
                 View All Areas
