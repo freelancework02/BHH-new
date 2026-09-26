@@ -14,6 +14,7 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +24,7 @@ export default function ContactForm() {
     }
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     
     const newErrors = {};
@@ -68,21 +69,63 @@ export default function ContactForm() {
     if (!isValid) {
       return;
     }
-    
-    setStatus("Thank you — we've received your message and will be in touch soon.");
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      city: "",
-      zip: "",
-      help: "",
-    });
+
+    setIsSubmitting(true);
+    setStatus("");
+
+    try {
+      const formPayload = new FormData();
+      formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
+      formPayload.append("subject", `New Inquiry from ${formData.firstName} ${formData.lastName}`);
+      formPayload.append("from_name", "Blessed Hearts Website Lead");
+      formPayload.append("name", `${formData.firstName} ${formData.lastName}`);
+      formPayload.append("email", formData.email);
+      formPayload.append("phone", formData.phone);
+      formPayload.append("city", formData.city);
+      formPayload.append("zip", formData.zip);
+      formPayload.append("service_needed", formData.help);
+      formPayload.append("source", "Contact Form Component");
+
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formPayload,
+      });
+
+      const web3Data = await web3Res.json();
+      if (!web3Data.success) {
+        throw new Error(web3Data.message || "Unable to send your message. Please try again.");
+      }
+
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          source: "Contact Form Component",
+        }),
+      }).catch((e) => console.warn("Firestore save error:", e));
+
+      setStatus("Thank you — we've received your message and will be in touch soon.");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        city: "",
+        zip: "",
+        help: "",
+      });
+    } catch (err) {
+      setStatus(err.message || "Something went wrong. Please call us at (223) 260-9042.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} noValidate aria-describedby="form-status">
+      {/* Honeypot field for bot protection */}
+      <input type="text" name="botField" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
       <div className="grid grid--2">
         <div className="field">
           <label htmlFor="firstName" className="required">
@@ -213,8 +256,8 @@ export default function ContactForm() {
         {errors.help && <span className="error-message">{errors.help}</span>}
       </div>
 
-      <button type="submit" className="btn btn--gradient" style={{ width: "100%" }}>
-        Submit
+      <button type="submit" className="btn btn--gradient" style={{ width: "100%", opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? "not-allowed" : "pointer" }} disabled={isSubmitting}>
+        {isSubmitting ? "Submitting..." : "Submit"}
       </button>
 
       <p id="form-status" role="status" aria-live="polite" className="form-status">

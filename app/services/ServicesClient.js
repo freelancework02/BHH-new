@@ -361,6 +361,8 @@ export default function ServicesClient({ initialService }) {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", county: "York", message: "" });
   const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -400,12 +402,53 @@ export default function ServicesClient({ initialService }) {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (handleValidation()) {
+    if (!handleValidation()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const formPayload = new FormData();
+      formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
+      formPayload.append("subject", `New Assessment Request from ${formData.name} (${formData.county})`);
+      formPayload.append("from_name", "Blessed Hearts Website Lead");
+      formPayload.append("name", formData.name);
+      formPayload.append("email", formData.email);
+      formPayload.append("phone", formData.phone);
+      formPayload.append("county", formData.county);
+      formPayload.append("message", formData.message || "N/A");
+      formPayload.append("source", "Services Page Consultation Form");
+
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formPayload,
+      });
+
+      const web3Data = await web3Res.json();
+      if (!web3Data.success) {
+        throw new Error(web3Data.message || "Failed to schedule assessment. Please try again.");
+      }
+
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          source: "Services Page Consultation Form",
+        }),
+      }).catch((e) => console.warn("Firestore save error:", e));
+
       setFormSubmitted(true);
       setFormData({ name: "", phone: "", email: "", county: "York", message: "" });
       setErrors({});
+    } catch (err) {
+      setSubmitError(err.message || "An error occurred. Please call us at (223) 260-9042.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -833,6 +876,8 @@ export default function ServicesClient({ initialService }) {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="appointment-form-luxury" noValidate>
+                  {/* Honeypot field for bot protection */}
+                  <input type="text" name="botField" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                   <div className="form-grid-luxury">
                     <div className="field-luxury">
                       <label htmlFor="form-name" className="required">Full Name</label>
@@ -915,9 +960,20 @@ export default function ServicesClient({ initialService }) {
                     />
                   </div>
 
+                  {submitError && (
+                    <div style={{ marginTop: "1rem", padding: "0.75rem 1rem", backgroundColor: "#fde8e8", color: "#c81e1e", borderRadius: "8px", fontSize: "0.95rem", textAlign: "center" }}>
+                      {submitError}
+                    </div>
+                  )}
+
                   <div className="form-footer-luxury" style={{ marginTop: "1.75rem" }}>
-                    <button type="submit" className="btn-luxury-primary form-submit-btn" style={{ width: "100%" }}>
-                      Schedule Free Consultation
+                    <button 
+                      type="submit" 
+                      className="btn-luxury-primary form-submit-btn" 
+                      style={{ width: "100%", opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? "not-allowed" : "pointer" }}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Scheduling Consultation..." : "Schedule Free Consultation"}
                     </button>
                     <p className="form-privacy-notice" style={{ textAlign: "center", marginTop: "1rem" }}>
                       ✓ Your information is private, encrypted, and kept strictly confidential.

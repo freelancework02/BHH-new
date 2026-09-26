@@ -171,6 +171,8 @@ export default function ContactUsPage() {
   });
   const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
 
   const handleInputChange = (e) => {
@@ -189,7 +191,7 @@ export default function ContactUsPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -239,21 +241,65 @@ export default function ContactUsPage() {
       return;
     }
 
-    setFormSubmitted(true);
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      city: "",
-      zip: "",
-      reasonForContact: "",
-      preferredContact: "Phone",
-      preferredTime: "Morning",
-      message: "",
-      privacyConsent: false
-    });
-    setErrors({});
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      // 1. Submit directly to Web3Forms from the browser (no Cloudflare bot blocks)
+      const formPayload = new FormData();
+      formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
+      formPayload.append("subject", `New Consultation Request from ${formData.firstName} ${formData.lastName}`);
+      formPayload.append("from_name", "Blessed Hearts Website Lead");
+      formPayload.append("name", `${formData.firstName} ${formData.lastName}`);
+      formPayload.append("email", formData.email);
+      formPayload.append("phone", formData.phone);
+      formPayload.append("city", formData.city);
+      formPayload.append("zip", formData.zip);
+      formPayload.append("service", formData.reasonForContact || "Care Inquiry");
+      formPayload.append("preferred_contact", `${formData.preferredContact} (${formData.preferredTime})`);
+      formPayload.append("message", formData.message || "N/A");
+      formPayload.append("source", "Contact Us Page");
+
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formPayload,
+      });
+
+      const web3Data = await web3Res.json();
+      if (!web3Data.success) {
+        throw new Error(web3Data.message || "Unable to send your request. Please try again.");
+      }
+
+      // 2. Save lead into Firebase Firestore via server route
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          source: "Contact Us Page",
+        }),
+      }).catch((e) => console.warn("Firestore save error:", e));
+
+      setFormSubmitted(true);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        city: "",
+        zip: "",
+        reasonForContact: "",
+        preferredContact: "Phone",
+        preferredTime: "Morning",
+        message: "",
+        privacyConsent: false
+      });
+      setErrors({});
+    } catch (err) {
+      setSubmitError(err.message || "Something went wrong. Please call us at (223) 260-9042.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleFaq = (index) => {
@@ -446,6 +492,8 @@ export default function ContactUsPage() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
+                {/* Honeypot field for bot protection */}
+                <input type="text" name="botField" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                 <div className="form-grid-luxury">
                   
                   {/* First Name field */}
@@ -644,14 +692,22 @@ export default function ContactUsPage() {
                     </div>
                   )}
 
+                  {/* Submit Error feedback if any */}
+                  {submitError && (
+                    <div style={{ gridColumn: "1 / -1", padding: "0.75rem 1rem", backgroundColor: "#fde8e8", color: "#c81e1e", borderRadius: "8px", fontSize: "0.95rem", textAlign: "center" }}>
+                      {submitError}
+                    </div>
+                  )}
+
                   {/* Submit button */}
                   <div className="form-submit-row">
                     <button 
                       type="submit" 
                       className="btn-luxury-lg btn-luxury-lg--primary"
-                      style={{ minWidth: "18rem", justifyContent: "center" }}
+                      style={{ minWidth: "18rem", justifyContent: "center", opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? "not-allowed" : "pointer" }}
+                      disabled={isSubmitting}
                     >
-                      Submit Care Request
+                      {isSubmitting ? "Submitting Care Request..." : "Submit Care Request"}
                     </button>
                     <span className="form-reassurance">
                       ✓ We typically respond within one business day.
