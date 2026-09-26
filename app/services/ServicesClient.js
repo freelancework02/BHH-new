@@ -404,6 +404,7 @@ export default function ServicesClient({ initialService }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!handleValidation()) {
       return;
     }

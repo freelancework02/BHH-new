@@ -60,6 +60,11 @@ const nextConfig = {
       { source: '/find-caregiver-for-parent-pa', destination: '/blog/choosing-a-home-care-agency' },
     ];
   },
+  async redirects() {
+    return [
+      { source: '/blog', destination: '/blogs', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

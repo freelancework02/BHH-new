@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:db": "node scripts/test-insert.mjs",
+    "test:duplicate": "node scripts/test-duplicate-prevention.mjs",
+    "test:db-dedupe": "node scripts/test-db-dedupe-direct.mjs",
+    "test:chatbot": "node scripts/test-chatbot-api.mjs",
+    "seed:admin": "node scripts/seed-admin.mjs"
   },
   "dependencies": {
     "firebase": "^12.19.0",

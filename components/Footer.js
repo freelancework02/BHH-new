@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { 
   Facebook, 
   Instagram, 
@@ -20,6 +21,11 @@ import Logo from "./Logo";
 import { site } from "@/lib/site";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <footer className="footer-luxury-section">
       {/* Decorative ambient blobs */}
@@ -81,7 +87,7 @@ export default function Footer() {
                 <li><Link href="/areas-we-serve">Areas We Serve</Link></li>
                 <li><Link href="/faq">FAQ</Link></li>
                 <li><Link href="/contact-us">Careers</Link></li>
-                <li><Link href="/blog">Blog</Link></li>
+                <li><Link href="/blogs">Blogs</Link></li>
                 <li><Link href="/privacy-policy">Privacy Policy</Link></li>
                 <li><Link href="/terms-conditions">Terms & Conditions</Link></li>
                 <li><Link href="/contact-us">Contact Us</Link></li>

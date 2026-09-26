@@ -193,6 +193,7 @@ export default function ContactUsPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
     const newErrors = {};
     if (!formData.firstName.trim()) {

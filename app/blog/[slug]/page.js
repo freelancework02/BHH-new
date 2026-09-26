@@ -2,30 +2,33 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
-import { blogPosts, site } from "@/lib/site";
-import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
+import { site } from "@/lib/site";
+import { getBlogBySlug, getAllBlogs, formatBlogDate } from "@/lib/blogsData";
+import { Calendar, ArrowLeft, ArrowRight, User, Clock, Tag } from "lucide-react";
+import "../blog.css";
 
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
-  if (!post) return {};
+export async function generateMetadata({ params }) {
+  const post = await getBlogBySlug(params.slug);
+  if (!post || post.status === "draft") return {};
 
   const canonicalUrl = `/blog/${post.slug}`;
+  const keywords = [
+    post.title,
+    post.category || "Senior Care",
+    "home care Pennsylvania",
+    "senior care PA",
+    "caregiver support Pennsylvania",
+    "Medicaid waiver PA",
+    "elderly care advice",
+    "in-home care York PA",
+  ];
 
   return {
     title: `${post.title} | ${site.name}`,
     description: post.excerpt,
-    keywords: [
-      post.title,
-      "home care Pennsylvania",
-      "senior care PA",
-      "caregiver support Pennsylvania",
-      "Medicaid waiver PA",
-      "elderly care advice",
-    ],
+    keywords,
     alternates: { canonical: canonicalUrl },
     openGraph: {
       title: `${post.title} | ${site.name}`,
@@ -33,6 +36,7 @@ export function generateMetadata({ params }) {
       url: `${site.url}${canonicalUrl}`,
       type: "article",
       publishedTime: post.date,
+      authors: [post.author || "Blessed Hearts Care Team"],
       siteName: site.name,
       images: post.image
         ? [
@@ -54,22 +58,50 @@ export function generateMetadata({ params }) {
   };
 }
 
-function formatDate(d) {
-  return new Date(d).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+/**
+ * Format article body: converts rich HTML or plain text into clean, valid, fully rendered HTML.
+ * Eliminates visible raw HTML tags (&lt;h2&gt;, etc.) and renders real DOM headings, paragraphs, lists, and quotes.
+ */
+function formatArticleBody(content) {
+  if (!content) return "";
+  const rawString = Array.isArray(content) ? content.join("\n\n") : String(content);
+
+  // Check if content contains any HTML tags (e.g. <h2>, <p>, <blockquote>, <ul>, <strong>, etc.)
+  const hasHtml = /<[a-z][\s\S]*>/i.test(rawString);
+
+  if (hasHtml) {
+    // If it already has block-level tags or inline tags, split by double newlines
+    // and wrap any raw text chunk that doesn't start with a block tag into <p>...</p>
+    const blocks = rawString.split(/\n\s*\n/).filter(Boolean);
+    return blocks
+      .map((block) => {
+        const trimmed = block.trim();
+        if (/^<(?:p|h[1-6]|ul|ol|blockquote|div|hr|img|table|section|article)/i.test(trimmed)) {
+          return trimmed;
+        }
+        return `<p>${trimmed}</p>`;
+      })
+      .join("\n\n");
+  }
+
+  // Pure plain text article: wrap each paragraph in <p>...</p>
+  return rawString
+    .split(/\n\s*\n/)
+    .filter(Boolean)
+    .map((p) => `<p>${p.trim()}</p>`)
+    .join("\n\n");
 }
 
-export default function BlogPostPage({ params }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
-  if (!post) notFound();
+export default async function BlogPostPage({ params }) {
+  const post = await getBlogBySlug(params.slug);
+  if (!post || post.status === "draft") notFound();
 
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const allBlogs = await getAllBlogs();
+  const related = allBlogs.filter((p) => p.slug !== post.slug).slice(0, 3);
   const canonicalUrl = `/blog/${post.slug}`;
+  const formattedHtml = formatArticleBody(post.content);
 
-  // Article + BreadcrumbList structured data
+  // Article + BreadcrumbList structured data (Article Schema)
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -83,9 +115,8 @@ export default function BlogPostPage({ params }) {
         url: `${site.url}${canonicalUrl}`,
         image: post.image || undefined,
         author: {
-          "@type": "Organization",
-          name: site.name,
-          url: site.url,
+          "@type": "Person",
+          name: post.author || "Blessed Hearts Care Team",
         },
         publisher: {
           "@type": "Organization",
@@ -103,7 +134,7 @@ export default function BlogPostPage({ params }) {
         isPartOf: {
           "@id": `${site.url}/#website`,
         },
-        articleSection: "Home Care",
+        articleSection: post.category || "Home Care",
         inLanguage: "en-US",
       },
       {
@@ -119,8 +150,8 @@ export default function BlogPostPage({ params }) {
           {
             "@type": "ListItem",
             position: 2,
-            name: "Blog",
-            item: `${site.url}/blog`,
+            name: "Blogs",
+            item: `${site.url}/blogs`,
           },
           {
             "@type": "ListItem",
@@ -154,25 +185,45 @@ export default function BlogPostPage({ params }) {
         <div className="container" style={{ maxWidth: "46rem" }}>
           {/* Back button */}
           <div style={{ marginBottom: "2rem" }}>
-            <Link href="/blog" style={{ color: "var(--pink)", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+            <Link href="/blogs" style={{ color: "var(--pink)", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
               <ArrowLeft size={16} /> Back to all articles
             </Link>
           </div>
 
-          {/* Date stamp */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "0.85rem", color: "#666666", marginBottom: "1.5rem" }}>
-            <Calendar size={14} className="trust-badge-check" />
-            <time dateTime={post.date}>
-              {formatDate(post.date)}
-            </time>
+          {/* Meta bar: Date, Category, Author, Read time */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", fontSize: "0.85rem", color: "#666666", marginBottom: "1.75rem", paddingBottom: "1rem", borderBottom: "1px solid #eaeaea" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+              <Calendar size={14} style={{ color: "var(--pink)" }} />
+              <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
+            </div>
+
+            {post.category && (
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                <Tag size={13} style={{ color: "var(--pink)" }} />
+                <span style={{ fontWeight: 600, color: "var(--plum)" }}>{post.category}</span>
+              </div>
+            )}
+
+            {post.author && (
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                <User size={14} style={{ color: "var(--pink)" }} />
+                <span>{post.author}</span>
+              </div>
+            )}
+
+            {post.readTime && (
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                <Clock size={14} style={{ color: "var(--pink)" }} />
+                <span>{post.readTime}</span>
+              </div>
+            )}
           </div>
 
-          {/* Paragraphs body */}
-          <div className="article-body-luxury" style={{ color: "#333333", fontSize: "1.1rem", lineHeight: "1.8" }}>
-            {post.content.map((para, i) => (
-              <p key={i} style={{ marginBottom: "1.5rem" }}>{para}</p>
-            ))}
-          </div>
+          {/* Article body with full Rich Text & High Visibility support */}
+          <div
+            className="article-body-luxury"
+            dangerouslySetInnerHTML={{ __html: formattedHtml }}
+          />
 
           {/* Internal links for SEO */}
           <div style={{ marginTop: "2.5rem", padding: "2rem", backgroundColor: "var(--gray-light, #f8f8f8)", borderRadius: "16px" }}>
@@ -188,34 +239,36 @@ export default function BlogPostPage({ params }) {
       </article>
 
       {/* Related blog posts */}
-      <section className="section services-alternating" aria-labelledby="related-heading">
-        <div className="container">
-          <div className="section-heading-luxury" style={{ marginBottom: "2.5rem" }}>
-            <span className="eyebrow-luxury-accent">RECOMMENDED ARTICLES</span>
-            <h2 id="related-heading" className="section-title-luxury">More From the Blog</h2>
-          </div>
+      {related.length > 0 && (
+        <section className="section services-alternating" aria-labelledby="related-heading">
+          <div className="container">
+            <div className="section-heading-luxury" style={{ marginBottom: "2.5rem" }}>
+              <span className="eyebrow-luxury-accent">RECOMMENDED ARTICLES</span>
+              <h2 id="related-heading" className="section-title-luxury">More From the Blog</h2>
+            </div>
 
-          <div className="why-us-grid-luxury" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))", gap: "2rem" }}>
-            {related.map((p) => (
-              <div key={p.slug} className="review-card-luxury" style={{ display: "flex", flexDirection: "column" }}>
-                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--plum)", lineHeight: "1.35", marginBottom: "0.85rem" }}>
-                  <Link href={`/blog/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
-                    {p.title}
-                  </Link>
-                </h3>
-                <p style={{ fontSize: "0.9rem", color: "#555555", lineHeight: "1.55", marginBottom: "1.25rem", flexGrow: 1 }}>
-                  {p.excerpt}
-                </p>
-                <div>
-                  <Link href={`/blog/${p.slug}`} className="btn-luxury-secondary-small" style={{ textDecoration: "none", width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
-                    Read Article <ArrowRight size={14} />
-                  </Link>
+            <div className="why-us-grid-luxury" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))", gap: "2rem" }}>
+              {related.map((p) => (
+                <div key={p.slug} className="review-card-luxury" style={{ display: "flex", flexDirection: "column" }}>
+                  <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--plum)", lineHeight: "1.35", marginBottom: "0.85rem" }}>
+                    <Link href={`/blog/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+                      {p.title}
+                    </Link>
+                  </h3>
+                  <p style={{ fontSize: "0.9rem", color: "#555555", lineHeight: "1.55", marginBottom: "1.25rem", flexGrow: 1 }}>
+                    {p.excerpt}
+                  </p>
+                  <div>
+                    <Link href={`/blog/${p.slug}`} className="btn-luxury-secondary-small" style={{ textDecoration: "none", width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                      Read Article <ArrowRight size={14} />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <CTASection />
     </>

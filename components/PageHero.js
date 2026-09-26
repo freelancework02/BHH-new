@@ -125,6 +125,7 @@ export default function PageHero({
                   fill
                   sizes="(max-width: 56rem) 100vw, 55vw"
                   priority
+                  unoptimized={imageSrc ? (imageSrc.startsWith("/") || !imageSrc.includes("unsplash")) : false}
                   style={{ objectFit: "cover" }}
                   className={`animate-levitate ${isServices ? "hero__img-services" : "hero__img-luxury"}`}
                 />
@@ -142,6 +143,7 @@ export default function PageHero({
                     fill
                     sizes="(max-width: 56rem) 100vw, 50vw"
                     priority
+                    unoptimized={imageSrc ? (imageSrc.startsWith("/") || !imageSrc.includes("unsplash")) : false}
                     style={{ objectFit: "cover" }}
                     className="hero__img"
                   />

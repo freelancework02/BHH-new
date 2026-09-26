@@ -2,6 +2,7 @@ import { Poppins, Open_Sans, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 import { site } from "@/lib/site";
 import Script from "next/script";
 
@@ -174,7 +175,7 @@ const jsonLd = {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: `${site.url}/blog?q={search_term_string}`,
+          urlTemplate: `${site.url}/blogs?q={search_term_string}`,
         },
         "query-input": "required name=search_term_string",
       },
@@ -215,6 +216,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <Chatbot />
       </body>
     </html>
   );

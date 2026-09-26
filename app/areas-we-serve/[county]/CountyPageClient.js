@@ -173,6 +173,7 @@ export default function CountyPageClient({ data, city }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!handleValidation()) {
       return;
     }

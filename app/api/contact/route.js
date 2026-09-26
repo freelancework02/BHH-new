@@ -1,6 +1,20 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 import { db } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+
+// In-memory sliding cache to prevent duplicate database entries (5 minute window)
+const recentSubmissions = new Map();
+const DEDUPLICATION_WINDOW_MS = 5 * 60 * 1000;
+
+function cleanOldSubmissions() {
+  const now = Date.now();
+  for (const [key, timestamp] of recentSubmissions.entries()) {
+    if (now - timestamp > DEDUPLICATION_WINDOW_MS) {
+      recentSubmissions.delete(key);
+    }
+  }
+}
 
 export async function POST(request) {
   try {
@@ -43,12 +57,52 @@ export async function POST(request) {
       );
     }
 
+    // 3. In-memory deduplication check (Layer 1): prevents duplicate submissions within 5 minutes
+    cleanOldSubmissions();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPhone = phone.replace(/\D/g, "");
+    const cleanMsg = message.trim().toLowerCase().slice(0, 100);
+    const fingerprint = `${cleanEmail}|${cleanPhone}|${cleanMsg}`;
+
+    if (recentSubmissions.has(fingerprint)) {
+      const lastSeen = recentSubmissions.get(fingerprint);
+      if (Date.now() - lastSeen < DEDUPLICATION_WINDOW_MS) {
+        console.log(`[BHH Deduplication] In-memory duplicate blocked for: ${cleanEmail || cleanPhone}`);
+        return NextResponse.json(
+          {
+            success: true,
+            message: "Thank you! We have already received your inquiry and will be in touch shortly.",
+            firestoreSaved: false,
+            duplicatePrevented: true,
+          },
+          { status: 200 }
+        );
+      }
+    }
+
+    // Register this submission fingerprint in memory
+    recentSubmissions.set(fingerprint, Date.now());
+
     let firestoreSaved = false;
 
-    // 3. Save to Firebase Firestore (if configured)
+    // 4. Save to Firebase Firestore with Database-Level Deduplication (Layer 2)
+    // Deterministic document ID based on normalized contact info + message snippet + current date.
+    // Because Firestore security rules forbid updating existing documents, any duplicate write to the
+    // same docId is physically blocked at the database engine level even if the server restarts.
     if (db) {
+      const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+      const hashInput = `${cleanEmail}|${cleanPhone}|${cleanMsg}|${today}`;
+      const dedupeHash = crypto
+        .createHash("sha256")
+        .update(hashInput)
+        .digest("hex")
+        .slice(0, 16);
+      const docId = `bhh_${dedupeHash}`;
+
       try {
-        await addDoc(collection(db, "inquiries"), {
+        await setDoc(doc(db, "BHH_inquiries", docId), {
+          brand: "BHH",
+          organization: "Blessed Hearts Homecare",
           fullName,
           firstName: firstName.trim(),
           lastName: lastName.trim(),
@@ -61,14 +115,19 @@ export async function POST(request) {
           preferredContact,
           preferredTime,
           message: message.trim(),
-          source,
+          source: source.includes("BHH") ? source : `BHH - ${source}`,
           status: "new",
           createdAt: serverTimestamp(),
         });
         firestoreSaved = true;
       } catch (fbError) {
-        console.error("Error saving inquiry to Firebase Firestore:", fbError);
-        // Do not crash, proceed to send email notification
+        if (fbError.code === "permission-denied") {
+          // Document already exists! Firestore security rules (allow update: if false) blocked duplicate write
+          console.log(`[BHH Firestore] Database-level duplicate blocked for ${docId}`);
+          firestoreSaved = false;
+        } else {
+          console.error("Error saving inquiry to Firebase Firestore (BHH_inquiries):", fbError);
+        }
       }
     } else {
       console.warn("Firebase is not initialized yet. Skipping Firestore document save.");

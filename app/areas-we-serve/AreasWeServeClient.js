@@ -261,6 +261,7 @@ export default function AreasPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!handleValidation()) {
       return;
     }

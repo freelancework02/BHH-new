@@ -1,5 +1,8 @@
-import { blogPosts, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { countiesData, citiesData } from "@/lib/countiesData";
+import { getAllBlogs } from "@/lib/blogsData";
+
+export const dynamic = "force-dynamic";
 
 /**
  * Next.js Dynamic Sitemap Generator
@@ -8,7 +11,7 @@ import { countiesData, citiesData } from "@/lib/countiesData";
  * or "Duplicate without user-selected canonical" exclusions, EVERY URL in this sitemap must have
  * a 1-to-1 matching self-referencing canonical tag.
  */
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = site.url; // https://www.blessedheartshca.com
   const currentDate = new Date().toISOString().split("T")[0];
 
@@ -20,7 +23,7 @@ export default function sitemap() {
     { url: `${baseUrl}/about`, lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 },
     { url: `${baseUrl}/contact-us`, lastModified: currentDate, changeFrequency: "monthly", priority: 0.85 },
     { url: `${baseUrl}/faq`, lastModified: currentDate, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/blog`, lastModified: currentDate, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${baseUrl}/blogs`, lastModified: currentDate, changeFrequency: "weekly", priority: 0.85 },
     { url: `${baseUrl}/privacy-policy`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/terms-conditions`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 },
   ];
@@ -50,13 +53,21 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  // 5. Canonical Blog Articles
-  const blogUrls = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.date || currentDate,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // 5. Canonical Blog Articles (Loaded dynamically from BHH-Blogs + site.js)
+  let blogUrls = [];
+  try {
+    const allBlogs = await getAllBlogs();
+    blogUrls = allBlogs
+      .filter((post) => post.status === "published" || !post.status)
+      .map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: post.date || currentDate,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      }));
+  } catch (err) {
+    console.warn("Sitemap blogs error:", err.message);
+  }
 
   return [
     ...corePages,

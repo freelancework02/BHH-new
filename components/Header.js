@@ -38,6 +38,10 @@ export default function Header() {
     };
   }, [open]);
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   // Close mobile menu and dropdown on route change or screen resize
   useEffect(() => {
     setOpen(false);
@@ -123,8 +127,11 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={styles.navLink}
-                aria-current={pathname === link.href ? "page" : undefined}
+                aria-current={
+                  pathname === link.href || (link.href === "/blogs" && (pathname === "/blogs" || pathname?.startsWith("/blog/")))
+                    ? "page"
+                    : undefined
+                }
                 onClick={() => setOpen(false)}
               >
                 {link.label}

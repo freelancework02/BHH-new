@@ -180,7 +180,7 @@ export default function KnowledgeHub() {
         {/* 3. Footer CTA */}
         <div className="hub-cta-area">
           <div className="hub-cta-buttons">
-            <Link href="/blog" className="btn-luxury-primary btn-luxury-cta" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <Link href="/blogs" className="btn-luxury-primary btn-luxury-cta" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               View All Articles
               <ArrowRight size={16} aria-hidden="true" />
             </Link>

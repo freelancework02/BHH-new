@@ -300,6 +300,139 @@
 }
 
 /* ==========================================
+   ARTICLE BODY & RICH TEXT FORMATTING
+   ========================================== */
+.article-body-luxury {
+  color: #1e293b;
+  font-size: 1.125rem;
+  line-height: 1.85;
+  font-family: var(--font-body, "Open Sans", sans-serif);
+  word-break: break-word;
+}
+
+.article-body-luxury p {
+  color: #1e293b;
+  font-size: 1.125rem;
+  line-height: 1.85;
+  margin-bottom: 1.65rem;
+}
+
+.article-body-luxury h2 {
+  font-family: var(--font-heading, "Poppins", sans-serif);
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: var(--plum, #5a1a5e);
+  margin: 2.75rem 0 1.25rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid rgba(255, 45, 122, 0.18);
+}
+
+.article-body-luxury h3 {
+  font-family: var(--font-heading, "Poppins", sans-serif);
+  font-size: 1.5rem;
+  font-weight: 750;
+  color: var(--plum, #5a1a5e);
+  margin: 2.25rem 0 1rem 0;
+  line-height: 1.35;
+}
+
+.article-body-luxury h4 {
+  font-family: var(--font-heading, "Poppins", sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 1.75rem 0 0.75rem 0;
+}
+
+.article-body-luxury strong {
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.article-body-luxury em {
+  font-style: italic;
+  color: #334155;
+}
+
+.article-body-luxury u {
+  text-decoration: underline;
+  text-decoration-color: #ff2d7a;
+  text-underline-offset: 4px;
+}
+
+.article-body-luxury ul {
+  list-style: disc outside !important;
+  margin: 1.5rem 0 1.85rem 2rem;
+  padding-left: 0.5rem;
+  color: #1e293b;
+}
+
+.article-body-luxury ol {
+  list-style: decimal outside !important;
+  margin: 1.5rem 0 1.85rem 2rem;
+  padding-left: 0.5rem;
+  color: #1e293b;
+}
+
+.article-body-luxury li {
+  display: list-item !important;
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+  color: #1e293b;
+  font-size: 1.125rem;
+}
+
+.article-body-luxury blockquote {
+  margin: 2.25rem 0;
+  padding: 1.35rem 1.85rem;
+  background: #fff5f8;
+  border-left: 5px solid #ff2d7a;
+  border-radius: 0 16px 16px 0;
+  font-style: italic;
+  color: #5a1a5e;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.75;
+  box-shadow: 0 4px 15px rgba(255, 45, 122, 0.05);
+}
+
+.article-body-luxury blockquote p {
+  margin: 0;
+  color: #5a1a5e;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.article-body-luxury a {
+  color: #ff2d7a;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.article-body-luxury a:hover {
+  opacity: 0.85;
+  color: #5a1a5e;
+}
+
+.article-body-luxury img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 2rem 0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.article-body-luxury hr {
+  border: none;
+  border-top: 2px solid #f1f5f9;
+  margin: 2.75rem 0;
+}
+
+/* ==========================================
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================== */
 

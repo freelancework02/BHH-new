@@ -26,6 +26,7 @@ export default function ContactForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (isSubmitting) return;
     
     const newErrors = {};
     if (!formData.firstName.trim()) {

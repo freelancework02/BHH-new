@@ -28,24 +28,38 @@ function formatDate(d) {
   });
 }
 
-// Add categories mapping helper
-const categories = [
-  { id: "all", label: "All Topics" },
-  { id: "waiver", label: "Medicaid Waiver" },
-  { id: "tips", label: "Caregiver Tips" }
-];
-
-export default function BlogClient() {
+export default function BlogClient({ posts = [] }) {
   const [activeCategory, setActiveCategory] = useState("all");
 
+  const allArticles = posts && posts.length > 0 ? posts : blogPosts;
+
   // Determine tag dynamically
-  const postsWithCategory = blogPosts.map(post => {
+  const postsWithCategory = allArticles.map((post) => {
+    const rawCat = post.category || (post.slug.includes("waiver") || post.slug.includes("medicaid") ? "Medicaid Waiver" : "Caregiver Tips");
     let catId = "tips";
-    if (post.slug.includes("waiver") || post.slug.includes("medicaid")) {
+    if (rawCat.toLowerCase().includes("waiver") || rawCat.toLowerCase().includes("medicaid")) {
       catId = "waiver";
+    } else {
+      catId = rawCat.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     }
-    return { ...post, categoryId: catId };
+    return { ...post, categoryLabel: rawCat, categoryId: catId };
   });
+
+  // Extract unique category options
+  const categoryMap = new Map();
+  categoryMap.set("all", "All Topics");
+  categoryMap.set("waiver", "Medicaid Waiver");
+  categoryMap.set("tips", "Caregiver Tips");
+  postsWithCategory.forEach((p) => {
+    if (p.categoryId && p.categoryLabel && !categoryMap.has(p.categoryId)) {
+      categoryMap.set(p.categoryId, p.categoryLabel);
+    }
+  });
+
+  const categories = Array.from(categoryMap.entries()).map(([id, label]) => ({
+    id,
+    label,
+  }));
 
   const filteredPosts = activeCategory === "all" 
     ? postsWithCategory 
@@ -82,6 +96,7 @@ export default function BlogClient() {
                 {cat.id === "all" && <Layers size={14} />}
                 {cat.id === "waiver" && <ShieldCheck size={14} />}
                 {cat.id === "tips" && <BookOpen size={14} />}
+                {cat.id !== "all" && cat.id !== "waiver" && cat.id !== "tips" && <BookOpen size={14} />}
                 {cat.label}
               </button>
             ))}
@@ -101,6 +116,7 @@ export default function BlogClient() {
                     alt={featuredPost.title}
                     fill
                     priority
+                    unoptimized={Boolean(featuredPost.image && (featuredPost.image.startsWith("/") || !featuredPost.image.includes("unsplash")))}
                     className="blog-featured-img"
                     sizes="(max-width: 64rem) 100vw, 50vw"
                   />
@@ -114,7 +130,7 @@ export default function BlogClient() {
                       <time dateTime={featuredPost.date}>{formatDate(featuredPost.date)}</time>
                     </div>
                     <span className="blog-category-badge">
-                      {featuredPost.categoryId === "waiver" ? "Medicaid Waiver" : "Caregiver Tips"}
+                      {featuredPost.categoryLabel || "Caregiver Tips"}
                     </span>
                   </div>
 
@@ -141,7 +157,7 @@ export default function BlogClient() {
           {/* Articles list grid */}
           <div className="section-heading-luxury" style={{ alignItems: "flex-start", textAlign: "left", marginBottom: "2rem" }}>
             <span className="eyebrow-luxury-accent">
-              {activeCategory === "all" ? "MORE ARTICLES" : `${categories.find(c => c.id === activeCategory).label} Articles`}
+              {activeCategory === "all" ? "MORE ARTICLES" : `${(categories.find(c => c.id === activeCategory) || {}).label || "Articles"}`}
             </span>
           </div>
 
@@ -155,6 +171,7 @@ export default function BlogClient() {
                       alt={post.title}
                       fill
                       loading="lazy"
+                      unoptimized={Boolean(post.image && (post.image.startsWith("/") || !post.image.includes("unsplash")))}
                       className="blog-card-img"
                       sizes="(max-width: 48rem) 100vw, 30vw"
                     />
@@ -166,6 +183,9 @@ export default function BlogClient() {
                         <Calendar size={14} style={{ color: "var(--pink)" }} />
                         <time dateTime={post.date}>{formatDate(post.date)}</time>
                       </div>
+                      <span className="blog-category-badge" style={{ fontSize: "0.75rem", padding: "0.2rem 0.6rem" }}>
+                        {post.categoryLabel || "Tips"}
+                      </span>
                     </div>
 
                     <h3 className="blog-card-title">
