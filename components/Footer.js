@@ -79,7 +79,7 @@ export default function Footer() {
 
             {/* Column 2: Quick Links */}
             <div className="footer-column">
-              <h4>Quick Links</h4>
+              <h3>Quick Links</h3>
               <ul className="footer-links-list">
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/about">About Us</Link></li>
@@ -96,7 +96,7 @@ export default function Footer() {
 
             {/* Column 3: Services */}
             <div className="footer-column">
-              <h4>Our Services</h4>
+              <h3>Our Services</h3>
               <ul className="footer-links-list">
                 <li><Link href="/services#personal-care">Personal Care</Link></li>
                 <li><Link href="/services#companion-care">Companion Care</Link></li>
@@ -111,7 +111,7 @@ export default function Footer() {
 
             {/* Column 4: Contact Office (Reformatted as clean list matches Apple/Stripe layout) */}
             <div className="footer-column">
-              <h4>Contact Office</h4>
+              <h3>Contact Office</h3>
               <ul className="footer-contact-list">
                 <li>
                   <a href="https://maps.google.com/?q=1224+S+Queen+St+Suite+206+York+PA+17403" target="_blank" rel="noopener noreferrer" className="footer-contact-link-item">
@@ -164,7 +164,7 @@ export default function Footer() {
 
             {/* Column 5: Service Areas */}
             <div className="footer-column">
-              <h4>Service Areas</h4>
+              <h3>Service Areas</h3>
               <ul className="footer-links-list">
                 <li><Link href="/areas-we-serve/york">York County</Link></li>
                 <li><Link href="/areas-we-serve/adams">Adams County</Link></li>
@@ -199,7 +199,18 @@ export default function Footer() {
               <span className="footer-legal-dot" aria-hidden="true">•</span>
               <Link href="/terms-conditions">Terms & Conditions</Link>
               <span className="footer-legal-dot" aria-hidden="true">•</span>
-              <Link href="/privacy-policy">Accessibility Statement</Link>
+              <button
+                type="button"
+                className="footer-cookie-btn"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("bhh-open-cookie-preferences"));
+                  }
+                }}
+                aria-label="Cookie Preferences - Open Privacy Settings"
+              >
+                Cookie Preferences
+              </button>
             </div>
 
             <div className="footer-signature">

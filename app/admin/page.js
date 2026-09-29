@@ -44,6 +44,9 @@ import {
   Sparkles,
   Paperclip,
   Minus,
+  BarChart3,
+  MousePointer,
+  Activity,
 } from "lucide-react";
 import styles from "./admin.module.css";
 
@@ -114,6 +117,12 @@ export default function AdminPage() {
   const [credStatus, setCredStatus] = useState({ type: "", msg: "" });
   const [isUpdatingCreds, setIsUpdatingCreds] = useState(false);
 
+  // Cookie Consent & Traffic Telemetry (BHH-cookie-consent) state
+  const [consentSessions, setConsentSessions] = useState([]);
+  const [isLoadingConsent, setIsLoadingConsent] = useState(false);
+  const [selectedSession, setSelectedSession] = useState(null);
+  const [trafficSearchQuery, setTrafficSearchQuery] = useState("");
+
   // 1. Check Authentication on Mount
   useEffect(() => {
     async function checkAuth() {
@@ -138,6 +147,7 @@ export default function AdminPage() {
     if (isAuthenticated) {
       fetchInquiries();
       fetchBlogs();
+      fetchConsentSessions();
     }
   }, [isAuthenticated]);
 
@@ -168,6 +178,21 @@ export default function AdminPage() {
       console.error("Failed to load blogs:", err);
     } finally {
       setIsLoadingBlogs(false);
+    }
+  };
+
+  const fetchConsentSessions = async () => {
+    setIsLoadingConsent(true);
+    try {
+      const res = await fetch("/api/cookie-consent?limit=50");
+      const data = await res.json();
+      if (data.success) {
+        setConsentSessions(data.records || []);
+      }
+    } catch (err) {
+      console.error("Failed to load cookie consent sessions:", err);
+    } finally {
+      setIsLoadingConsent(false);
     }
   };
 
@@ -313,6 +338,7 @@ export default function AdminPage() {
   // Filtered inquiries calculation
   const filteredInquiries = inquiries.filter((item) => {
     // Tab filter
+    if (activeTab === "needs_call" && item.status !== "new") return false;
     if (activeTab === "contact_form" && item.type !== "contact_form") return false;
     if (activeTab === "chatbot" && item.type !== "chatbot") return false;
 
@@ -606,18 +632,18 @@ export default function AdminPage() {
         setBlogFeedback({
           type: "success",
           msg: editingBlog
-            ? "Blog article updated successfully in BHH-Blogs!"
-            : "New blog article published successfully into BHH-Blogs!",
+            ? "Care article updated successfully!"
+            : "New care article published and live on your website!",
         });
         await fetchBlogs();
         setTimeout(() => {
           setBlogModalOpen(false);
         }, 1200);
       } else {
-        setBlogFeedback({ type: "error", msg: data.error || "Failed to save blog post." });
+        setBlogFeedback({ type: "error", msg: data.error || "Failed to save article." });
       }
     } catch (err) {
-      setBlogFeedback({ type: "error", msg: "Network error saving blog." });
+      setBlogFeedback({ type: "error", msg: "Network error saving article." });
     } finally {
       setIsSavingBlog(false);
     }
@@ -654,7 +680,7 @@ export default function AdminPage() {
   };
 
   const handleDeleteBlog = async (id, title) => {
-    if (!confirm(`Are you sure you want to permanently delete "${title}" from BHH-Blogs?`)) return;
+    if (!confirm(`Are you sure you want to permanently delete "${title}"?`)) return;
 
     try {
       const res = await fetch("/api/admin/blogs", {
@@ -713,11 +739,11 @@ export default function AdminPage() {
           <div className={styles.loginHeader}>
             <div className={styles.loginBadge}>
               <Shield size={13} />
-              <span>Restricted Access</span>
+              <span>Care Team Portal</span>
             </div>
-            <h1 className={styles.loginTitle}>Care Administration</h1>
+            <h1 className={styles.loginTitle}>Blessed Hearts Homecare</h1>
             <p className={styles.loginSubtitle}>
-              Blessed Hearts Homecare Inquiries Portal
+              Manager &amp; Coordinator Sign In
             </p>
           </div>
 
@@ -731,7 +757,7 @@ export default function AdminPage() {
           <form onSubmit={handleLogin} className={styles.loginForm}>
             <div className={styles.formGroup}>
               <label className={styles.label} htmlFor="admin-user">
-                Administrator Username or Email
+                Username or Email Address
               </label>
               <div className={styles.inputWrap}>
                 <User size={16} className={styles.inputIcon} />
@@ -757,7 +783,7 @@ export default function AdminPage() {
                 <input
                   id="admin-pass"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter administrator password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={styles.input}
@@ -779,12 +805,12 @@ export default function AdminPage() {
               disabled={isLoggingIn}
               className={styles.loginSubmitBtn}
             >
-              {isLoggingIn ? "Verifying Credentials..." : "Sign In to Portal"}
+              {isLoggingIn ? "Signing In..." : "Sign In to Care Portal"}
             </button>
           </form>
 
           <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.78rem", color: "#a0aec0" }}>
-            🔒 Stored securely in database collection <strong>BHH-Admin-panel-pass</strong>
+            🔒 Secure Agency Access • Confidential Client Information
           </div>
         </div>
       </div>
@@ -801,8 +827,8 @@ export default function AdminPage() {
         <div className={styles.navBrand}>
           <div className={styles.navLogoCircle}>BHH</div>
           <div>
-            <h1 className={styles.navTitle}>Blessed Hearts Administration</h1>
-            <p className={styles.navSub}>Contact &amp; Chatbot Inquiries Management</p>
+            <h1 className={styles.navTitle}>Blessed Hearts Care Portal</h1>
+            <p className={styles.navSub}>Client Inquiries, Care Articles &amp; Website Activity</p>
           </div>
         </div>
 
@@ -816,12 +842,13 @@ export default function AdminPage() {
             onClick={() => {
               fetchInquiries();
               fetchBlogs();
+              fetchConsentSessions();
             }}
             className={styles.iconBtn}
             title="Refresh All Records"
           >
-            <RefreshCw size={14} className={isLoadingInquiries || isLoadingBlogs ? "animate-spin" : ""} />
-            <span>Refresh</span>
+            <RefreshCw size={14} className={isLoadingInquiries || isLoadingBlogs || isLoadingConsent ? "animate-spin" : ""} />
+            <span>Refresh Data</span>
           </button>
 
           <button onClick={handleLogout} className={styles.logoutBtn} title="Sign Out">
@@ -834,7 +861,55 @@ export default function AdminPage() {
       {/* Main Container */}
       <main className={styles.mainContainer}>
         {/* Metric Cards Row */}
-        {activeTab === "blogs" ? (
+        {activeTab === "traffic" ? (
+          <div className={styles.statsGrid}>
+            <div className={styles.statCard}>
+              <div className={styles.statIconWrap} style={{ background: "#fdf2f4", color: "#ff2d7a" }}>
+                <BarChart3 size={22} />
+              </div>
+              <div>
+                <div className={styles.statNumber}>{consentSessions.length}</div>
+                <div className={styles.statLabel}>Total Recent Visitors</div>
+              </div>
+            </div>
+
+            <div className={styles.statCard}>
+              <div className={styles.statIconWrap} style={{ background: "#eff6ff", color: "#1d4ed8" }}>
+                <Globe size={22} />
+              </div>
+              <div>
+                <div className={styles.statNumber}>
+                  {consentSessions.reduce((acc, s) => acc + (s.traffic?.pageCount || s.traffic?.pagesVisited?.length || 0), 0)}
+                </div>
+                <div className={styles.statLabel}>Care Pages Explored</div>
+              </div>
+            </div>
+
+            <div className={styles.statCard}>
+              <div className={styles.statIconWrap} style={{ background: "#fffbeb", color: "#d97706" }}>
+                <MousePointer size={22} />
+              </div>
+              <div>
+                <div className={styles.statNumber}>
+                  {consentSessions.reduce((acc, s) => acc + (s.traffic?.clickCount || s.traffic?.clicks?.length || 0), 0)}
+                </div>
+                <div className={styles.statLabel}>Button &amp; Call Clicks</div>
+              </div>
+            </div>
+
+            <div className={styles.statCard}>
+              <div className={styles.statIconWrap} style={{ background: "#ecfdf5", color: "#047857" }}>
+                <Check size={22} />
+              </div>
+              <div>
+                <div className={styles.statNumber}>
+                  {consentSessions.filter((s) => s.consent?.status === "accepted").length}
+                </div>
+                <div className={styles.statLabel}>Accepted Standard Cookies</div>
+              </div>
+            </div>
+          </div>
+        ) : activeTab === "blogs" ? (
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
               <div className={styles.statIconWrap} style={{ background: "#fdf2f4", color: "#ff2d7a" }}>
@@ -842,7 +917,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <div className={styles.statNumber}>{blogs.length}</div>
-                <div className={styles.statLabel}>Total Blog Articles</div>
+                <div className={styles.statLabel}>Total Care Articles</div>
               </div>
             </div>
 
@@ -852,7 +927,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <div className={styles.statNumber}>{publishedBlogCount}</div>
-                <div className={styles.statLabel}>Published Live</div>
+                <div className={styles.statLabel}>Published on Website</div>
               </div>
             </div>
 
@@ -862,7 +937,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <div className={styles.statNumber}>{draftBlogCount}</div>
-                <div className={styles.statLabel}>Draft Posts</div>
+                <div className={styles.statLabel}>Draft Articles</div>
               </div>
             </div>
 
@@ -874,29 +949,29 @@ export default function AdminPage() {
                 <div className={styles.statNumber}>
                   {new Set(blogs.map((b) => b.category || "General")).size}
                 </div>
-                <div className={styles.statLabel}>Categories</div>
+                <div className={styles.statLabel}>Care Topics</div>
               </div>
             </div>
           </div>
         ) : (
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
-              <div className={styles.statIconWrap} style={{ background: "#fdf2f4", color: "#ff2d7a" }}>
-                <FileText size={22} />
-              </div>
-              <div>
-                <div className={styles.statNumber}>{totalCount}</div>
-                <div className={styles.statLabel}>Total Inquiries</div>
-              </div>
-            </div>
-
-            <div className={styles.statCard}>
               <div className={styles.statIconWrap} style={{ background: "#ecfdf5", color: "#047857" }}>
                 <Clock size={22} />
               </div>
               <div>
                 <div className={styles.statNumber}>{newCount}</div>
-                <div className={styles.statLabel}>New / Pending Leads</div>
+                <div className={styles.statLabel}>Needs Call Promptly</div>
+              </div>
+            </div>
+
+            <div className={styles.statCard}>
+              <div className={styles.statIconWrap} style={{ background: "#fdf2f4", color: "#ff2d7a" }}>
+                <FileText size={22} />
+              </div>
+              <div>
+                <div className={styles.statNumber}>{totalCount}</div>
+                <div className={styles.statLabel}>Total Client Requests</div>
               </div>
             </div>
 
@@ -906,7 +981,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <div className={styles.statNumber}>{contactFormCount}</div>
-                <div className={styles.statLabel}>Contact Form (BHH_inquiries)</div>
+                <div className={styles.statLabel}>Website Form Requests</div>
               </div>
             </div>
 
@@ -916,7 +991,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <div className={styles.statNumber}>{chatbotCount}</div>
-                <div className={styles.statLabel}>Chatbot (BHH-chatbot-inquiries)</div>
+                <div className={styles.statLabel}>AI Chatbot Leads</div>
               </div>
             </div>
           </div>
@@ -929,8 +1004,17 @@ export default function AdminPage() {
               className={`${styles.tabBtn} ${activeTab === "all" ? styles.tabBtnActive : ""}`}
               onClick={() => setActiveTab("all")}
             >
-              <span>All Inquiries</span>
+              <span>All Requests</span>
               <span className={styles.tabCount}>{totalCount}</span>
+            </button>
+
+            <button
+              className={`${styles.tabBtn} ${activeTab === "needs_call" ? styles.tabBtnActive : ""}`}
+              onClick={() => setActiveTab("needs_call")}
+            >
+              <Clock size={14} color="#047857" />
+              <span>Needs Call</span>
+              <span className={styles.tabCount} style={{ background: "#ecfdf5", color: "#047857" }}>{newCount}</span>
             </button>
 
             <button
@@ -938,7 +1022,7 @@ export default function AdminPage() {
               onClick={() => setActiveTab("contact_form")}
             >
               <FileText size={14} />
-              <span>Contact Form Leads</span>
+              <span>Website Forms</span>
               <span className={styles.tabCount}>{contactFormCount}</span>
             </button>
 
@@ -947,7 +1031,7 @@ export default function AdminPage() {
               onClick={() => setActiveTab("chatbot")}
             >
               <MessageSquare size={14} />
-              <span>Chatbot Inquiries</span>
+              <span>Chatbot Leads</span>
               <span className={styles.tabCount}>{chatbotCount}</span>
             </button>
 
@@ -956,8 +1040,17 @@ export default function AdminPage() {
               onClick={() => setActiveTab("blogs")}
             >
               <BookOpen size={14} />
-              <span>Blogs (BHH-Blogs)</span>
+              <span>Articles &amp; Guides</span>
               <span className={styles.tabCount}>{blogs.length}</span>
+            </button>
+
+            <button
+              className={`${styles.tabBtn} ${activeTab === "traffic" ? styles.tabBtnActive : ""}`}
+              onClick={() => setActiveTab("traffic")}
+            >
+              <BarChart3 size={14} />
+              <span>Website Visitors</span>
+              <span className={styles.tabCount}>{consentSessions.length}</span>
             </button>
 
             <button
@@ -965,17 +1058,17 @@ export default function AdminPage() {
               onClick={() => setActiveTab("credentials")}
             >
               <Key size={14} />
-              <span>Admin Credentials</span>
+              <span>Change Password</span>
             </button>
           </div>
 
-          {activeTab !== "credentials" && activeTab !== "blogs" && (
+          {activeTab !== "credentials" && activeTab !== "blogs" && activeTab !== "traffic" && (
             <div className={styles.filterRow}>
               <div className={styles.searchWrap}>
                 <Search size={16} className={styles.inputIcon} />
                 <input
                   type="text"
-                  placeholder="Search by name, phone, email, service, city..."
+                  placeholder="Search by client name, phone, email, service, or city..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={styles.searchInput}
@@ -988,19 +1081,19 @@ export default function AdminPage() {
                   onChange={(e) => setStatusFilter(e.target.value)}
                   className={styles.selectInput}
                 >
-                  <option value="all">All Statuses</option>
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="closed">Closed</option>
+                  <option value="all">All Request Statuses</option>
+                  <option value="new">🟢 New (Needs Call)</option>
+                  <option value="contacted">🟡 In Contact / Speaking</option>
+                  <option value="closed">⚪ Completed / Closed</option>
                 </select>
 
                 <button
                   onClick={handleExportCSV}
                   className={styles.iconBtn}
-                  title="Export filtered inquiries to CSV"
+                  title="Export filtered inquiries to Excel / CSV spreadsheet"
                 >
                   <Download size={14} />
-                  <span>Export CSV</span>
+                  <span>Download Excel/CSV</span>
                 </button>
               </div>
             </div>
@@ -1012,10 +1105,9 @@ export default function AdminPage() {
             ======================================================== */}
         {activeTab === "credentials" ? (
           <div className={styles.settingsCard}>
-            <h2 className={styles.settingsTitle}>Update Admin Credentials</h2>
+            <h2 className={styles.settingsTitle}>Change Admin Password</h2>
             <p className={styles.settingsDesc}>
-              These credentials are encrypted and stored in your Firebase collection{" "}
-              <strong>BHH-Admin-panel-pass</strong> under the document <code>admin_credentials</code>.
+              Update your login username or password for this care coordinator portal. Keep your password confidential.
             </p>
 
             {credStatus.msg && (
@@ -1034,7 +1126,7 @@ export default function AdminPage() {
                 <label className={styles.label}>Current Admin Password</label>
                 <input
                   type="password"
-                  placeholder="Enter current password"
+                  placeholder="Enter your current password"
                   value={credForm.currentPassword}
                   onChange={(e) => setCredForm({ ...credForm, currentPassword: e.target.value })}
                   className={styles.input}
@@ -1044,7 +1136,7 @@ export default function AdminPage() {
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>New Username / Email</label>
+                <label className={styles.label}>Username or Email Address</label>
                 <input
                   type="text"
                   placeholder="e.g. admin@blessedheartshca.com"
@@ -1057,7 +1149,7 @@ export default function AdminPage() {
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>New Password (Minimum 8 characters)</label>
+                <label className={styles.label}>New Password (At least 8 characters)</label>
                 <input
                   type="password"
                   placeholder="Enter strong new password"
@@ -1075,7 +1167,7 @@ export default function AdminPage() {
                 className={styles.loginSubmitBtn}
                 style={{ width: "fit-content", padding: "0.75rem 1.5rem" }}
               >
-                {isUpdatingCreds ? "Saving to Database..." : "Save New Credentials"}
+                {isUpdatingCreds ? "Saving Password..." : "Save New Password"}
               </button>
             </form>
           </div>
@@ -1086,8 +1178,8 @@ export default function AdminPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             <div className={styles.blogHeaderRow}>
               <div className={styles.blogHeaderInfo}>
-                <h2>Blog &amp; Knowledge Base Articles</h2>
-                <p>Manage, edit, publish, and delete articles directly stored in the <strong>BHH-Blogs</strong> database collection.</p>
+                <h2>Care Articles &amp; Educational Guides</h2>
+                <p>Publish senior care tips and advice for Pennsylvania families. Articles published here appear live on your website and help families find your care agency on Google.</p>
               </div>
               <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
                 <a
@@ -1107,17 +1199,17 @@ export default function AdminPage() {
                     gap: "0.4rem",
                     fontWeight: 600,
                   }}
-                  title="Open live /blogs collection page in new tab"
+                  title="View live articles on the website in a new tab"
                 >
                   <Globe size={15} />
-                  <span>View Public /blogs</span>
+                  <span>View Live on Website</span>
                 </a>
                 <button
                   onClick={handleOpenCreateBlog}
                   className={styles.createBlogBtn}
                 >
                   <Plus size={16} />
-                  <span>Publish New Blog</span>
+                  <span>Write New Article</span>
                 </button>
               </div>
             </div>
@@ -1128,7 +1220,7 @@ export default function AdminPage() {
                 <Search size={16} className={styles.inputIcon} />
                 <input
                   type="text"
-                  placeholder="Search articles by title, category, slug, or content..."
+                  placeholder="Search articles by title, care topic, or keywords..."
                   value={blogSearchQuery}
                   onChange={(e) => setBlogSearchQuery(e.target.value)}
                   className={styles.searchInput}
@@ -1142,8 +1234,8 @@ export default function AdminPage() {
                   className={styles.selectInput}
                 >
                   <option value="all">All Articles ({blogs.length})</option>
-                  <option value="published">Published ({publishedBlogCount})</option>
-                  <option value="draft">Drafts ({draftBlogCount})</option>
+                  <option value="published">🟢 Published Live ({publishedBlogCount})</option>
+                  <option value="draft">⚪ Drafts ({draftBlogCount})</option>
                 </select>
               </div>
             </div>
@@ -1152,11 +1244,11 @@ export default function AdminPage() {
             {filteredBlogs.length === 0 ? (
               <div className={styles.emptyState}>
                 <BookOpen size={38} strokeWidth={1.5} />
-                <h3 className={styles.emptyStateTitle}>No blog articles found</h3>
+                <h3 className={styles.emptyStateTitle}>No care articles found</h3>
                 <p style={{ margin: "0.5rem 0 1.25rem 0", fontSize: "0.88rem" }}>
                   {blogSearchQuery || blogFilter !== "all"
                     ? "No articles match your search or filter."
-                    : "No blogs have been published yet. Click below to publish your first article into BHH-Blogs!"}
+                    : "No articles have been written yet. Click below to write and publish your first article for families!"}
                 </p>
                 <button
                   onClick={handleOpenCreateBlog}
@@ -1252,165 +1344,450 @@ export default function AdminPage() {
               </div>
             )}
           </div>
+        ) : activeTab === "traffic" ? (
+          /* ========================================================
+             TAB: TRAFFIC TELEMETRY & COOKIE CONSENT (BHH-cookie-consent)
+             ======================================================== */
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <div className={styles.blogHeaderRow}>
+              <div className={styles.blogHeaderInfo}>
+                <h2>Website Visitors &amp; Activity Overview</h2>
+                <p>
+                  Understand how many families visit your website, where they are browsing from across Pennsylvania, which care services they read about, and which buttons they click.
+                </p>
+              </div>
+              <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", alignItems: "center" }}>
+                <div className={styles.searchWrap} style={{ width: "260px" }}>
+                  <Search size={14} className={styles.inputIcon} />
+                  <input
+                    type="text"
+                    placeholder="Search by city, page, or browser..."
+                    value={trafficSearchQuery}
+                    onChange={(e) => setTrafficSearchQuery(e.target.value)}
+                    className={styles.searchInput}
+                    style={{ fontSize: "0.82rem", padding: "0.45rem 0.65rem 0.45rem 2rem" }}
+                  />
+                </div>
+                <button
+                  onClick={fetchConsentSessions}
+                  className={styles.iconBtn}
+                  title="Reload Traffic Records"
+                >
+                  <RefreshCw size={13} className={isLoadingConsent ? "animate-spin" : ""} />
+                  <span>Refresh Visitors</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Analytical Widgets Grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1rem" }}>
+              {/* Widget 1: Most Looked At Care Pages */}
+              <div style={{ background: "#ffffff", borderRadius: "0.85rem", padding: "1.25rem", border: "1px solid #e2e8f0" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.85rem" }}>
+                  <Globe size={16} color="#ff2d7a" />
+                  <h3 style={{ fontSize: "0.95rem", fontWeight: 700, margin: 0, color: "#1a2638" }}>
+                    Most Looked At Care Pages
+                  </h3>
+                </div>
+                {(() => {
+                  const pathCounts = {};
+                  consentSessions.forEach((s) => {
+                    (s.traffic?.pagesVisited || []).forEach((p) => {
+                      const path = p.path || "/";
+                      pathCounts[path] = (pathCounts[path] || 0) + 1;
+                    });
+                  });
+                  const sortedPaths = Object.entries(pathCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+
+                  if (sortedPaths.length === 0) {
+                    return <div style={{ fontSize: "0.82rem", color: "#64748b" }}>No page history recorded yet.</div>;
+                  }
+
+                  return (
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      {sortedPaths.map(([path, count], idx) => (
+                        <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.82rem" }}>
+                          <span style={{ fontFamily: "monospace", color: "#5a1a5e", maxWidth: "230px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {path === "/" ? "Home Page (/)" : path}
+                          </span>
+                          <span style={{ fontWeight: 700, background: "#fdf2f4", color: "#ff2d7a", padding: "0.15rem 0.5rem", borderRadius: "9999px", fontSize: "0.75rem" }}>
+                            {count} {count === 1 ? "visitor" : "visitors"}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Widget 2: Calls & Button Clicks by Visitors */}
+              <div style={{ background: "#ffffff", borderRadius: "0.85rem", padding: "1.25rem", border: "1px solid #e2e8f0" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.85rem" }}>
+                  <MousePointer size={16} color="#1d4ed8" />
+                  <h3 style={{ fontSize: "0.95rem", fontWeight: 700, margin: 0, color: "#1a2638" }}>
+                    Calls &amp; Buttons Clicked by Visitors
+                  </h3>
+                </div>
+                {(() => {
+                  const recentClicks = [];
+                  consentSessions.forEach((s) => {
+                    (s.traffic?.clicks || []).forEach((c) => {
+                      recentClicks.push({ ...c, sessionId: s.sessionId });
+                    });
+                  });
+                  const displayedClicks = recentClicks.slice(-5).reverse();
+
+                  if (displayedClicks.length === 0) {
+                    return <div style={{ fontSize: "0.82rem", color: "#64748b" }}>No button clicks recorded yet.</div>;
+                  }
+
+                  return (
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+                      {displayedClicks.map((click, idx) => (
+                        <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.8rem", borderBottom: "1px solid #f1f5f9", paddingBottom: "0.3rem" }}>
+                          <span style={{ fontWeight: 600, color: "#334155", maxWidth: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            "{click.text || click.tag}"
+                          </span>
+                          <span style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "monospace" }}>
+                            on {click.path}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Sessions Table */}
+            <div className={styles.tableContainer}>
+              {(() => {
+                const filtered = consentSessions.filter((s) => {
+                  if (!trafficSearchQuery) return true;
+                  const q = trafficSearchQuery.toLowerCase();
+                  return (
+                    s.sessionId?.toLowerCase().includes(q) ||
+                    s.approximateLocation?.city?.toLowerCase().includes(q) ||
+                    s.approximateLocation?.region?.toLowerCase().includes(q) ||
+                    s.traffic?.lastVisitedPage?.toLowerCase().includes(q) ||
+                    s.deviceBrowser?.browser?.toLowerCase().includes(q)
+                  );
+                });
+
+                if (filtered.length === 0) {
+                  return (
+                    <div className={styles.emptyState}>
+                      <BarChart3 size={38} strokeWidth={1.5} color="#94a3b8" />
+                      <h3>No Visitors Recorded Yet</h3>
+                      <p>
+                        Visitor activity will automatically appear here as families browse your website.
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <table className={styles.inquiryTable}>
+                    <thead>
+                      <tr>
+                        <th>Visitor &amp; Device</th>
+                        <th>Location</th>
+                        <th>Pages Looked At</th>
+                        <th>Buttons Clicked</th>
+                        <th>How They Found You</th>
+                        <th>Visit Time</th>
+                        <th>Cookie Consent</th>
+                        <th style={{ textAlign: "right" }}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filtered.map((s, sIdx) => (
+                        <tr key={s.id || s.sessionId}>
+                          <td>
+                            <div style={{ fontWeight: 700, color: "#1e293b", fontSize: "0.84rem" }}>
+                              Visitor #{filtered.length - sIdx}
+                            </div>
+                            <div style={{ fontSize: "0.74rem", color: "#64748b" }}>
+                              {s.deviceBrowser?.deviceType === "Mobile" ? "📱 Mobile Phone" : s.deviceBrowser?.deviceType === "Tablet" ? "📱 Tablet" : "💻 Computer"} ({s.deviceBrowser?.browser || "Browser"})
+                            </div>
+                          </td>
+
+                          <td>
+                            <div style={{ fontSize: "0.82rem", color: "#1e293b", fontWeight: 600 }}>
+                              {s.approximateLocation?.city || "York Area"}
+                            </div>
+                            <div style={{ fontSize: "0.72rem", color: "#64748b" }}>
+                              {s.approximateLocation?.region || "Pennsylvania"}
+                            </div>
+                          </td>
+
+                          <td>
+                            <div style={{ fontWeight: 700, color: "#5a1a5e", fontSize: "0.85rem" }}>
+                              {s.traffic?.pageCount || s.traffic?.pagesVisited?.length || 1} pages
+                            </div>
+                            <div style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "monospace", maxWidth: "140px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                              {s.traffic?.lastVisitedPage || "/"}
+                            </div>
+                          </td>
+
+                          <td>
+                            <span style={{ fontWeight: 700, background: "#f1f5f9", padding: "0.2rem 0.5rem", borderRadius: "0.35rem", fontSize: "0.78rem" }}>
+                              {s.traffic?.clickCount || s.traffic?.clicks?.length || 0} clicks
+                            </span>
+                          </td>
+
+                          <td>
+                            <div style={{ fontSize: "0.78rem", color: "#475569", maxWidth: "140px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                              {s.traffic?.referralSource?.domain?.includes("google") ? "Google Search" : s.traffic?.referralSource?.domain === "Direct" ? "Direct Website Link" : s.traffic?.referralSource?.domain || "Direct Link"}
+                            </div>
+                          </td>
+
+                          <td>
+                            <span style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                              {s.updatedAt ? new Date(s.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "Recent"}
+                            </span>
+                          </td>
+
+                          <td>
+                            <span
+                              style={{
+                                display: "inline-block",
+                                padding: "0.2rem 0.55rem",
+                                borderRadius: "9999px",
+                                fontSize: "0.72rem",
+                                fontWeight: 700,
+                                background:
+                                  s.consent?.status === "accepted"
+                                    ? "#ecfdf5"
+                                    : s.consent?.status === "declined"
+                                    ? "#fef2f2"
+                                    : "#fffbeb",
+                                color:
+                                  s.consent?.status === "accepted"
+                                    ? "#047857"
+                                    : s.consent?.status === "declined"
+                                    ? "#b91c1c"
+                                    : "#b45309",
+                              }}
+                            >
+                              {s.consent?.status === "accepted" ? "🟢 Accepted" : s.consent?.status === "declined" ? "🔴 Declined" : "🟡 Pending"}
+                            </span>
+                          </td>
+
+                          <td style={{ textAlign: "right" }}>
+                            <button
+                              onClick={() => setSelectedSession(s)}
+                              className={styles.viewDetailBtn}
+                              style={{ background: "#5a1a5e" }}
+                              title="View what pages this visitor explored"
+                            >
+                              <span>View Activity</span>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                );
+              })()}
+            </div>
+          </div>
         ) : (
           /* ========================================================
              TAB: INQUIRIES DATA TABLE
              ======================================================== */
-          <div className={styles.tableContainer}>
-            {filteredInquiries.length === 0 ? (
-              <div className={styles.emptyState}>
-                <FileText size={38} strokeWidth={1.5} />
-                <h3 className={styles.emptyStateTitle}>No inquiries found</h3>
-                <p style={{ margin: 0, fontSize: "0.88rem" }}>
-                  {searchQuery || statusFilter !== "all"
-                    ? "Try adjusting your search or status filter."
-                    : "When visitors submit contact forms or chat with the care bot, their inquiries will appear here in real-time."}
-                </p>
+          <div>
+            {/* Friendly Care Coordinator Action Guide */}
+            <div className={styles.friendlyGuideBanner}>
+              <div className={styles.friendlyGuideIcon}>
+                <Phone size={16} />
               </div>
-            ) : (
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>Source</th>
-                    <th>Name</th>
-                    <th>Contact Info</th>
-                    <th>Service Needed</th>
-                    <th>Location</th>
-                    <th>Date &amp; Time</th>
-                    <th>Status</th>
-                    <th style={{ textAlign: "right" }}>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredInquiries.map((inq) => (
-                    <tr key={`${inq.type}-${inq.id}`}>
-                      {/* Source */}
-                      <td>
-                        <span
-                          className={`${styles.badge} ${
-                            inq.type === "chatbot" ? styles.badgeChatbot : styles.badgeContactForm
-                          }`}
-                        >
-                          {inq.type === "chatbot" ? (
-                            <>
-                              <MessageSquare size={11} /> Chatbot
-                            </>
-                          ) : (
-                            <>
-                              <FileText size={11} /> Contact Form
-                            </>
-                          )}
-                        </span>
-                      </td>
+              <div className={styles.friendlyGuideText}>
+                <strong>How to handle family requests:</strong> When a new inquiry arrives (marked 🟢 New), click the green <strong>Call Client</strong> button right away to connect with the family. Once you have spoken with them, change their status to <strong>🟡 In Contact</strong>. After care is scheduled or closed, mark them <strong>⚪ Completed</strong>.
+              </div>
+            </div>
 
-                      {/* Name */}
-                      <td style={{ fontWeight: 600 }}>{inq.fullName}</td>
-
-                      {/* Contact */}
-                      <td>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-                          {inq.phone && (
-                            <a href={`tel:${inq.phone}`} className={styles.contactLink}>
-                              <Phone size={12} color="#ff2d7a" />
-                              <span>{inq.phone}</span>
-                            </a>
-                          )}
-                          {inq.email && (
-                            <a href={`mailto:${inq.email}`} className={styles.contactLink}>
-                              <Mail size={12} color="#5a1a5e" />
-                              <span>{inq.email}</span>
-                            </a>
-                          )}
-                        </div>
-                      </td>
-
-                      {/* Service */}
-                      <td>
-                        <span style={{ fontSize: "0.85rem", fontWeight: 500, color: "#4a5568" }}>
-                          {inq.serviceRequested}
-                        </span>
-                      </td>
-
-                      {/* Location */}
-                      <td>
-                        <span style={{ fontSize: "0.85rem", color: "#718096" }}>
-                          {[inq.city, inq.county, inq.zip].filter(Boolean).join(", ") || "—"}
-                        </span>
-                      </td>
-
-                      {/* Date */}
-                      <td>
-                        <span style={{ fontSize: "0.82rem", color: "#718096" }}>
-                          {inq.createdAt
-                            ? new Date(inq.createdAt).toLocaleDateString([], {
-                                month: "short",
-                                day: "numeric",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })
-                            : "Recent"}
-                        </span>
-                      </td>
-
-                      {/* Status */}
-                      <td>
-                        <select
-                          value={inq.status}
-                          onChange={(e) => handleStatusChange(inq.id, inq.type, e.target.value)}
-                          className={styles.selectInput}
-                          style={{
-                            padding: "0.3rem 0.5rem",
-                            fontSize: "0.78rem",
-                            fontWeight: 700,
-                            borderColor:
-                              inq.status === "new"
-                                ? "#a7f3d0"
-                                : inq.status === "contacted"
-                                ? "#fde68a"
-                                : "#e5e7eb",
-                            background:
-                              inq.status === "new"
-                                ? "#ecfdf5"
-                                : inq.status === "contacted"
-                                ? "#fffbeb"
-                                : "#f3f4f6",
-                            color:
-                              inq.status === "new"
-                                ? "#047857"
-                                : inq.status === "contacted"
-                                ? "#b45309"
-                                : "#4b5563",
-                          }}
-                        >
-                          <option value="new">● New</option>
-                          <option value="contacted">● Contacted</option>
-                          <option value="closed">● Closed</option>
-                        </select>
-                      </td>
-
-                      {/* Actions */}
-                      <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>
-                        <button
-                          onClick={() => setSelectedInquiry(inq)}
-                          className={styles.viewDetailBtn}
-                          title="View Full Inquiry Details"
-                        >
-                          <span>Details</span>
-                        </button>
-
-                        <button
-                          onClick={() => handleDeleteInquiry(inq.id, inq.type)}
-                          className={styles.deleteBtn}
-                          title="Delete Record"
-                        >
-                          <Trash2 size={15} />
-                        </button>
-                      </td>
+            <div className={styles.tableContainer}>
+              {filteredInquiries.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <FileText size={38} strokeWidth={1.5} />
+                  <h3 className={styles.emptyStateTitle}>No client requests found</h3>
+                  <p style={{ margin: 0, fontSize: "0.88rem" }}>
+                    {searchQuery || statusFilter !== "all"
+                      ? "Try clearing your search bar or adjusting the status filter above."
+                      : "When visitors request care on your website or chat with your AI assistant, their details will appear here immediately."}
+                  </p>
+                </div>
+              ) : (
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Lead Source</th>
+                      <th>Family / Client Name</th>
+                      <th>Quick Contact</th>
+                      <th>Care Service Needed</th>
+                      <th>Location</th>
+                      <th>Date Received</th>
+                      <th>Status</th>
+                      <th style={{ textAlign: "right" }}>Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
+                  </thead>
+                  <tbody>
+                    {filteredInquiries.map((inq) => (
+                      <tr key={`${inq.type}-${inq.id}`}>
+                        {/* Source */}
+                        <td>
+                          <span
+                            className={`${styles.badge} ${
+                              inq.type === "chatbot" ? styles.badgeChatbot : styles.badgeContactForm
+                            }`}
+                          >
+                            {inq.type === "chatbot" ? (
+                              <>
+                                <MessageSquare size={11} /> AI Chatbot
+                              </>
+                            ) : (
+                              <>
+                                <FileText size={11} /> Website Form
+                              </>
+                            )}
+                          </span>
+                        </td>
+
+                        {/* Name */}
+                        <td style={{ fontWeight: 600 }}>
+                          <div style={{ color: "#1e293b", fontSize: "0.92rem" }}>
+                            {inq.fullName || "Family Client"}
+                          </div>
+                          {inq.notes && (
+                            <div style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 400, marginTop: "0.15rem", maxWidth: "210px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                              "{inq.notes}"
+                            </div>
+                          )}
+                        </td>
+
+                        {/* Contact */}
+                        <td>
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem", alignItems: "flex-start" }}>
+                            {inq.phone ? (
+                              <a
+                                href={`tel:${inq.phone}`}
+                                className={styles.quickCallBtn}
+                                title={`Click to call ${inq.phone} immediately`}
+                              >
+                                <Phone size={11} />
+                                <span>Call {inq.phone}</span>
+                              </a>
+                            ) : null}
+                            {inq.email ? (
+                              <a
+                                href={`mailto:${inq.email}`}
+                                className={styles.quickEmailBtn}
+                                title={`Click to email ${inq.email}`}
+                              >
+                                <Mail size={11} />
+                                <span>{inq.email}</span>
+                              </a>
+                            ) : null}
+                            {!inq.phone && !inq.email && (
+                              <span style={{ fontSize: "0.78rem", color: "#94a3b8" }}>No phone/email</span>
+                            )}
+                          </div>
+                        </td>
+
+                        {/* Service */}
+                        <td>
+                          <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#5a1a5e" }}>
+                            {inq.serviceRequested || "General In-Home Care"}
+                          </span>
+                        </td>
+
+                        {/* Location */}
+                        <td>
+                          <span style={{ fontSize: "0.85rem", color: "#64748b" }}>
+                            {[inq.city, inq.county, inq.zip].filter(Boolean).join(", ") || "Indiana Area"}
+                          </span>
+                        </td>
+
+                        {/* Date */}
+                        <td>
+                          <span style={{ fontSize: "0.82rem", color: "#64748b" }}>
+                            {inq.createdAt
+                              ? new Date(inq.createdAt).toLocaleDateString([], {
+                                  month: "short",
+                                  day: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })
+                              : "Recent"}
+                          </span>
+                        </td>
+
+                        {/* Status */}
+                        <td>
+                          <select
+                            value={inq.status}
+                            onChange={(e) => handleStatusChange(inq.id, inq.type, e.target.value)}
+                            className={styles.selectInput}
+                            style={{
+                              padding: "0.35rem 0.55rem",
+                              fontSize: "0.78rem",
+                              fontWeight: 700,
+                              borderColor:
+                                inq.status === "new"
+                                  ? "#a7f3d0"
+                                  : inq.status === "contacted"
+                                  ? "#fde68a"
+                                  : "#e5e7eb",
+                              background:
+                                inq.status === "new"
+                                  ? "#ecfdf5"
+                                  : inq.status === "contacted"
+                                  ? "#fffbeb"
+                                  : "#f3f4f6",
+                              color:
+                                inq.status === "new"
+                                  ? "#047857"
+                                  : inq.status === "contacted"
+                                  ? "#b45309"
+                                  : "#4b5563",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <option value="new">🟢 New (Needs Call)</option>
+                            <option value="contacted">🟡 In Contact</option>
+                            <option value="closed">⚪ Completed</option>
+                          </select>
+                        </td>
+
+                        {/* Actions */}
+                        <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>
+                          <button
+                            onClick={() => setSelectedInquiry(inq)}
+                            className={styles.viewDetailBtn}
+                            title="View Full Client Details & Conversation Notes"
+                          >
+                            <span>Full Details</span>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              if (window.confirm("Are you sure you want to delete this client request?")) {
+                                handleDeleteInquiry(inq.id, inq.type);
+                              }
+                            }}
+                            className={styles.deleteBtn}
+                            title="Delete Record"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
         )}
       </main>
@@ -1424,13 +1801,18 @@ export default function AdminPage() {
             <div className={styles.modalHeader}>
               <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                 {selectedInquiry.type === "chatbot" ? (
-                  <MessageSquare size={18} />
+                  <MessageSquare size={18} color="#ff2d7a" />
                 ) : (
-                  <FileText size={18} />
+                  <FileText size={18} color="#ff2d7a" />
                 )}
-                <h3 className={styles.modalTitle}>
-                  {selectedInquiry.sourceType} Details
-                </h3>
+                <div>
+                  <h3 className={styles.modalTitle}>
+                    {selectedInquiry.type === "chatbot" ? "AI Chatbot Consultation Request" : "Website Contact Form Request"}
+                  </h3>
+                  <div style={{ fontSize: "0.78rem", color: "#64748b" }}>
+                    From {selectedInquiry.fullName || "Prospective Client"}
+                  </div>
+                </div>
               </div>
               <button
                 onClick={() => setSelectedInquiry(null)}
@@ -1442,24 +1824,67 @@ export default function AdminPage() {
             </div>
 
             <div className={styles.modalBody}>
+              {/* Quick Coordinator Action Banner */}
+              <div style={{
+                background: "#f8fafc",
+                border: "1px solid #e2e8f0",
+                borderRadius: "0.65rem",
+                padding: "0.85rem 1.1rem",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "0.75rem",
+                marginBottom: "0.5rem"
+              }}>
+                <div>
+                  <div style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "#64748b", fontWeight: 700 }}>
+                    Quick Coordinator Action
+                  </div>
+                  <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "#1e293b" }}>
+                    Reach out to {selectedInquiry.fullName || "the family"}
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  {selectedInquiry.phone && (
+                    <a
+                      href={`tel:${selectedInquiry.phone}`}
+                      className={styles.quickCallBtn}
+                      style={{ padding: "0.45rem 0.95rem", fontSize: "0.85rem" }}
+                    >
+                      <Phone size={14} /> Call {selectedInquiry.phone}
+                    </a>
+                  )}
+                  {selectedInquiry.email && (
+                    <a
+                      href={`mailto:${selectedInquiry.email}`}
+                      className={styles.quickEmailBtn}
+                      style={{ padding: "0.45rem 0.95rem", fontSize: "0.85rem" }}
+                    >
+                      <Mail size={14} /> Send Email
+                    </a>
+                  )}
+                </div>
+              </div>
+
               {/* Client Info Grid */}
               <div className={styles.infoGrid}>
                 <div>
-                  <div className={styles.infoItemLabel}>Client Name</div>
-                  <div className={styles.infoItemValue}>{selectedInquiry.fullName}</div>
+                  <div className={styles.infoItemLabel}>Family / Client Name</div>
+                  <div className={styles.infoItemValue} style={{ fontWeight: 700 }}>{selectedInquiry.fullName || "—"}</div>
                 </div>
 
                 <div>
-                  <div className={styles.infoItemLabel}>Service Needed</div>
-                  <div className={styles.infoItemValue}>{selectedInquiry.serviceRequested}</div>
+                  <div className={styles.infoItemLabel}>Care Service Needed</div>
+                  <div className={styles.infoItemValue} style={{ fontWeight: 600, color: "#5a1a5e" }}>{selectedInquiry.serviceRequested || "General Care"}</div>
                 </div>
 
                 <div>
                   <div className={styles.infoItemLabel}>Phone Number</div>
                   <div className={styles.infoItemValue}>
                     {selectedInquiry.phone ? (
-                      <a href={`tel:${selectedInquiry.phone}`} style={{ color: "#ff2d7a", textDecoration: "none" }}>
-                        {selectedInquiry.phone}
+                      <a href={`tel:${selectedInquiry.phone}`} style={{ color: "#047857", fontWeight: 700, textDecoration: "none" }}>
+                        📞 {selectedInquiry.phone}
                       </a>
                     ) : (
                       "Not provided"
@@ -1471,8 +1896,8 @@ export default function AdminPage() {
                   <div className={styles.infoItemLabel}>Email Address</div>
                   <div className={styles.infoItemValue}>
                     {selectedInquiry.email ? (
-                      <a href={`mailto:${selectedInquiry.email}`} style={{ color: "#5a1a5e", textDecoration: "none" }}>
-                        {selectedInquiry.email}
+                      <a href={`mailto:${selectedInquiry.email}`} style={{ color: "#1d4ed8", textDecoration: "none" }}>
+                        ✉️ {selectedInquiry.email}
                       </a>
                     ) : (
                       "Not provided"
@@ -1481,16 +1906,16 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <div className={styles.infoItemLabel}>Location</div>
+                  <div className={styles.infoItemLabel}>Location / City</div>
                   <div className={styles.infoItemValue}>
-                    {[selectedInquiry.city, selectedInquiry.county, selectedInquiry.zip].filter(Boolean).join(", ") || "N/A"}
+                    {[selectedInquiry.city, selectedInquiry.county, selectedInquiry.zip].filter(Boolean).join(", ") || "Indiana Area"}
                   </div>
                 </div>
 
                 <div>
-                  <div className={styles.infoItemLabel}>Submitted At</div>
+                  <div className={styles.infoItemLabel}>Date &amp; Time Received</div>
                   <div className={styles.infoItemValue}>
-                    {selectedInquiry.createdAt ? new Date(selectedInquiry.createdAt).toLocaleString() : "Recent"}
+                    {selectedInquiry.createdAt ? new Date(selectedInquiry.createdAt).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "Recent"}
                   </div>
                 </div>
               </div>
@@ -1499,9 +1924,9 @@ export default function AdminPage() {
               {(selectedInquiry.notes || selectedInquiry.message) && (
                 <div>
                   <div className={styles.infoItemLabel} style={{ marginBottom: "0.35rem" }}>
-                    Inquiry Message / Family Notes
+                    Care Requirements &amp; Family Notes
                   </div>
-                  <div className={styles.messageBox}>
+                  <div className={styles.messageBox} style={{ fontSize: "0.92rem", lineHeight: 1.6, background: "#f8fafc", padding: "0.85rem 1rem", borderRadius: "0.5rem", border: "1px solid #e2e8f0" }}>
                     {selectedInquiry.notes || selectedInquiry.message}
                   </div>
                 </div>
@@ -1512,7 +1937,7 @@ export default function AdminPage() {
                 <div className={styles.transcriptContainer}>
                   <div className={styles.transcriptHeader}>
                     <MessageSquare size={14} color="#ff2d7a" />
-                    <span>Interactive Chatbot Transcript Leading to Consultation</span>
+                    <span>Conversation Between Family &amp; AI Care Assistant</span>
                   </div>
                   <div className={styles.transcriptBody}>
                     {selectedInquiry.chatTranscript.map((m, mIdx) => (
@@ -1522,10 +1947,10 @@ export default function AdminPage() {
                           m.sender === "user" ? styles.transcriptMsgUser : styles.transcriptMsgBot
                         }
                       >
-                        <div style={{ fontSize: "0.72rem", opacity: 0.8, marginBottom: "0.15rem" }}>
-                          {m.sender === "user" ? "Visitor" : "Care Bot"}
+                        <div style={{ fontSize: "0.72rem", opacity: 0.85, fontWeight: 700, marginBottom: "0.2rem" }}>
+                          {m.sender === "user" ? "👤 Family Member / Visitor" : "🤖 Blessed Hearts Care Assistant"}
                         </div>
-                        <div>{m.text}</div>
+                        <div style={{ lineHeight: 1.5 }}>{m.text}</div>
                       </div>
                     ))}
                   </div>
@@ -1535,17 +1960,18 @@ export default function AdminPage() {
 
             <div className={styles.modalFooter}>
               <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                <span style={{ fontSize: "0.82rem", fontWeight: 600 }}>Update Status:</span>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700 }}>Update Status:</span>
                 <select
                   value={selectedInquiry.status}
                   onChange={(e) =>
                     handleStatusChange(selectedInquiry.id, selectedInquiry.type, e.target.value)
                   }
                   className={styles.selectInput}
+                  style={{ padding: "0.4rem 0.75rem", fontWeight: 700 }}
                 >
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="closed">Closed</option>
+                  <option value="new">🟢 New (Needs Call)</option>
+                  <option value="contacted">🟡 In Contact / Speaking</option>
+                  <option value="closed">⚪ Completed / Closed</option>
                 </select>
               </div>
 
@@ -1553,16 +1979,137 @@ export default function AdminPage() {
                 {selectedInquiry.phone && (
                   <a
                     href={`tel:${selectedInquiry.phone}`}
-                    className={styles.viewDetailBtn}
-                    style={{ background: "#ff2d7a", textDecoration: "none" }}
+                    className={styles.quickCallBtn}
+                    style={{ padding: "0.45rem 0.95rem" }}
                   >
-                    <Phone size={13} /> Call Client
+                    <Phone size={13} /> Call Now
                   </a>
                 )}
                 <button onClick={() => setSelectedInquiry(null)} className={styles.iconBtn}>
-                  Close
+                  Close Window
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          MODAL: VISITOR ACTIVITY & USER JOURNEY
+          ======================================================== */}
+      {selectedSession && (
+        <div className={styles.modalOverlay} onClick={() => setSelectedSession(null)}>
+          <div
+            className={styles.modalCard}
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: "720px", overflowY: "auto", maxHeight: "90vh" }}
+          >
+            <div className={styles.modalHeader}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                <BarChart3 size={20} color="#ff2d7a" />
+                <div>
+                  <h3 className={styles.modalTitle}>Website Visitor Journey &amp; Activity</h3>
+                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                    Visit recorded on {selectedSession.createdAt ? new Date(selectedSession.createdAt).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "Recent"}
+                  </div>
+                </div>
+              </div>
+              <button onClick={() => setSelectedSession(null)} className={styles.closeBtn}>
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className={styles.modalBody} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {/* Overview Grid */}
+              <div className={styles.infoGrid} style={{ gridTemplateColumns: "1fr 1fr" }}>
+                <div>
+                  <div className={styles.infoItemLabel}>Cookie Consent Choice</div>
+                  <div className={styles.infoItemValue} style={{ fontWeight: 700 }}>
+                    {selectedSession.consent?.status === "all" ? (
+                      <span style={{ color: "#047857" }}>🟢 Accepted Analytics &amp; Personalization</span>
+                    ) : selectedSession.consent?.status === "essential" ? (
+                      <span style={{ color: "#475569" }}>⚪ Essential Cookies Only</span>
+                    ) : (
+                      <span>{selectedSession.consent?.status || "Standard"}</span>
+                    )}
+                    {selectedSession.consent?.doNotSellOptOut && " (Opted Out of Data Sharing)"}
+                  </div>
+                </div>
+
+                <div>
+                  <div className={styles.infoItemLabel}>Approximate Location</div>
+                  <div className={styles.infoItemValue}>
+                    {[
+                      selectedSession.approximateLocation?.city,
+                      selectedSession.approximateLocation?.region,
+                      selectedSession.approximateLocation?.country,
+                    ].filter(Boolean).join(", ") || "Unknown Location"}
+                  </div>
+                </div>
+
+                <div>
+                  <div className={styles.infoItemLabel}>Device &amp; Browser</div>
+                  <div className={styles.infoItemValue}>
+                    {selectedSession.deviceBrowser?.browser || "Browser"} on {selectedSession.deviceBrowser?.os || "Device"} ({selectedSession.deviceBrowser?.deviceType || "Desktop"})
+                  </div>
+                </div>
+
+                <div>
+                  <div className={styles.infoItemLabel}>How They Found You (Referral)</div>
+                  <div className={styles.infoItemValue}>
+                    {selectedSession.traffic?.referralSource?.referrer || "Direct Visit / Search Engine"}
+                  </div>
+                </div>
+              </div>
+
+              {/* Pages Visited Sequence */}
+              <div>
+                <div className={styles.infoItemLabel} style={{ marginBottom: "0.4rem" }}>
+                  Pages Explored by Visitor ({selectedSession.traffic?.pagesVisited?.length || 0})
+                </div>
+                <div style={{ background: "#f8fafc", borderRadius: "0.65rem", padding: "0.75rem", border: "1px solid #e2e8f0", maxHeight: "160px", overflowY: "auto" }}>
+                  {(selectedSession.traffic?.pagesVisited || []).map((p, pIdx) => (
+                    <div key={pIdx} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", padding: "0.35rem 0", borderBottom: "1px solid #edf2f7" }}>
+                      <span style={{ fontWeight: 600, color: "#5a1a5e" }}>
+                        {p.path === "/" ? "Home Page (/)" : p.path}
+                      </span>
+                      <span style={{ color: "#64748b", fontSize: "0.76rem" }}>{p.timestamp ? new Date(p.timestamp).toLocaleTimeString() : ""}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Click Interactions */}
+              <div>
+                <div className={styles.infoItemLabel} style={{ marginBottom: "0.4rem" }}>
+                  Buttons &amp; Calls Clicked by Visitor ({selectedSession.traffic?.clicks?.length || 0})
+                </div>
+                <div style={{ background: "#f8fafc", borderRadius: "0.65rem", padding: "0.75rem", border: "1px solid #e2e8f0", maxHeight: "160px", overflowY: "auto" }}>
+                  {(selectedSession.traffic?.clicks || []).length === 0 ? (
+                    <div style={{ fontSize: "0.82rem", color: "#64748b" }}>No button clicks recorded during this visit.</div>
+                  ) : (
+                    (selectedSession.traffic?.clicks || []).map((c, cIdx) => (
+                      <div key={cIdx} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", padding: "0.35rem 0", borderBottom: "1px solid #edf2f7" }}>
+                        <span style={{ color: "#1e293b" }}>
+                          Clicked <strong>"{c.text || c.tag}"</strong>
+                        </span>
+                        <span style={{ color: "#64748b", fontSize: "0.76rem" }}>
+                          on {c.path === "/" ? "Home" : c.path}
+                        </span>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <div style={{ fontSize: "0.78rem", color: "#64748b" }}>
+                🔒 Securely saved for privacy compliance &amp; website analytics
+              </div>
+              <button onClick={() => setSelectedSession(null)} className={styles.iconBtn}>
+                Close
+              </button>
             </div>
           </div>
         </div>
@@ -2169,11 +2716,11 @@ Click the 'Live Preview' tab above anytime to see exactly how your article will 
                 >
                   {isSavingBlog ? (
                     <>
-                      <RefreshCw size={14} className="animate-spin" /> Saving to BHH-Blogs...
+                      <RefreshCw size={14} className="animate-spin" /> Publishing Article...
                     </>
                   ) : editingBlog ? (
                     <>
-                      <Check size={14} /> Update Blog Post
+                      <Check size={14} /> Update Care Article
                     </>
                   ) : (
                     <>

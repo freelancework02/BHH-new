@@ -253,7 +253,7 @@ export default function Chatbot() {
             id="bhh-chatbot-launcher"
             className={styles.launcherBtn}
             onClick={() => setIsOpen(true)}
-            aria-label="Open Blessed Hearts Care Assistant Chat"
+            aria-label="Chat with Us - Open Care Assistant"
           >
             <div className={styles.launcherIconWrap}>
               <MessageCircle size={22} />

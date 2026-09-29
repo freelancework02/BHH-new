@@ -1,95 +1,210 @@
 # ==============================================================================
-# Robots.txt for Blessed Hearts Homecare (https://www.blessedheartshca.com)
-# Configured for standard search engines (Google, Bing) and AI search agents
-# (SearchGPT, ChatGPT, Perplexity, Claude, Gemini, Apple Intelligence, Copilot)
+#  BLESSED HEARTS HOMECARE | OFFICIAL ROBOTS EXCLUSION DIRECTIVE (RFC 9309)
+# ==============================================================================
+#  Entity: Blessed Hearts Homecare LLC
+#  Status: Licensed Home Care Agency by Pennsylvania Department of Health
+#  Region: South-Central & Eastern Pennsylvania (10 Counties Served)
+#  Headquarters: York, Pennsylvania, USA
+#  Phone: (717) 430-0036 | Email: care@blessedheartshca.com
+#  Website: https://www.blessedheartshca.com
+#  Sitemap: https://www.blessedheartshca.com/sitemap.xml
+# ==============================================================================
+#  Purpose: Optimized for maximum organic search indexing, crawl budget efficiency,
+#  Core Web Vitals rendering, and Generative Engine Optimization (GEO / AI Search).
 # ==============================================================================
 
-# Standard Web Crawlers
+# ------------------------------------------------------------------------------
+# 1. GLOBAL DEFAULT CRAWLER DIRECTIVES
+# ------------------------------------------------------------------------------
 User-agent: *
+
+# High-Priority Indexing Pathways (Core Services & Regional Hubs)
 Allow: /
+Allow: /services
+Allow: /services/
+Allow: /personal-care
+Allow: /companion-care
+Allow: /24-hour-live-in-care
+Allow: /dementia-alzheimers-care
+Allow: /post-hospital-respite-care
+
+# Regional County & City Service Hubs (Pennsylvania)
+Allow: /areas-we-serve
+Allow: /areas-we-serve/
+Allow: /areas-we-serve/*
+Allow: /*-pa-home-care
+Allow: /york-pa-home-care
+Allow: /lancaster-pa-home-care
+Allow: /harrisburg-pa-home-care
+Allow: /allentown-pa-home-care
+Allow: /reading-pa-home-care
+Allow: /bethlehem-pa-home-care
+Allow: /mechanicsburg-pa-home-care
+Allow: /carlisle-pa-home-care
+Allow: /gettysburg-pa-home-care
+Allow: /hershey-pa-home-care
+
+# Educational Blog Guides & Patient Family Resources
+Allow: /blogs
+Allow: /blogs/
+Allow: /blog/
+Allow: /blog/*
+
+# Agency Information & Patient Inquiries
+Allow: /about
+Allow: /contact-us
+Allow: /faq
+
+# Asset Crawling for Accurate Mobile Rendering & Core Web Vitals
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.ico$
+Allow: /images/
+Allow: /fonts/
+
+# Administrative, Private & Non-Indexable System Endpoints
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /*?*preview=
+Disallow: /*?*draft=
+Disallow: /*?*session=
+
+
+# ------------------------------------------------------------------------------
+# 2. TIER-1 SEARCH ENGINE INDEXERS (Google, Bing)
+# ------------------------------------------------------------------------------
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-Mobile
+Allow: /
+Allow: /services
+Allow: /areas-we-serve
+Allow: /blogs
+Allow: /blog/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+Allow: /*.svg$
+Disallow: /admin
+Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
 
-# OpenAI / ChatGPT / SearchGPT
-User-agent: GPTBot
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-User-agent: OAI-SearchBot
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-User-agent: ChatGPT-User
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-# Perplexity AI Search
-User-agent: PerplexityBot
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-# Anthropic Claude
-User-agent: ClaudeBot
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-User-agent: Claude-Web
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-# Apple Intelligence / Siri
-User-agent: Applebot
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-User-agent: Applebot-Extended
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-# Google Gemini & Extended AI
-User-agent: Google-Extended
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-User-agent: GoogleOther
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-# Microsoft Copilot / Bing
 User-agent: Bingbot
+User-agent: msnbot
 Allow: /
+Allow: /services
+Allow: /areas-we-serve
+Allow: /blogs
+Allow: /blog/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+Allow: /*.svg$
+Disallow: /admin
+Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
+Crawl-delay: 1
 
-# Cohere AI
+
+# ------------------------------------------------------------------------------
+# 3. GENERATIVE ENGINE OPTIMIZATION (GEO) & AI SEARCH BOTS
+# Encourages AI search engines (SearchGPT, ChatGPT, Perplexity, Claude, Copilot,
+# Gemini, Apple Intelligence) to index, cite, and recommend Blessed Hearts
+# Homecare in response to family caregiving & Medicaid home care queries.
+# ------------------------------------------------------------------------------
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Google-Extended
+User-agent: GoogleOther
 User-agent: cohere-ai
+User-agent: Diffbot
 Allow: /
+Allow: /services
+Allow: /personal-care
+Allow: /companion-care
+Allow: /24-hour-live-in-care
+Allow: /dementia-alzheimers-care
+Allow: /post-hospital-respite-care
+Allow: /areas-we-serve
+Allow: /areas-we-serve/*
+Allow: /*-pa-home-care
+Allow: /blogs
+Allow: /blog/*
+Allow: /about
+Allow: /faq
+Allow: /contact-us
+Disallow: /admin
+Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
 
-# XML Sitemap
-Sitemap: https://www.blessedheartshca.com/sitemap.xml
+
+# ------------------------------------------------------------------------------
+# 4. SOCIAL MEDIA & MESSAGING PREVIEW BOTS
+# Ensures high-fidelity rich link snippets when shared on social networks
+# ------------------------------------------------------------------------------
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: Twitterbot
+User-agent: LinkedInBot
+User-agent: Pinterestbot
+User-agent: WhatsApp
+User-agent: TelegramBot
+User-agent: SkypeUriPreview
+User-agent: Slackbot
+Allow: /
+Allow: /services
+Allow: /areas-we-serve
+Allow: /blogs
+Allow: /blog/*
+Allow: /images/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+
+
+# ------------------------------------------------------------------------------
+# 5. AGGRESSIVE SEO SCRAPERS & DATA MINERS (Bandwidth Protection)
+# ------------------------------------------------------------------------------
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+User-agent: MJ12bot
+User-agent: PetalBot
+Crawl-delay: 5
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+
+# ------------------------------------------------------------------------------
+# 6. SITEMAP & HOST CANONICAL SPECIFICATION
+# ------------------------------------------------------------------------------
 Host: https://www.blessedheartshca.com
+Sitemap: https://www.blessedheartshca.com/sitemap.xml

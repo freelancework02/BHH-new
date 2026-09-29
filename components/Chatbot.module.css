@@ -2,10 +2,11 @@
 
 .chatbotWrapper {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: calc(1.5rem + var(--bhh-cookie-offset, 0px));
   right: 1.5rem;
   z-index: 99999;
   font-family: var(--font-body, "Open Sans", sans-serif);
+  transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Floating Launcher Button */

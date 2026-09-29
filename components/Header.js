@@ -62,7 +62,7 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.bar}`}>
-        <Link href="/" aria-label={`${site.name} home`} className={styles.logoLink} onClick={() => setOpen(false)}>
+        <Link href="/" className={styles.logoLink} onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 

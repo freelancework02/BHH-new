@@ -198,7 +198,7 @@ export default function HeroSection() {
                 href="/contact-us"
                 id="hero-request-care-btn"
                 className="bhh-hero__btn-primary"
-                aria-label="Request home care services"
+                aria-label="Request Care - Free In-Home Consultation"
               >
                 <Heart size={18} className="bhh-hero__btn-icon" aria-hidden="true" />
                 Request Care
@@ -214,7 +214,6 @@ export default function HeroSection() {
                 href={site.phoneHref}
                 id="hero-call-btn"
                 className="bhh-hero__btn-secondary"
-                aria-label={`Call us at ${site.phoneDisplay}`}
               >
                 <Phone size={17} className="bhh-hero__btn-icon" aria-hidden="true" />
                 <span>

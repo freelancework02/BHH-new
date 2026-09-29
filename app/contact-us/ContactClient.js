@@ -409,7 +409,7 @@ export default function ContactUsPage() {
               <div className="floating-county-badge animate-float" style={{ bottom: "2rem", right: "auto", left: "-1.5rem" }}>
                 <div className="floating-county-badge__avatar" aria-hidden="true">BH</div>
                 <div>
-                  <h4>Care Consultation</h4>
+                  <div className="floating-badge-title" style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--plum)" }}>Care Consultation</div>
                   <p>Speak with a specialist today</p>
                 </div>
               </div>
@@ -641,6 +641,9 @@ export default function ContactUsPage() {
                       <option value="Email">Preferred: Email</option>
                       <option value="Text">Preferred: Text Message</option>
                     </select>
+                    <label htmlFor="preferredContact" className="floating-label floating-label--floated">
+                      Preferred Contact Method
+                    </label>
                   </div>
 
                   {/* Preferred Time */}
@@ -657,6 +660,9 @@ export default function ContactUsPage() {
                       <option value="Afternoon">Best Time: Afternoon (12pm - 5pm)</option>
                       <option value="Evening">Best Time: Evening (5pm - 8pm)</option>
                     </select>
+                    <label htmlFor="preferredTime" className="floating-label floating-label--floated">
+                      Preferred Time of Day
+                    </label>
                   </div>
 
                   {/* Message field */}
@@ -684,7 +690,7 @@ export default function ContactUsPage() {
                       required 
                     />
                     <label htmlFor="privacyConsent">
-                      By checking this box, texting START to <a href="tel:2232609042" style={{ color: "var(--pink)", fontWeight: "bold" }}>223-260-9042</a>, or providing verbal consent, you agree to receive informational text messages (appointment reminders, scheduling updates, service notifications, and account information) from Blessed Hearts Homecare. Msg frequency varies. Msg &amp; data rates may apply. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. Reply HELP for help or email <a href={`mailto:${site.email}`} style={{ color: "var(--pink)", fontWeight: "bold" }}>{site.email}</a> for support. Reply STOP to opt out at any time. Privacy Policy: <Link href="/privacy-policy" style={{ color: "var(--pink)", fontWeight: "bold" }}>www.blessedheartshca.com/privacy-policy</Link> <span className="error-star" aria-hidden="true">*</span>
+                      By checking this box, texting START to <a href="tel:2232609042" style={{ color: "#b8004f", fontWeight: "bold" }}>223-260-9042</a>, or providing verbal consent, you agree to receive informational text messages (appointment reminders, scheduling updates, service notifications, and account information) from Blessed Hearts Homecare. Msg frequency varies. Msg &amp; data rates may apply. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. Reply HELP for help or email <a href={`mailto:${site.email}`} style={{ color: "#b8004f", fontWeight: "bold" }}>{site.email}</a> for support. Reply STOP to opt out at any time. Privacy Policy: <Link href="/privacy-policy" style={{ color: "#b8004f", fontWeight: "bold" }}>www.blessedheartshca.com/privacy-policy</Link> <span className="error-star" aria-hidden="true">*</span>
                     </label>
                   </div>
                   {errors.privacyConsent && (

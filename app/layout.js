@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
+import CookieConsent from "@/components/CookieConsent";
 import { site } from "@/lib/site";
 import Script from "next/script";
 
@@ -30,7 +31,7 @@ const montserrat = Montserrat({
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `In-Home Care Services in York, PA & South Central Pennsylvania | ${site.name}`,
+    default: "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
     template: `%s | ${site.name}`,
   },
   description:
@@ -57,19 +58,29 @@ export const metadata = {
     "Community HealthChoices PA",
   ],
   openGraph: {
-    title: `In-Home Care Services in York, PA | ${site.name}`,
+    title: "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
     description:
       "Licensed, compassionate in-home care including personal care, companion care, dementia care & Medicaid waiver support across York, Lancaster, Harrisburg & 10 PA counties.",
     url: site.url,
     siteName: site.name,
+    images: [
+      {
+        url: `${site.url}/images/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Blessed Hearts Homecare - Compassionate In-Home Senior Care in York & Central PA",
+        type: "image/jpeg",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `In-Home Care Services in York, PA | ${site.name}`,
+    title: "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
     description:
       "Licensed, compassionate in-home care including personal care, companion care, dementia care & Medicaid waiver support across 10 PA counties.",
+    images: [`${site.url}/images/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -209,14 +220,18 @@ export default function RootLayout({ children }) {
         )}
       </head>
       <body>
+        <a href="#main-content" className="skip-to-content-link">
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
         <Chatbot />
+        <CookieConsent />
       </body>
     </html>
   );

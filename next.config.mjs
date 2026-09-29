@@ -58,6 +58,12 @@ const nextConfig = {
       { source: '/home-care-cost-pennsylvania', destination: '/blog/home-care-cost-pennsylvania' },
       { source: '/home-care-vs-assisted-living', destination: '/blog/home-care-vs-assisted-living' },
       { source: '/find-caregiver-for-parent-pa', destination: '/blog/choosing-a-home-care-agency' },
+
+      // Robots & Sitemap Case Normalization
+      { source: '/Robots.txt', destination: '/robots.txt' },
+      { source: '/ROBOTS.TXT', destination: '/robots.txt' },
+      { source: '/Sitemap.xml', destination: '/sitemap.xml' },
+      { source: '/SITEMAP.XML', destination: '/sitemap.xml' },
     ];
   },
   async redirects() {

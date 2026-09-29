@@ -308,7 +308,7 @@
   top: 1.25rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  color: #777;
+  color: #4b5563;
   pointer-events: none;
   transition: all 0.25s ease;
 }
@@ -317,12 +317,13 @@
 .floating-input:focus ~ .floating-label,
 .floating-input:not(:placeholder-shown) ~ .floating-label,
 .floating-textarea:focus ~ .floating-label,
-.floating-textarea:not(:placeholder-shown) ~ .floating-label {
+.floating-textarea:not(:placeholder-shown) ~ .floating-label,
+.floating-label--floated {
   top: -0.65rem;
   left: 1.25rem;
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--pink);
+  color: #b8004f;
   background: var(--white);
   padding: 0 8px;
   border-radius: 4px;
@@ -366,7 +367,7 @@
 .form-reassurance {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: #777;
+  color: #555;
 }
 
 /* SECTION 4: Why Families Contact Us */
@@ -486,7 +487,7 @@
   font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 750;
-  color: var(--pink);
+  color: #b8004f;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 1rem;
@@ -553,7 +554,7 @@
 }
 
 .office-contact-row a {
-  color: var(--pink);
+  color: #b8004f;
   font-weight: 750;
   text-decoration: none;
 }
@@ -984,7 +985,7 @@
   left: 1.25rem !important;
   font-size: 0.75rem !important;
   font-weight: 800 !important;
-  color: var(--pink) !important;
+  color: #b8004f !important;
   background: var(--white) !important;
   padding: 0 8px !important;
   border-radius: 4px !important;

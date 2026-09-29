@@ -25,7 +25,8 @@ export default function Logo({ variant = "color", title = "Blessed Hearts Homeca
       >
         <Image
           src="/images/logo-heart-icon.png"
-          alt="Blessed Hearts Homecare Heart Logo"
+          alt=""
+          aria-hidden="true"
           width={764}
           height={684}
           style={{
@@ -62,7 +63,7 @@ export default function Logo({ variant = "color", title = "Blessed Hearts Homeca
             fontFamily: 'var(--font-cta, "Montserrat", sans-serif)', 
             fontWeight: "600", 
             fontSize: "0.65rem", 
-            color: isWhite ? "rgba(255, 255, 255, 0.8)" : "var(--pink)",
+            color: isWhite ? "rgba(255, 255, 255, 0.85)" : "#b8004f",
             letterSpacing: "3px",
             marginTop: "3px"
           }}

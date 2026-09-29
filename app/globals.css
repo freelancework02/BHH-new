@@ -265,7 +265,7 @@ textarea:focus-visible,
 
 .btn-cta-white {
   background: var(--white);
-  color: var(--pink) !important;
+  color: #b8004f !important;
   font-weight: 750;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
@@ -3476,7 +3476,7 @@ textarea:focus-visible,
   align-items: center;
   gap: 0.35rem;
   background: rgba(255, 45, 122, 0.06);
-  color: #ff2d7a;
+  color: #990040;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.75rem;
@@ -3900,7 +3900,7 @@ textarea:focus-visible,
   gap: 0.45rem;
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: #777777;
+  color: #555555;
   font-weight: 600;
 }
 
@@ -4003,7 +4003,7 @@ textarea:focus-visible,
   font-family: var(--font-cta);
   font-weight: 700;
   font-size: 0.95rem;
-  color: #ff2d7a;
+  color: #b8004f;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -4339,6 +4339,7 @@ textarea:focus-visible,
   flex-direction: column;
 }
 
+.footer-column h3,
 .footer-column h4 {
   color: var(--white) !important;
   font-family: var(--font-heading);
@@ -4486,7 +4487,7 @@ a.footer-contact-link-item:hover {
   align-items: center;
   gap: 0.35rem;
   margin-top: 1.25rem;
-  color: #ff2d7a !important;
+  color: #ffb3d1 !important;
   font-family: var(--font-cta);
   font-weight: 700;
   font-size: 0.9rem;
@@ -4612,7 +4613,7 @@ a.footer-contact-link-item:hover {
   margin: 0;
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .footer-signature-heart {
@@ -4627,16 +4628,27 @@ a.footer-contact-link-item:hover {
   gap: 12px;
 }
 
-.footer-legal-links a {
-  color: rgba(255, 255, 255, 0.45) !important;
+.footer-legal-links a,
+.footer-legal-links button {
+  color: rgba(255, 255, 255, 0.75) !important;
   text-decoration: none;
   font-family: var(--font-body);
   font-size: 0.85rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.footer-legal-links a:hover {
+.footer-legal-links a:hover,
+.footer-legal-links button:hover {
   color: #ff2d7a !important;
+}
+
+.footer-legal-links button:focus-visible {
+  outline: 2px solid #ff2d7a;
+  outline-offset: 2px;
 }
 
 .footer-legal-dot {
@@ -6636,4 +6648,30 @@ a.footer-contact-link-item:hover {
 .error-star {
   color: #d9534f;
   margin-left: 2px;
+}
+
+/* ====================================================
+   ADA Accessibility: Skip to Main Content Link
+   ==================================================== */
+.skip-to-content-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 999999;
+  background: #5a1a5e;
+  color: #ffffff !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s ease;
+}
+
+.skip-to-content-link:focus,
+.skip-to-content-link:focus-visible {
+  top: 1rem;
+  outline: 3px solid #ff2d7a;
+  outline-offset: 2px;
 }

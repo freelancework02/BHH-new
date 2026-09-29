@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==========================================
+    // BLESSED HEARTS HOME CARE (BHH) COLLECTIONS
+    // ==========================================
+
+    // 1. Contact Form Inquiries
+    match /BHH_inquiries/{id} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    // 2. Chatbot Inquiries
+    match /BHH-chatbot-inquiries/{id} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    // 3. Admin Panel Credentials & Password Management
+    match /BHH-Admin-panel-pass/{id} {
+      allow read, write: if true;
+    }
+
+    // 4. Cookie Consent & Website Traffic Telemetry (Required for Cookie Tracking)
+    match /BHH-cookie-consent/{id} {
+      allow read, write: if true;
+    }
+
+    // 5. Blog Posts & Care Articles CMS
+    match /BHH-Blogs/{id} {
+      allow read, write: if true;
+    }
+
+    // ==========================================
+    // PAVAN HOMECARE (PHC) COLLECTIONS (PRESERVED)
+    // ==========================================
+
+    // 6. Pavan Homecare Contact Form Inquiries
+    match /PHC-Contact-form-inquiries/{id} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    // 7. Pavan Homecare Chatbot Inquiries
+    match /PHC-Chatbot-inquiries/{id} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    // 8. Pavan Homecare Admin Panel Credentials
+    match /PHC-Admin-panel/{id} {
+      allow read, write: if true;
+    }
+
+  }
+}
