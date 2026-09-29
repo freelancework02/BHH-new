@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
 import CookieConsent from "@/components/CookieConsent";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 import Script from "next/script";
 
 const poppins = Poppins({
@@ -57,21 +57,22 @@ export const metadata = {
     "home care for veterans PA",
     "Community HealthChoices PA",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
     description:
       "Licensed, compassionate in-home care including personal care, companion care, dementia care & Medicaid waiver support across York, Lancaster, Harrisburg & 10 PA counties.",
     url: site.url,
     siteName: site.name,
-    images: [
-      {
-        url: `${site.url}/images/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Blessed Hearts Homecare - Compassionate In-Home Senior Care in York & Central PA",
-        type: "image/jpeg",
-      },
-    ],
+    images: defaultOgImages,
     locale: "en_US",
     type: "website",
   },
@@ -80,7 +81,7 @@ export const metadata = {
     title: "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
     description:
       "Licensed, compassionate in-home care including personal care, companion care, dementia care & Medicaid waiver support across 10 PA counties.",
-    images: [`${site.url}/images/og-image.jpg`],
+    images: defaultTwitterImages,
   },
   robots: {
     index: true,
@@ -218,6 +219,9 @@ export default function RootLayout({ children }) {
             </Script>
           </>
         )}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png" />
+        <meta name="apple-mobile-web-app-title" content="Blessed Hearts" />
       </head>
       <body>
         <a href="#main-content" className="skip-to-content-link">

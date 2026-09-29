@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { countiesData, citiesData } from "@/lib/countiesData";
 import CountyPageClient from "./CountyPageClient";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 // County route page handler
 
 export async function generateStaticParams() {
@@ -47,11 +47,13 @@ export async function generateMetadata({ params, searchParams }) {
       url: `${site.url}${canonicalUrl}`,
       type: "website",
       siteName: site.name,
+      images: defaultOgImages,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: defaultTwitterImages,
     },
   };
 }

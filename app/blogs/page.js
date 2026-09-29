@@ -1,5 +1,5 @@
 import BlogClient from "@/app/blog/BlogClient";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 import { getAllBlogs } from "@/lib/blogsData";
 
 export const dynamic = "force-dynamic";
@@ -26,12 +26,14 @@ export const metadata = {
     url: `${site.url}/blogs`,
     type: "website",
     siteName: site.name,
+    images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
     title: `Home Care Blog & Resources | ${site.name}`,
     description:
       "Expert articles on in-home senior care, Medicaid waiver programs, caregiver tips, and home care costs in Pennsylvania.",
+    images: defaultTwitterImages,
   },
 };
 

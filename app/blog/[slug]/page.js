@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 import { getBlogBySlug, getAllBlogs, formatBlogDate } from "@/lib/blogsData";
 import { Calendar, ArrowLeft, ArrowRight, User, Clock, Tag } from "lucide-react";
 import "../blog.css";
@@ -25,6 +25,20 @@ export async function generateMetadata({ params }) {
     "in-home care York PA",
   ];
 
+  const postImages = post.image
+    ? [
+        {
+          url: post.image,
+          secureUrl: post.image,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ]
+    : defaultOgImages;
+
+  const twitterImages = post.image ? [post.image] : defaultTwitterImages;
+
   return {
     title: `${post.title} | ${site.name}`,
     description: post.excerpt,
@@ -38,22 +52,13 @@ export async function generateMetadata({ params }) {
       publishedTime: post.date,
       authors: [post.author || "Blessed Hearts Care Team"],
       siteName: site.name,
-      images: post.image
-        ? [
-            {
-              url: post.image,
-              width: 1200,
-              height: 630,
-              alt: post.title,
-            },
-          ]
-        : [],
+      images: postImages,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [post.image] : [],
+      images: twitterImages,
     },
   };
 }

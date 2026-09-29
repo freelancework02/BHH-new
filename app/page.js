@@ -28,7 +28,7 @@ import ServiceAreasSearch from "@/components/ServiceAreasSearch";
 import KnowledgeHub from "@/components/KnowledgeHub";
 import GoogleReviews from "@/components/GoogleReviews";
 
-import { services, site } from "@/lib/site";
+import { services, site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
   title: {
@@ -101,22 +101,14 @@ export const metadata = {
     type: "website",
     siteName: site.name,
     locale: "en_US",
-    images: [
-      {
-        url: `${site.url}/images/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Blessed Hearts Homecare - Compassionate In-Home Senior Care in York & Central PA",
-        type: "image/jpeg",
-      },
-    ],
+    images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
     title: "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
     description:
       "Licensed in-home senior care: personal care, companion care, dementia care & Medicaid waiver support across 10 PA counties. Free consultation.",
-    images: [`${site.url}/images/og-image.jpg`],
+    images: defaultTwitterImages,
   },
 };
 

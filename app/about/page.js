@@ -1,5 +1,5 @@
 import AboutClient from "@/components/AboutClient";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
   title: "About Us | Licensed Home Care Agency in York, PA",
@@ -19,12 +19,14 @@ export const metadata = {
     url: `${site.url}/about`,
     type: "website",
     siteName: site.name,
+    images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
     title: `About Us | ${site.name}`,
     description:
       "Learn about Blessed Hearts Homecare's mission, values, licensing, and dedicated caregiving team serving South Central PA.",
+    images: defaultTwitterImages,
   },
 };
 

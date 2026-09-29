@@ -1,5 +1,5 @@
 import ServicesClient from "./ServicesClient";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export async function generateMetadata({ searchParams }) {
   const service = searchParams?.service;
@@ -99,11 +99,13 @@ export async function generateMetadata({ searchParams }) {
       url: `${site.url}${canonicalUrl}`,
       type: "website",
       siteName: site.name,
+      images: defaultOgImages,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: defaultTwitterImages,
     },
   };
 }

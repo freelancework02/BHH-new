@@ -1,5 +1,5 @@
 import AreasWeServeClient from "./AreasWeServeClient";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
   title: `Areas We Serve in Pennsylvania | 10 Counties | ${site.name}`,
@@ -24,12 +24,14 @@ export const metadata = {
     url: `${site.url}/areas-we-serve`,
     type: "website",
     siteName: site.name,
+    images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
     title: `Areas We Serve across 10 PA Counties | ${site.name}`,
     description:
       "Licensed in-home care serving York, Lancaster, Harrisburg & 10 PA counties.",
+    images: defaultTwitterImages,
   },
 };
 

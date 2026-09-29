@@ -1,5 +1,5 @@
 import ContactClient from "./ContactClient";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
   title: `Contact Us | Request Free In-Home Care Consultation | ${site.name}`,
@@ -22,12 +22,14 @@ export const metadata = {
     url: `${site.url}/contact-us`,
     type: "website",
     siteName: site.name,
+    images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
     title: `Contact Us | ${site.name}`,
     description:
       "Request a free in-home assessment or call (223) 260-9042. Serving York, Lancaster, Harrisburg & 10 PA counties.",
+    images: defaultTwitterImages,
   },
 };
 

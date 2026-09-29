@@ -1,6 +1,6 @@
 import FAQClient from "./FAQClient";
 import { flatFaqItems, faqGroups } from "@/lib/faqData";
-import { site } from "@/lib/site";
+import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
   title: `Home Care FAQs: Costs, Medicaid Waiver, Hours & Caregiver Questions | ${site.name}`,
@@ -27,12 +27,14 @@ export const metadata = {
     url: `${site.url}/faq`,
     type: "website",
     siteName: site.name,
+    images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
     title: `Home Care FAQs | ${site.name}`,
     description:
       "Answers to top questions about PA in-home senior care costs, Medicaid waiver, and hiring a caregiver.",
+    images: defaultTwitterImages,
   },
 };
 
