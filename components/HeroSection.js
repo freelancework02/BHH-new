@@ -195,7 +195,7 @@ export default function HeroSection() {
             >
               {/* Primary */}
               <Link
-                href="/contact-us"
+                href="/contact-us#contact-form"
                 id="hero-request-care-btn"
                 className="bhh-hero__btn-primary"
                 aria-label="Request Care - Free In-Home Consultation"

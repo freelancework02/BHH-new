@@ -86,7 +86,7 @@ export default function ServiceAreasSearch() {
 
             {/* Call To Action Buttons */}
             <div className="areas-luxury-actions">
-              <Link href="/contact-us" className="btn-luxury-primary btn-luxury-cta" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+              <Link href="/contact-us#contact-form" className="btn-luxury-primary btn-luxury-cta" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                 <Heart size={16} aria-hidden="true" />
                 Request Care
               </Link>

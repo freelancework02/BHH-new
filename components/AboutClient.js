@@ -113,7 +113,7 @@ export default function AboutClient() {
                 Blessed Hearts Homecare is dedicated to providing high-quality, clinical coordinator-supervised caregiver options across York and surrounding PA counties.
               </p>
               <div className="about-hero-actions">
-                <Link href="/contact-us" className="btn btn--gradient">
+                <Link href="/contact-us#contact-form" className="btn btn--gradient">
                   Request Care
                 </Link>
                 <a href="tel:+12232609042" className="btn btn--outline" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>

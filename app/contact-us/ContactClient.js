@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
@@ -174,6 +174,18 @@ export default function ContactUsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#contact-form") {
+      const scrollTimer = setTimeout(() => {
+        const el = document.getElementById("contact-form");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+      return () => clearTimeout(scrollTimer);
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

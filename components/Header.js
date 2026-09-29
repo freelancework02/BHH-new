@@ -127,6 +127,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                className={styles.navLink}
                 aria-current={
                   pathname === link.href || (link.href === "/blogs" && (pathname === "/blogs" || pathname?.startsWith("/blog/")))
                     ? "page"
@@ -138,7 +139,21 @@ export default function Header() {
               </Link>
             );
           })}
-          <Link href="/contact-us" className={`btn btn--gradient ${styles.navCta}`} onClick={() => setOpen(false)}>
+          <Link
+            href="/contact-us#contact-form"
+            className={`btn btn--gradient ${styles.navCta}`}
+            onClick={(e) => {
+              setOpen(false);
+              if (pathname === "/contact-us") {
+                const el = document.getElementById("contact-form");
+                if (el) {
+                  e.preventDefault();
+                  el.scrollIntoView({ behavior: "smooth" });
+                  window.history.pushState(null, "", "/contact-us#contact-form");
+                }
+              }
+            }}
+          >
             Request Care
           </Link>
         </nav>

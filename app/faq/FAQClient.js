@@ -41,7 +41,7 @@ export default function FAQClient({ faqGroups, site }) {
                 <Phone size={16} aria-hidden="true" />
                 Call {site.phoneDisplay}
               </a>
-              <Link href="/contact-us" className="btn-luxury-lg btn-luxury-lg--secondary">
+              <Link href="/contact-us#contact-form" className="btn-luxury-lg btn-luxury-lg--secondary">
                 Request Care
               </Link>
             </div>

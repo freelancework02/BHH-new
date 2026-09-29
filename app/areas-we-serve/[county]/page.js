@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { countiesData, citiesData } from "@/lib/countiesData";
 import CountyPageClient from "./CountyPageClient";
 import { site } from "@/lib/site";
+// County route page handler
 
 export async function generateStaticParams() {
   return Object.keys(countiesData).map((county) => ({

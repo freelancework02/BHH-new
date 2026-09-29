@@ -232,6 +232,7 @@
   padding: 80px 0;
   position: relative;
   z-index: 2;
+  scroll-margin-top: 6rem;
 }
 
 .contact-luxury-card {

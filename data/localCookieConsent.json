@@ -1012,5 +1012,216 @@
     },
     "updatedAt": "2026-09-29T07:04:18.789Z",
     "localSavedAt": "2026-09-29T07:04:18.790Z"
+  },
+  "session_sess_mumzpwuo_n5h04m4": {
+    "id": "session_sess_mumzpwuo_n5h04m4",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mumzpwuo_n5h04m4",
+    "visitorId": "vis_mumzpwuo_woa5cfu",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-09-29T18:09:56.815Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-09-29T18:36:30.325Z"
+        },
+        {
+          "path": "/contact-us",
+          "title": "Contact Us | Request Free In-Home Care Consultation | Blessed Hearts Homecare | Blessed Hearts Homecare",
+          "timestamp": "2026-09-29T18:36:36.057Z"
+        },
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-09-29T18:36:42.865Z"
+        },
+        {
+          "path": "/contact-us",
+          "title": "Contact Us | Request Free In-Home Care Consultation | Blessed Hearts Homecare | Blessed Hearts Homecare",
+          "timestamp": "2026-09-29T18:36:44.899Z"
+        }
+      ],
+      "pageCount": 4,
+      "lastVisitedPage": "/contact-us",
+      "clicks": [
+        {
+          "tag": "A",
+          "text": "Request Care",
+          "href": "/contact-us#contact-form",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-09-29T18:36:33.940Z"
+        },
+        {
+          "tag": "A",
+          "text": "Blessed Hearts\nHOME CARE",
+          "href": "/",
+          "id": "",
+          "path": "/contact-us",
+          "timestamp": "2026-09-29T18:36:42.798Z"
+        },
+        {
+          "tag": "A",
+          "text": "Request Care",
+          "href": "/contact-us#contact-form",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-09-29T18:36:44.848Z"
+        }
+      ],
+      "clickCount": 3,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/contact-us"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1536x864",
+      "viewport": "1536x695",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-09-29T18:36:30.317Z",
+      "lastActiveTime": "2026-09-29T18:36:47.907Z",
+      "durationSeconds": 17,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-09-29T18:36:47.918Z",
+    "localSavedAt": "2026-09-29T18:36:47.918Z"
+  },
+  "session_sess_mumzz1cw_4szhy10": {
+    "id": "session_sess_mumzz1cw_4szhy10",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mumzz1cw_4szhy10",
+    "visitorId": "vis_mumzz1cw_t2iky8a",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-09-29T18:18:15.259Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-09-29T18:15:57.359Z"
+        },
+        {
+          "path": "/about",
+          "title": "About Us | Licensed Home Care Agency in York, PA | Blessed Hearts Homecare",
+          "timestamp": "2026-09-29T18:17:27.195Z"
+        },
+        {
+          "path": "/contact-us",
+          "title": "Contact Us | Request Free In-Home Care Consultation | Blessed Hearts Homecare | Blessed Hearts Homecare",
+          "timestamp": "2026-09-29T18:18:12.243Z"
+        }
+      ],
+      "pageCount": 3,
+      "lastVisitedPage": "/contact-us",
+      "clicks": [
+        {
+          "tag": "A",
+          "text": "About Us",
+          "href": "/about",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-09-29T18:17:19.580Z"
+        },
+        {
+          "tag": "A",
+          "text": "Request Care",
+          "href": "/contact-us",
+          "id": "",
+          "path": "/about",
+          "timestamp": "2026-09-29T18:18:11.817Z"
+        }
+      ],
+      "clickCount": 2,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/contact-us"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1536x864",
+      "viewport": "1427x788",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-09-29T18:15:57.345Z",
+      "lastActiveTime": "2026-09-29T18:18:15.260Z",
+      "durationSeconds": 137,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-09-29T18:18:15.278Z",
+    "localSavedAt": "2026-09-29T18:18:15.278Z"
   }
 }

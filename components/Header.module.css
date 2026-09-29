@@ -51,10 +51,10 @@
   font-family: var(--font-cta);
   font-weight: 600;
   font-size: clamp(0.85rem, 0.92vw, 0.95rem);
-  color: var(--charcoal);
+  color: var(--pink);
   position: relative;
   padding: 0.35rem 0;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, opacity 0.25s ease;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -190,11 +190,13 @@
   gap: 0.25rem;
   cursor: pointer;
   white-space: nowrap;
+  color: var(--pink);
 }
 
 .chevron {
   transition: transform 0.25s ease;
   flex-shrink: 0;
+  color: var(--pink);
 }
 
 @media (min-width: 62.01rem) {
@@ -208,7 +210,7 @@
   background: transparent;
   border: none;
   padding: 0.5rem;
-  color: var(--charcoal);
+  color: var(--pink);
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -216,6 +218,7 @@
 
 .desktopChevron {
   display: inline-block;
+  color: var(--pink);
 }
 
 /* Dropdown Menu */

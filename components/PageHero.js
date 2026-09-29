@@ -10,7 +10,7 @@ export default function PageHero({
   title,
   description,
   ctaLabel = "Request Care",
-  ctaHref = "/contact-us",
+  ctaHref = "/contact-us#contact-form",
   mediaLabel = "Caregiver supporting a client at home",
   imageSrc,
 }) {

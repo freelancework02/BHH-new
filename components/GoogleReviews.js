@@ -424,7 +424,7 @@ export default function GoogleReviews() {
           <h3>Need compassionate care for someone you love?</h3>
           <div className={styles.ctaButtons}>
             <Link 
-              href="/contact-us" 
+              href="/contact-us#contact-form" 
               className={styles.ctaBtnPrimary}
             >
               Request Care

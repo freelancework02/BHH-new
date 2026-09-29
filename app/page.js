@@ -384,7 +384,7 @@ export default function HomePage() {
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
-              <Link href="/contact-us" className="btn-luxury-secondary btn-luxury-cta-sec" style={{ textDecoration: "none" }}>
+              <Link href="/contact-us#contact-form" className="btn-luxury-secondary btn-luxury-cta-sec" style={{ textDecoration: "none" }}>
                 Request Care
               </Link>
             </div>
