@@ -17,7 +17,14 @@ export default function InstagramWidget() {
         </div>
 
         {/* Instagram Image Widget Wrapper */}
-        <div className="instagram-widget-card">
+        <a 
+          href="https://www.instagram.com/blessedhearts.homecare/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="instagram-widget-card"
+          aria-label="View Blessed Hearts on Instagram (@blessedhearts.homecare)"
+          style={{ textDecoration: "none", display: "block" }}
+        >
           <div className="instagram-image-wrapper">
             <Image
               src="/images/instagram-widget.png"
@@ -29,7 +36,7 @@ export default function InstagramWidget() {
               priority
             />
           </div>
-        </div>
+        </a>
 
       </div>
     </section>

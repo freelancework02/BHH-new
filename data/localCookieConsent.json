@@ -1223,5 +1223,77 @@
     },
     "updatedAt": "2026-09-29T18:18:15.278Z",
     "localSavedAt": "2026-09-29T18:18:15.278Z"
+  },
+  "session_sess_muqyat8d_zpu6fkf": {
+    "id": "session_sess_muqyat8d_zpu6fkf",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_muqyat8d_zpu6fkf",
+    "visitorId": "vis_muqwyuel_7z81y7j",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-10-02T12:03:31.392Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/contact-us",
+          "title": "Contact Us | Request Free In-Home Care Consultation | Blessed Hearts Homecare | Blessed Hearts Homecare",
+          "timestamp": "2026-10-02T13:02:02.361Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/contact-us",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "http://localhost:3000/contact-us",
+        "domain": "localhost",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/contact-us"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "1920x945",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-02T13:02:02.353Z",
+      "lastActiveTime": "2026-10-02T13:02:05.355Z",
+      "durationSeconds": 3,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-10-02T13:02:05.374Z",
+    "localSavedAt": "2026-10-02T13:02:05.375Z"
   }
 }

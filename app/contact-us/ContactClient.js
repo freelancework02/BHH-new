@@ -5,15 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Phone, 
-  Mail, 
-  Clock, 
-  ShieldCheck, 
-  CheckCircle, 
-  UserCheck, 
-  MapPin, 
-  ChevronRight, 
+import {
+  Phone,
+  Mail,
+  Clock,
+  ShieldCheck,
+  CheckCircle,
+  UserCheck,
+  MapPin,
+  ChevronRight,
   Calendar,
   Layers,
   ArrowRight,
@@ -26,7 +26,7 @@ import {
   MessageSquare
 } from "lucide-react";
 import { site } from "@/lib/site";
-import GoogleReviews from "@/components/GoogleReviews";
+import GoogleReviews, { GoogleIconSVG } from "@/components/GoogleReviews";
 import "./contact.css";
 
 const contactChannels = [
@@ -92,19 +92,19 @@ const careCoordinators = [
     name: "Abessan Kamara",
     role: "Lead Care Coordinator",
     quote: "My goal is to make sure every family feels heard, supported, and matched with the perfect caregiver.",
-    img: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
+    img: "/images/caregiver-client-warm.png"
   },
   {
     name: "Sarah Jenkins",
     role: "Medicaid Waiver Specialist",
     quote: "I guide families step-by-step through state programs to maximize their authorized care hours.",
-    img: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
+    img: "/images/caregiver-kitchen.png"
   },
   {
     name: "David Vance",
     role: "Scheduling Director",
     quote: "We work 24/7 to coordinate reliable care schedules that match your family's exact routine.",
-    img: "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
+    img: "/images/caregiver-walker.png"
   }
 ];
 
@@ -352,7 +352,7 @@ export default function ContactUsPage() {
       <section className="contact-hero-section" aria-label="Care Consultation Center Hero">
         <div className="container">
           <div className="contact-hero-grid">
-            <motion.div 
+            <motion.div
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
@@ -367,15 +367,15 @@ export default function ContactUsPage() {
               <p className="contact-hero-desc">
                 Our compassionate care coordinators are here to answer your questions, schedule assessments, and help families find the perfect licensed home care solution in South Central Pennsylvania.
               </p>
-              
+
               <div className="contact-hero-actions">
-                <button 
+                <button
                   onClick={() => handleScrollToSection("contact-form")}
                   className="btn-luxury-lg btn-luxury-lg--primary"
                 >
                   Request Care <ArrowRight size={16} />
                 </button>
-                <a 
+                <a
                   href="tel:2232609042"
                   className="btn-luxury-lg btn-luxury-lg--secondary"
                   style={{ textDecoration: "none" }}
@@ -400,7 +400,7 @@ export default function ContactUsPage() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -408,8 +408,8 @@ export default function ContactUsPage() {
             >
               <div className="contact-hero-image-wrapper">
                 <Image
-                  src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
-                  alt="A friendly care coordinator speaking and consulting with an elderly senior client inside a living room"
+                  src="/images/caregiver-meeting.png"
+                  alt="A friendly care coordinator speaking and consulting with an elderly senior client and family inside a living room"
                   fill
                   priority
                   className="contact-hero-img"
@@ -419,7 +419,7 @@ export default function ContactUsPage() {
 
               {/* Floating Badge */}
               <div className="floating-county-badge animate-float" style={{ bottom: "2rem", right: "auto", left: "-1.5rem" }}>
-                <div className="floating-county-badge__avatar" aria-hidden="true">BH</div>
+
                 <div>
                   <div className="floating-badge-title" style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--plum)" }}>Care Consultation</div>
                   <p>Speak with a specialist today</p>
@@ -442,7 +442,7 @@ export default function ContactUsPage() {
             <div className="luxury-title-divider" />
           </div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -452,7 +452,7 @@ export default function ContactUsPage() {
             {contactChannels.map((channel) => {
               const IconComp = channel.icon;
               return (
-                <motion.div 
+                <motion.div
                   key={channel.id}
                   variants={fadeInUp}
                   className="channel-card"
@@ -483,7 +483,7 @@ export default function ContactUsPage() {
       <section className="form-section" id="contact-form" aria-labelledby="form-heading">
         <div className="container">
           <div className="contact-luxury-card">
-            
+
             <div className="progressive-form-header">
               <span className="eyebrow-luxury-accent">CONSULTATION SCHEDULER</span>
               <h2 id="form-heading">Request a Free Care Consultation</h2>
@@ -492,7 +492,7 @@ export default function ContactUsPage() {
             </div>
 
             {formSubmitted ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 style={{ padding: "4rem 2rem", textAlign: "center" }}
@@ -508,18 +508,18 @@ export default function ContactUsPage() {
                 {/* Honeypot field for bot protection */}
                 <input type="text" name="botField" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                 <div className="form-grid-luxury">
-                  
+
                   {/* First Name field */}
                   <div className="floating-group">
-                    <input 
-                      type="text" 
-                      id="firstName" 
-                      name="firstName" 
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
                       placeholder=" "
-                      value={formData.firstName} 
-                      onChange={handleInputChange} 
+                      value={formData.firstName}
+                      onChange={handleInputChange}
                       className={`floating-input ${errors.firstName ? 'input-error' : ''}`}
-                      required 
+                      required
                     />
                     <label htmlFor="firstName" className="floating-label">
                       First Name <span className="error-star" aria-hidden="true">*</span>
@@ -529,15 +529,15 @@ export default function ContactUsPage() {
 
                   {/* Last Name field */}
                   <div className="floating-group">
-                    <input 
-                      type="text" 
-                      id="lastName" 
-                      name="lastName" 
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
                       placeholder=" "
-                      value={formData.lastName} 
-                      onChange={handleInputChange} 
+                      value={formData.lastName}
+                      onChange={handleInputChange}
                       className={`floating-input ${errors.lastName ? 'input-error' : ''}`}
-                      required 
+                      required
                     />
                     <label htmlFor="lastName" className="floating-label">
                       Last Name <span className="error-star" aria-hidden="true">*</span>
@@ -547,15 +547,15 @@ export default function ContactUsPage() {
 
                   {/* Email field */}
                   <div className="floating-group">
-                    <input 
-                      type="email" 
-                      id="email" 
-                      name="email" 
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
                       placeholder=" "
-                      value={formData.email} 
-                      onChange={handleInputChange} 
+                      value={formData.email}
+                      onChange={handleInputChange}
                       className={`floating-input ${errors.email ? 'input-error' : ''}`}
-                      required 
+                      required
                     />
                     <label htmlFor="email" className="floating-label">
                       Email Address <span className="error-star" aria-hidden="true">*</span>
@@ -565,15 +565,15 @@ export default function ContactUsPage() {
 
                   {/* Phone field */}
                   <div className="floating-group">
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      name="phone" 
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
                       placeholder=" "
-                      value={formData.phone} 
-                      onChange={handleInputChange} 
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       className={`floating-input ${errors.phone ? 'input-error' : ''}`}
-                      required 
+                      required
                     />
                     <label htmlFor="phone" className="floating-label">
                       Phone Number <span className="error-star" aria-hidden="true">*</span>
@@ -583,15 +583,15 @@ export default function ContactUsPage() {
 
                   {/* City field */}
                   <div className="floating-group">
-                    <input 
-                      type="text" 
-                      id="city" 
-                      name="city" 
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
                       placeholder=" "
-                      value={formData.city} 
-                      onChange={handleInputChange} 
+                      value={formData.city}
+                      onChange={handleInputChange}
                       className={`floating-input ${errors.city ? 'input-error' : ''}`}
-                      required 
+                      required
                     />
                     <label htmlFor="city" className="floating-label">
                       City <span className="error-star" aria-hidden="true">*</span>
@@ -601,15 +601,15 @@ export default function ContactUsPage() {
 
                   {/* Zip code field */}
                   <div className="floating-group">
-                    <input 
-                      type="text" 
-                      id="zip" 
-                      name="zip" 
+                    <input
+                      type="text"
+                      id="zip"
+                      name="zip"
                       placeholder=" "
-                      value={formData.zip} 
-                      onChange={handleInputChange} 
+                      value={formData.zip}
+                      onChange={handleInputChange}
                       className={`floating-input ${errors.zip ? 'input-error' : ''}`}
-                      required 
+                      required
                     />
                     <label htmlFor="zip" className="floating-label">
                       ZIP Code <span className="error-star" aria-hidden="true">*</span>
@@ -619,10 +619,10 @@ export default function ContactUsPage() {
 
                   {/* Reason for Contact dropdown */}
                   <div className="floating-group">
-                    <select 
-                      id="reasonForContact" 
-                      name="reasonForContact" 
-                      value={formData.reasonForContact} 
+                    <select
+                      id="reasonForContact"
+                      name="reasonForContact"
+                      value={formData.reasonForContact}
                       onChange={handleInputChange}
                       className={`floating-select ${errors.reasonForContact ? 'input-error' : ''}`}
                       style={{ height: "100%" }}
@@ -641,10 +641,10 @@ export default function ContactUsPage() {
 
                   {/* Preferred Contact Method */}
                   <div className="floating-group">
-                    <select 
-                      id="preferredContact" 
-                      name="preferredContact" 
-                      value={formData.preferredContact} 
+                    <select
+                      id="preferredContact"
+                      name="preferredContact"
+                      value={formData.preferredContact}
                       onChange={handleInputChange}
                       className="floating-select"
                       style={{ height: "100%" }}
@@ -660,10 +660,10 @@ export default function ContactUsPage() {
 
                   {/* Preferred Time */}
                   <div className="floating-group">
-                    <select 
-                      id="preferredTime" 
-                      name="preferredTime" 
-                      value={formData.preferredTime} 
+                    <select
+                      id="preferredTime"
+                      name="preferredTime"
+                      value={formData.preferredTime}
                       onChange={handleInputChange}
                       className="floating-select"
                       style={{ height: "100%" }}
@@ -679,12 +679,12 @@ export default function ContactUsPage() {
 
                   {/* Message field */}
                   <div className="floating-group floating-group--full">
-                    <textarea 
-                      id="message" 
-                      name="message" 
+                    <textarea
+                      id="message"
+                      name="message"
                       placeholder=" "
-                      value={formData.message} 
-                      onChange={handleInputChange} 
+                      value={formData.message}
+                      onChange={handleInputChange}
                       className="floating-textarea"
                     />
                     <label htmlFor="message" className="floating-label">Tell us about schedules, health conditions, or waiver status...</label>
@@ -692,14 +692,14 @@ export default function ContactUsPage() {
 
                   {/* Consent Checkbox */}
                   <div className="form-privacy-row">
-                    <input 
-                      type="checkbox" 
-                      id="privacyConsent" 
+                    <input
+                      type="checkbox"
+                      id="privacyConsent"
                       name="privacyConsent"
                       checked={formData.privacyConsent}
                       onChange={handleCheckboxChange}
                       className={errors.privacyConsent ? "input-error" : ""}
-                      required 
+                      required
                     />
                     <label htmlFor="privacyConsent">
                       By checking this box, texting START to <a href="tel:2232609042" style={{ color: "#b8004f", fontWeight: "bold" }}>223-260-9042</a>, or providing verbal consent, you agree to receive informational text messages (appointment reminders, scheduling updates, service notifications, and account information) from Blessed Hearts Homecare. Msg frequency varies. Msg &amp; data rates may apply. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. Reply HELP for help or email <a href={`mailto:${site.email}`} style={{ color: "#b8004f", fontWeight: "bold" }}>{site.email}</a> for support. Reply STOP to opt out at any time. Privacy Policy: <Link href="/privacy-policy" style={{ color: "#b8004f", fontWeight: "bold" }}>www.blessedheartshca.com/privacy-policy</Link> <span className="error-star" aria-hidden="true">*</span>
@@ -720,8 +720,8 @@ export default function ContactUsPage() {
 
                   {/* Submit button */}
                   <div className="form-submit-row">
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       className="btn-luxury-lg btn-luxury-lg--primary"
                       style={{ minWidth: "18rem", justifyContent: "center", opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? "not-allowed" : "pointer" }}
                       disabled={isSubmitting}
@@ -812,7 +812,7 @@ export default function ContactUsPage() {
       <section className="office-info-section" aria-labelledby="office-heading">
         <div className="container">
           <div className="office-info-grid">
-            
+
             <div className="office-info-content">
               <span className="eyebrow-luxury-accent">LOCAL PHYSICAL HEADQUARTERS</span>
               <h2 id="office-heading">Our York Office Location</h2>
@@ -821,7 +821,7 @@ export default function ContactUsPage() {
                 <br />
                 {site.address.city}, {site.address.state} {site.address.zip}
               </div>
-              
+
               <div className="office-contact-stack">
                 <div className="office-contact-row">
                   <Phone size={16} aria-hidden="true" />
@@ -847,10 +847,26 @@ export default function ContactUsPage() {
                     <strong>Office Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM
                   </span>
                 </div>
+                <div className="office-contact-row">
+                  <div style={{ width: 16, height: 16, flexShrink: 0, display: "inline-flex", alignItems: "center" }} aria-hidden="true">
+                    <GoogleIconSVG />
+                  </div>
+                  <span>
+                    <strong>Google Profile:</strong>{" "}
+                    <a 
+                      href={site.googleReviewUrl}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      title="Blessed Hearts Homecare on Google"
+                    >
+                      4.9 ★ Rating &bull; View Profile &amp; Reviews
+                    </a>
+                  </span>
+                </div>
               </div>
 
-              <div style={{ display: "flex", gap: "16px" }}>
-                <a 
+              <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+                <a
                   href="https://www.google.com/maps/dir/?api=1&destination=1224+S+Queen+St+Suite+206+York+PA+17403"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -859,7 +875,20 @@ export default function ContactUsPage() {
                 >
                   Get Directions <ArrowRight size={16} />
                 </a>
-                <a 
+                <a
+                  href={site.googleReviewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-luxury-lg btn-luxury-lg--secondary"
+                  style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                  aria-label="Google Business Profile & Reviews"
+                >
+                  <span style={{ width: 18, height: 18, display: "inline-flex", alignItems: "center" }} aria-hidden="true">
+                    <GoogleIconSVG />
+                  </span>
+                  Google Reviews
+                </a>
+                <a
                   href="tel:2232609042"
                   className="btn-luxury-lg btn-luxury-lg--secondary"
                   style={{ textDecoration: "none" }}
@@ -898,7 +927,7 @@ export default function ContactUsPage() {
 
           <div className="process-timeline-flow">
             <div className="process-timeline-line" aria-hidden="true" />
-            
+
             {timelineSteps.map((step, idx) => (
               <div key={idx} className="process-timeline-step">
                 <div className="process-timeline-node" aria-hidden="true">
@@ -927,7 +956,7 @@ export default function ContactUsPage() {
             <p style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", color: "#555", maxWidth: "600px", margin: "0 auto 2.5rem auto", lineHeight: "1.6" }}>
               If your family is dealing with a sudden hospital discharge, critical medication change, or emergency care schedule gaps, do not wait for the form response. Speak directly to an on-call manager.
             </p>
-            
+
             <a href="tel:2232609042" className="emergency-pulse-btn">
               <Phone size={18} fill="currentColor" /> Call Emergency Line: (223) 260-9042
             </a>
@@ -940,7 +969,7 @@ export default function ContactUsPage() {
         <div className="container">
           <div className="careers-cta-card">
             <div className="careers-cta-grid">
-              
+
               <div className="careers-cta-content">
                 <span className="eyebrow-luxury-accent">JOIN BLESSED HEARTS</span>
                 <h2 id="careers-heading">Join Our Local Caregiver Team</h2>
@@ -967,7 +996,7 @@ export default function ContactUsPage() {
                   </div>
                 </div>
 
-                <a 
+                <a
                   href="mailto:blessedheartshca1@gmail.com?subject=Caregiver Application Request"
                   className="btn-luxury-lg btn-luxury-lg--primary"
                   style={{ textDecoration: "none" }}
@@ -978,8 +1007,8 @@ export default function ContactUsPage() {
 
               <div className="careers-cta-media">
                 <Image
-                  src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SG9tZWNhcmV8ZW58MHx8MHx8fDA%3D"
-                  alt="Blessed Hearts Homecare caregiver laughing and assisting an senior client with daily hobbies"
+                  src="/images/hero-caregiver.png"
+                  alt="Blessed Hearts Homecare caregiver laughing and assisting an elderly senior client at home"
                   fill
                   loading="lazy"
                   className="blog-featured-img"
@@ -1009,8 +1038,8 @@ export default function ContactUsPage() {
               const isOpen = openFaq === idx;
               return (
                 <div key={idx} className={`faq-item-luxury ${isOpen ? "faq-item-luxury--open" : ""}`}>
-                  <button 
-                    className="faq-item-luxury__trigger" 
+                  <button
+                    className="faq-item-luxury__trigger"
                     onClick={() => toggleFaq(idx)}
                     aria-expanded={isOpen}
                   >
@@ -1019,7 +1048,7 @@ export default function ContactUsPage() {
                   </button>
                   <AnimatePresence initial={false}>
                     {isOpen && (
-                      <motion.div 
+                      <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1, transition: { duration: 0.3 } }}
                         exit={{ height: 0, opacity: 0, transition: { duration: 0.2 } }}
@@ -1051,15 +1080,15 @@ export default function ContactUsPage() {
             <p>
               Connect with our certified care coordinators in York. Let us match the perfect caregiver to support your independence and bring peace of mind.
             </p>
-            
+
             <div className="luxury-cta-banner-actions">
-              <button 
+              <button
                 onClick={() => handleScrollToSection("contact-form")}
                 className="btn-luxury-lg btn-cta-white"
               >
                 Request Care Consultation
               </button>
-              <a 
+              <a
                 href="tel:2232609042"
                 className="btn-luxury-lg btn-cta-outline"
                 style={{ textDecoration: "none" }}

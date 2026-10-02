@@ -114,11 +114,10 @@ const jsonLd = {
       logo: `${site.url}/images/logo-horizontal-official.png`,
       description:
         "Licensed home care agency providing compassionate in-home care services across South Central & Eastern Pennsylvania.",
-      // TODO: Replace these with your actual social media profile URLs
       sameAs: [
-        // "https://www.facebook.com/blessedheartshca",
-        // "https://www.instagram.com/blessedheartshca",
-        // "https://www.linkedin.com/company/blessedheartshca",
+        site.social.facebook,
+        site.social.instagram,
+        site.googleBusinessUrl,
       ],
       contactPoint: {
         "@type": "ContactPoint",

@@ -5,20 +5,18 @@ import { usePathname } from "next/navigation";
 import { 
   Facebook, 
   Instagram, 
-  Linkedin, 
-  Twitter, 
-  Youtube, 
   MapPin, 
   Phone, 
   Mail, 
   Clock, 
-  Heart, 
   Printer, 
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  Heart
 } from "lucide-react";
 import Logo from "./Logo";
 import { site } from "@/lib/site";
+import { GoogleIconSVG } from "./GoogleReviews";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -48,15 +46,23 @@ export default function Footer() {
               
               {/* Social Media Circle Buttons */}
               <div className="footer-social-row">
-                {/* TODO: Replace # with your actual social media profile URLs */}
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Facebook">
+                <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Facebook" title="Blessed Hearts on Facebook">
                   <Facebook size={16} aria-hidden="true" />
                 </a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Instagram">
+                <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Instagram" title="Blessed Hearts on Instagram">
                   <Instagram size={16} aria-hidden="true" />
                 </a>
-                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="LinkedIn">
-                  <Linkedin size={16} aria-hidden="true" />
+                <a 
+                  href={site.googleReviewUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="footer-social-btn" 
+                  aria-label="Google Business Profile & Reviews"
+                  title="Google Business Profile & Reviews"
+                >
+                  <span style={{ width: 16, height: 16, display: "inline-flex", alignItems: "center", justifyContent: "center" }} aria-hidden="true">
+                    <GoogleIconSVG />
+                  </span>
                 </a>
               </div>
 
@@ -121,6 +127,17 @@ export default function Footer() {
                     <span>
                       1224 S Queen St, Suite 206<br />York, PA 17403
                     </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="footer-contact-link-item">
+                    <div className="footer-contact-icon">
+                      <span style={{ width: 14, height: 14, display: "inline-flex", alignItems: "center", justifyContent: "center" }} aria-hidden="true">
+                        <GoogleIconSVG />
+                      </span>
+                    </div>
+                    <span>Google Reviews (4.9 ★)</span>
                   </a>
                 </li>
                 
