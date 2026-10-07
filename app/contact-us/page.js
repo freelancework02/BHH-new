@@ -2,7 +2,7 @@ import ContactClient from "./ContactClient";
 import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
-  title: `Contact Us | Request Free In-Home Care Consultation | ${site.name}`,
+  title: "Contact Us | Request Free In-Home Care Consultation",
   description:
     "Contact Blessed Hearts Homecare in York, PA. Request a free in-home assessment, ask about Medicaid waiver coverage, or call (223) 260-9042 to speak with a local care coordinator.",
   keywords: [

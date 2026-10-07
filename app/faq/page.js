@@ -3,7 +3,7 @@ import { flatFaqItems, faqGroups } from "@/lib/faqData";
 import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
-  title: `Home Care FAQs: Costs, Medicaid Waiver, Hours & Caregiver Questions | ${site.name}`,
+  title: "Home Care FAQs: Costs, Medicaid Waiver, Hours & Caregivers",
   description:
     "Got questions about in-home care in Pennsylvania? Find answers on home care costs per hour, Medicaid CHC waiver coverage, Medicare vs Medicaid, caregiver vetting, and 24/7 schedules.",
   keywords: [

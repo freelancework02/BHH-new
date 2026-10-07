@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
   const twitterImages = post.image ? [post.image] : defaultTwitterImages;
 
   return {
-    title: `${post.title} | ${site.name}`,
+    title: { absolute: `${post.title} | ${site.name}` },
     description: post.excerpt,
     keywords,
     alternates: { canonical: canonicalUrl },

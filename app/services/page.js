@@ -87,7 +87,7 @@ export async function generateMetadata({ searchParams }) {
       ];
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: pageKeywords,
     alternates: {

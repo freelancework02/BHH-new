@@ -23,7 +23,7 @@ export async function generateMetadata({ params, searchParams }) {
   const locationName = isCity ? `${city.charAt(0).toUpperCase() + city.slice(1)}, PA` : `${data.name}, PA`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: [
       `home care ${locationName}`,

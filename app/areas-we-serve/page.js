@@ -2,7 +2,7 @@ import AreasWeServeClient from "./AreasWeServeClient";
 import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export const metadata = {
-  title: `Areas We Serve in Pennsylvania | 10 Counties | ${site.name}`,
+  title: "Areas We Serve in Pennsylvania | 10 Counties",
   description:
     "Blessed Hearts Homecare provides licensed in-home senior care across 10 Pennsylvania counties including York, Lancaster, Dauphin, Cumberland, Adams, Lebanon, Perry, Berks, Lehigh, and Northampton.",
   keywords: [
