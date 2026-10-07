@@ -300,7 +300,7 @@ export default function HeroSection() {
                 }
               >
                 <Image
-                  src="/images/mainheader.png"
+                  src="/images/mainheader.webp"
                   alt="Caring caregiver smiling with an elderly woman at home — Blessed Hearts Homecare"
                   fill
                   sizes="(max-width: 56rem) 100vw, 55vw"

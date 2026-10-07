@@ -111,7 +111,7 @@ const jsonLd = {
       "@id": `${site.url}/#organization`,
       name: site.name,
       url: site.url,
-      logo: `${site.url}/images/logo-horizontal-official.png`,
+      logo: `${site.url}/images/logo-horizontal-official.webp`,
       description:
         "Licensed home care agency providing compassionate in-home care services across South Central & Eastern Pennsylvania.",
       sameAs: [
@@ -131,7 +131,7 @@ const jsonLd = {
       "@type": "LocalBusiness",
       "@id": `${site.url}/#localbusiness`,
       name: `${site.name}`,
-      image: `${site.url}/images/logo-horizontal-official.png`,
+      image: `${site.url}/images/logo-horizontal-official.webp`,
       telephone: site.phoneDisplay,
       email: site.email,
       url: site.url,

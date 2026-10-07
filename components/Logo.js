@@ -24,7 +24,7 @@ export default function Logo({ variant = "color", title = "Blessed Hearts Homeca
         }}
       >
         <Image
-          src="/images/logo-heart-icon.png"
+          src="/images/logo-heart-icon.webp"
           alt=""
           aria-hidden="true"
           width={764}

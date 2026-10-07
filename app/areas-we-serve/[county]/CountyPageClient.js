@@ -520,7 +520,7 @@ export default function CountyPageClient({ data, city }) {
               </div>
               <div style={{ position: "relative", width: "100%", height: "300px", borderRadius: "24px", overflow: "hidden" }}>
                 <Image
-                  src="/images/service-area-map.png"
+                  src="/images/service-area-map.webp"
                   alt={`Blessed Hearts Homecare service coverage map in ${data.name}`}
                   fill
                   style={{ objectFit: "cover" }}

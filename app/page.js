@@ -124,7 +124,7 @@ const homePageJsonLd = {
   email: site.email,
   description:
     "Blessed Hearts Homecare is a licensed home care agency in York, PA providing professional in-home senior care services including personal care, companion care, dementia care, respite care, light housekeeping, meal preparation, and transportation across 10 Pennsylvania counties.",
-  image: `${site.url}/images/logo-horizontal-official.png`,
+  image: `${site.url}/images/logo-horizontal-official.webp`,
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.line1,
@@ -557,7 +557,7 @@ export default function HomePage() {
                 <div className="why-luxury-media__backdrop-blob" aria-hidden="true" />
                 <div className="why-luxury-image-container">
                   <Image
-                    src="/images/image.jpg"
+                    src="/images/image.webp"
                     alt="Caregiver supporting senior client walking with walker"
                     fill
                     sizes="(max-width: 56rem) 100vw, 45vw"
@@ -611,7 +611,7 @@ export default function HomePage() {
 
             <div className="about-luxury-image-container">
               <Image
-                src="/images/image2.jpg"
+                src="/images/image2.webp"
                 alt="Friendly professional caregiver supporting senior client walking with walker"
                 fill
                 sizes="(max-width: 56rem) 100vw, 45vw"

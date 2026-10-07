@@ -359,7 +359,7 @@ export default function AboutClient() {
               <div className="about-trust-media">
                 <div className="about-trust-image-wrapper">
                   <Image
-                    src="/images/image.jpg"
+                    src="/images/image.webp"
                     alt="A caregiver assisting a senior client safely using a walker"
                     fill
                     sizes="(max-width: 68rem) 100vw, 550px"
@@ -595,7 +595,7 @@ export default function AboutClient() {
             <div className="about-local-media">
               <div className="about-local-image-wrapper">
                 <Image
-                  src="/images/service-area-map.png"
+                  src="/images/service-area-map.webp"
                   alt="Pennsylvania map highlighting York and serving Adams, Lancaster, Dauphin, Cumberland counties"
                   fill
                   sizes="(max-width: 68rem) 100vw, 550px"

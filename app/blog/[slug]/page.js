@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }) {
           url: site.url,
           logo: {
             "@type": "ImageObject",
-            url: `${site.url}/images/logo-horizontal-official.png`,
+            url: `${site.url}/images/logo-horizontal-official.webp`,
           },
         },
         mainEntityOfPage: {

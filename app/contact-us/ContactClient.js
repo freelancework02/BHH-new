@@ -92,19 +92,19 @@ const careCoordinators = [
     name: "Abessan Kamara",
     role: "Lead Care Coordinator",
     quote: "My goal is to make sure every family feels heard, supported, and matched with the perfect caregiver.",
-    img: "/images/caregiver-client-warm.png"
+    img: "/images/caregiver-client-warm.webp"
   },
   {
     name: "Sarah Jenkins",
     role: "Medicaid Waiver Specialist",
     quote: "I guide families step-by-step through state programs to maximize their authorized care hours.",
-    img: "/images/caregiver-kitchen.png"
+    img: "/images/caregiver-kitchen.webp"
   },
   {
     name: "David Vance",
     role: "Scheduling Director",
     quote: "We work 24/7 to coordinate reliable care schedules that match your family's exact routine.",
-    img: "/images/caregiver-walker.png"
+    img: "/images/caregiver-walker.webp"
   }
 ];
 
@@ -408,7 +408,7 @@ export default function ContactUsPage() {
             >
               <div className="contact-hero-image-wrapper">
                 <Image
-                  src="/images/caregiver-meeting.png"
+                  src="/images/caregiver-meeting.webp"
                   alt="A friendly care coordinator speaking and consulting with an elderly senior client and family inside a living room"
                   fill
                   priority
@@ -1007,7 +1007,7 @@ export default function ContactUsPage() {
 
               <div className="careers-cta-media">
                 <Image
-                  src="/images/hero-caregiver.png"
+                  src="/images/hero-caregiver.webp"
                   alt="Blessed Hearts Homecare caregiver laughing and assisting an elderly senior client at home"
                   fill
                   loading="lazy"

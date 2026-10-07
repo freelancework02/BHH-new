@@ -1295,5 +1295,149 @@
     },
     "updatedAt": "2026-10-02T13:02:05.374Z",
     "localSavedAt": "2026-10-02T13:02:05.375Z"
+  },
+  "session_sess_muy078lr_i0eyage": {
+    "id": "session_sess_muy078lr_i0eyage",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_muy078lr_i0eyage",
+    "visitorId": "vis_muqwyuel_7z81y7j",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-10-02T12:03:31.392Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-10-07T11:07:47.925Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "1920x945",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-07T11:07:47.921Z",
+      "lastActiveTime": "2026-10-07T11:07:50.923Z",
+      "durationSeconds": 3,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-10-07T11:07:50.925Z",
+    "localSavedAt": "2026-10-07T11:07:50.926Z"
+  },
+  "session_sess_muy0qdfu_imipan5": {
+    "id": "session_sess_muy0qdfu_imipan5",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_muy0qdfu_imipan5",
+    "visitorId": "vis_muqwyuel_7z81y7j",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-10-02T12:03:31.392Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/areas-we-serve/lancaster",
+          "title": "Lancaster County Home Care Agency | In-Home Senior Care | Blessed Hearts Homecare | Blessed Hearts Homecare",
+          "timestamp": "2026-10-07T11:22:59.004Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/areas-we-serve/lancaster",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/areas-we-serve/lancaster"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "958x944",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-07T11:22:59.003Z",
+      "lastActiveTime": "2026-10-07T11:23:02.014Z",
+      "durationSeconds": 3,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-10-07T11:23:02.016Z",
+    "localSavedAt": "2026-10-07T11:23:02.017Z"
   }
 }

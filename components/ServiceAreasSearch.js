@@ -105,7 +105,7 @@ export default function ServiceAreasSearch() {
             <div className="areas-luxury-map-card">
               <div className="areas-luxury-map-image-wrapper">
                 <Image
-                  src="/images/service-area-map.png"
+                  src="/images/service-area-map.webp"
                   alt="Pennsylvania regional map highlighting York, Adams, Lancaster, Cumberland, and Dauphin counties"
                   fill
                   sizes="(max-width: 56rem) 100vw, 55vw"

@@ -405,7 +405,7 @@ export default function AreasPage() {
             >
               <div className="areas-hero-image-wrapper">
                 <Image
-                  src="/images/image.jpg"
+                  src="/images/image.webp"
                   alt="Blessed Hearts Homecare caregiver smiling and checking in on an elderly couple in their living room"
                   fill
                   priority
@@ -564,7 +564,7 @@ export default function AreasPage() {
               <div className="map-media-wrapper">
                 <div className="map-image-container">
                   <Image
-                    src="/images/service-area-map.png"
+                    src="/images/service-area-map.webp"
                     alt="Blessed Hearts Homecare service region map showing York, Lancaster, Adams, Cumberland, and Dauphin counties"
                     fill
                     loading="lazy"

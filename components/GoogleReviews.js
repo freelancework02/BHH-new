@@ -23,13 +23,13 @@ const reviewsData = [
   {
     id: 1,
     name: "Gloria Custis",
-    avatar: "/images/reviewer_gloria.png",
+    avatar: "/images/reviewer_gloria.webp",
     type: "image",
     verified: true,
     time: "9 days ago",
     rating: 5,
     text: "I love working with Blessed Hearts Homecare. The team is so nice, extremely professional and compassionate. Highly recommend! 🙏❤️👍",
-    photo: "/images/review_gloria_photo.png"
+    photo: "/images/review_gloria_photo.webp"
   },
   {
     id: 2,
@@ -56,7 +56,7 @@ const reviewsData = [
   {
     id: 4,
     name: "Reginald Smalls",
-    avatar: "/images/reviewer_reginald.png",
+    avatar: "/images/reviewer_reginald.webp",
     type: "image",
     verified: true,
     time: "10 days ago",

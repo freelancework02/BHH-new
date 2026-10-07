@@ -27,7 +27,7 @@ export default function InstagramWidget() {
         >
           <div className="instagram-image-wrapper">
             <Image
-              src="/images/instagram-widget.png"
+              src="/images/instagram-widget.webp"
               alt="Blessed Hearts Homecare Instagram feed showing caregivers, clients, and senior activities"
               fill
               sizes="(max-width: 68rem) 100vw, 1100px"
