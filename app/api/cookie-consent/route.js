@@ -234,11 +234,35 @@ export async function GET(request) {
       records = records.slice(0, maxLimit);
     }
 
+    // Ensure only genuine visitor sessions with valid clicks are returned
+    const cleanRecords = records
+      .filter((r) => {
+        const sid = (r.sessionId || "").toLowerCase();
+        const vid = (r.visitorId || "").toLowerCase();
+        return !sid.includes("test_session") && !vid.includes("test_vis");
+      })
+      .map((r) => {
+        if (Array.isArray(r.traffic?.clicks)) {
+          return {
+            ...r,
+            traffic: {
+              ...r.traffic,
+              clicks: r.traffic.clicks.filter((c) => {
+                const text = (c.text || "").toLowerCase();
+                const href = (c.href || "").toLowerCase();
+                return !text.includes("555-0199") && !href.includes("5550199");
+              }),
+            },
+          };
+        }
+        return r;
+      });
+
     return NextResponse.json({
       success: true,
-      count: records.length,
+      count: cleanRecords.length,
       collection: "BHH-cookie-consent",
-      records,
+      records: cleanRecords,
     });
   } catch (error) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });

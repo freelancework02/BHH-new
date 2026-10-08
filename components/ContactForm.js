@@ -75,36 +75,42 @@ export default function ContactForm() {
     setStatus("");
 
     try {
-      const formPayload = new FormData();
-      formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
-      formPayload.append("subject", `New Inquiry from ${formData.firstName} ${formData.lastName}`);
-      formPayload.append("from_name", "Blessed Hearts Website Lead");
-      formPayload.append("name", `${formData.firstName} ${formData.lastName}`);
-      formPayload.append("email", formData.email);
-      formPayload.append("phone", formData.phone);
-      formPayload.append("city", formData.city);
-      formPayload.append("zip", formData.zip);
-      formPayload.append("service_needed", formData.help);
-      formPayload.append("source", "Contact Form Component");
-
-      const web3Res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formPayload,
-      });
-
-      const web3Data = await web3Res.json();
-      if (!web3Data.success) {
-        throw new Error(web3Data.message || "Unable to send your message. Please try again.");
-      }
-
-      fetch("/api/contact", {
+      // 1. Save inquiry directly to database first
+      const dbRes = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
           source: "Contact Form Component",
         }),
-      }).catch((e) => console.warn("Firestore save error:", e));
+      });
+
+      const dbData = await dbRes.json();
+      if (!dbData.success) {
+        throw new Error(dbData.error || "Unable to save your message. Please try again.");
+      }
+
+      // 2. Also send notification email via Web3Forms (non-blocking)
+      try {
+        const formPayload = new FormData();
+        formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
+        formPayload.append("subject", `New Inquiry from ${formData.firstName} ${formData.lastName}`);
+        formPayload.append("from_name", "Blessed Hearts Website Lead");
+        formPayload.append("name", `${formData.firstName} ${formData.lastName}`);
+        formPayload.append("email", formData.email);
+        formPayload.append("phone", formData.phone);
+        formPayload.append("city", formData.city);
+        formPayload.append("zip", formData.zip);
+        formPayload.append("service_needed", formData.help);
+        formPayload.append("source", "Contact Form Component");
+
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formPayload,
+        });
+      } catch (emailErr) {
+        console.warn("Web3Forms email dispatch notice:", emailErr);
+      }
 
       setStatus("Thank you — we've received your message and will be in touch soon.");
       setFormData({

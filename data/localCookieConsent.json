@@ -1,184 +1,4 @@
 {
-  "session_test_session_1790660367464": {
-    "id": "session_test_session_1790660367464",
-    "brand": "BHH",
-    "organization": "Blessed Hearts Homecare",
-    "collection": "BHH-cookie-consent",
-    "sessionId": "test_session_1790660367464",
-    "visitorId": "test_vis_1790660367464",
-    "consent": {
-      "status": "accepted",
-      "categories": {
-        "necessary": true,
-        "analytics": true,
-        "functional": true,
-        "marketing": true
-      },
-      "doNotSellOptOut": false,
-      "gpcHonored": false,
-      "timestamp": "2026-09-29T05:39:27.464Z",
-      "jurisdiction": "USA (CCPA/CPRA Compliant)"
-    },
-    "traffic": {
-      "pagesVisited": [
-        {
-          "path": "/",
-          "title": "Blessed Hearts Homecare | Home",
-          "timestamp": "2026-09-29T05:39:27.465Z"
-        },
-        {
-          "path": "/services/personal-care",
-          "title": "Personal Care Services",
-          "timestamp": "2026-09-29T05:39:27.465Z"
-        }
-      ],
-      "pageCount": 2,
-      "lastVisitedPage": "/services/personal-care",
-      "clicks": [
-        {
-          "tag": "BUTTON",
-          "text": "Schedule Free Consultation",
-          "href": "/contact-us",
-          "path": "/",
-          "timestamp": "2026-09-29T05:39:27.465Z"
-        },
-        {
-          "tag": "A",
-          "text": "Call (717) 555-0199",
-          "href": "tel:7175550199",
-          "path": "/services/personal-care",
-          "timestamp": "2026-09-29T05:39:27.465Z"
-        }
-      ],
-      "clickCount": 2,
-      "referralSource": {
-        "referrer": "https://www.google.com/search?q=home+care+york+pa",
-        "domain": "google.com",
-        "utm": {
-          "source": "google",
-          "medium": "organic",
-          "campaign": ""
-        },
-        "landingPage": "/"
-      }
-    },
-    "deviceBrowser": {
-      "browser": "Google Chrome",
-      "os": "Windows",
-      "deviceType": "Desktop",
-      "screenResolution": "1920x1080",
-      "viewport": "1440x900",
-      "language": "en-US",
-      "colorScheme": "light"
-    },
-    "approximateLocation": {
-      "country": "United States (Dev)",
-      "region": "Pennsylvania (PA)",
-      "city": "York / South Central PA",
-      "timezone": "America/New_York",
-      "locale": "en-US",
-      "timezoneOffset": 240,
-      "isLocalhost": true
-    },
-    "sessionInfo": {
-      "startTime": "2026-09-29T05:37:27.465Z",
-      "lastActiveTime": "2026-09-29T05:39:27.465Z",
-      "durationSeconds": 120,
-      "lastEventType": "test_run"
-    },
-    "updatedAt": "2026-09-29T05:39:28.221Z",
-    "localSavedAt": "2026-09-29T05:39:28.221Z"
-  },
-  "session_test_session_1790660782928": {
-    "id": "session_test_session_1790660782928",
-    "brand": "BHH",
-    "organization": "Blessed Hearts Homecare",
-    "collection": "BHH-cookie-consent",
-    "sessionId": "test_session_1790660782928",
-    "visitorId": "test_vis_1790660782928",
-    "consent": {
-      "status": "accepted",
-      "categories": {
-        "necessary": true,
-        "analytics": true,
-        "functional": true,
-        "marketing": true
-      },
-      "doNotSellOptOut": false,
-      "gpcHonored": false,
-      "timestamp": "2026-09-29T05:46:22.928Z",
-      "jurisdiction": "USA (CCPA/CPRA Compliant)"
-    },
-    "traffic": {
-      "pagesVisited": [
-        {
-          "path": "/",
-          "title": "Blessed Hearts Homecare | Home",
-          "timestamp": "2026-09-29T05:46:22.929Z"
-        },
-        {
-          "path": "/services/personal-care",
-          "title": "Personal Care Services",
-          "timestamp": "2026-09-29T05:46:22.929Z"
-        }
-      ],
-      "pageCount": 2,
-      "lastVisitedPage": "/services/personal-care",
-      "clicks": [
-        {
-          "tag": "BUTTON",
-          "text": "Schedule Free Consultation",
-          "href": "/contact-us",
-          "path": "/",
-          "timestamp": "2026-09-29T05:46:22.929Z"
-        },
-        {
-          "tag": "A",
-          "text": "Call (717) 555-0199",
-          "href": "tel:7175550199",
-          "path": "/services/personal-care",
-          "timestamp": "2026-09-29T05:46:22.929Z"
-        }
-      ],
-      "clickCount": 2,
-      "referralSource": {
-        "referrer": "https://www.google.com/search?q=home+care+york+pa",
-        "domain": "google.com",
-        "utm": {
-          "source": "google",
-          "medium": "organic",
-          "campaign": ""
-        },
-        "landingPage": "/"
-      }
-    },
-    "deviceBrowser": {
-      "browser": "Google Chrome",
-      "os": "Windows",
-      "deviceType": "Desktop",
-      "screenResolution": "1920x1080",
-      "viewport": "1440x900",
-      "language": "en-US",
-      "colorScheme": "light"
-    },
-    "approximateLocation": {
-      "country": "United States (Dev)",
-      "region": "Pennsylvania (PA)",
-      "city": "York / South Central PA",
-      "timezone": "America/New_York",
-      "locale": "en-US",
-      "timezoneOffset": 240,
-      "isLocalhost": true
-    },
-    "sessionInfo": {
-      "startTime": "2026-09-29T05:44:22.929Z",
-      "lastActiveTime": "2026-09-29T05:46:22.929Z",
-      "durationSeconds": 120,
-      "lastEventType": "test_run"
-    },
-    "updatedAt": "2026-09-29T05:46:23.802Z",
-    "localSavedAt": "2026-09-29T05:46:23.803Z"
-  },
   "session_sess_mum989ua_8pc07ev": {
     "id": "session_sess_mum989ua_8pc07ev",
     "brand": "BHH",
@@ -1439,5 +1259,158 @@
     },
     "updatedAt": "2026-10-07T11:23:02.016Z",
     "localSavedAt": "2026-10-07T11:23:02.017Z"
+  },
+  "session_sess_muzbmep5_16lhpsd": {
+    "id": "session_sess_muzbmep5_16lhpsd",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_muzbmep5_16lhpsd",
+    "visitorId": "vis_mum989ua_j79lr05",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-09-29T05:47:47.485Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-10-08T09:15:30.123Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "1864x949",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-08T09:15:30.119Z",
+      "lastActiveTime": "2026-10-08T10:13:18.982Z",
+      "durationSeconds": 3468,
+      "lastEventType": "session_end"
+    },
+    "updatedAt": "2026-10-08T10:13:19.055Z",
+    "localSavedAt": "2026-10-08T10:13:19.056Z"
+  },
+  "session_sess_muzefp4f_dx0y5yb": {
+    "id": "session_sess_muzefp4f_dx0y5yb",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_muzefp4f_dx0y5yb",
+    "visitorId": "vis_muqwyuel_7z81y7j",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-10-02T12:03:31.392Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/contact-us",
+          "title": "Contact Us | Request Free In-Home Care Consultation | Blessed Hearts Homecare",
+          "timestamp": "2026-10-08T10:34:03.397Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/contact-us",
+      "clicks": [
+        {
+          "tag": "BUTTON",
+          "text": "Submit Care Request",
+          "href": "",
+          "id": "",
+          "path": "/contact-us",
+          "timestamp": "2026-10-08T10:38:18.127Z"
+        }
+      ],
+      "clickCount": 1,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/contact-us"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "958x944",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-08T10:34:03.375Z",
+      "lastActiveTime": "2026-10-08T10:38:42.476Z",
+      "durationSeconds": 279,
+      "lastEventType": "session_end"
+    },
+    "updatedAt": "2026-10-08T10:38:42.519Z",
+    "localSavedAt": "2026-10-08T10:38:42.520Z"
   }
 }

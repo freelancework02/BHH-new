@@ -34,7 +34,7 @@ async function runTests() {
       lastVisitedPage: "/services/personal-care",
       clicks: [
         { tag: "BUTTON", text: "Schedule Free Consultation", href: "/contact-us", path: "/", timestamp: new Date().toISOString() },
-        { tag: "A", text: "Call (717) 555-0199", href: "tel:7175550199", path: "/services/personal-care", timestamp: new Date().toISOString() },
+        { tag: "A", text: "Call (223) 260-9042", href: "tel:2232609042", path: "/services/personal-care", timestamp: new Date().toISOString() },
       ],
       clickCount: 2,
       referralSource: {

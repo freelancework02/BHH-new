@@ -182,28 +182,8 @@ export default function CountyPageClient({ data, city }) {
     setSubmitError("");
 
     try {
-      const formPayload = new FormData();
-      formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
-      formPayload.append("subject", `New Consultation Request from ${formData.firstName} ${formData.lastName} (${data?.name || "County"})`);
-      formPayload.append("from_name", "Blessed Hearts Website Lead");
-      formPayload.append("name", `${formData.firstName} ${formData.lastName}`);
-      formPayload.append("email", formData.email);
-      formPayload.append("phone", formData.phone);
-      formPayload.append("county", data?.name || "");
-      formPayload.append("message", formData.message || "N/A");
-      formPayload.append("source", `County Page Consultation - ${displayLocation || data?.name || "County"}`);
-
-      const web3Res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formPayload,
-      });
-
-      const web3Data = await web3Res.json();
-      if (!web3Data.success) {
-        throw new Error(web3Data.message || "Failed to submit request. Please try again.");
-      }
-
-      fetch("/api/contact", {
+      // 1. Save consultation request directly to database first
+      const dbRes = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -211,7 +191,33 @@ export default function CountyPageClient({ data, city }) {
           county: data?.name || "",
           source: `County Page Consultation - ${displayLocation || data?.name || "County"}`,
         }),
-      }).catch((e) => console.warn("Firestore save error:", e));
+      });
+
+      const dbData = await dbRes.json();
+      if (!dbData.success) {
+        throw new Error(dbData.error || "Failed to submit request. Please try again.");
+      }
+
+      // 2. Also send notification email via Web3Forms (non-blocking)
+      try {
+        const formPayload = new FormData();
+        formPayload.append("access_key", "ae29ff25-607e-4eb5-a6df-e30885a1b4a5");
+        formPayload.append("subject", `New Consultation Request from ${formData.firstName} ${formData.lastName} (${data?.name || "County"})`);
+        formPayload.append("from_name", "Blessed Hearts Website Lead");
+        formPayload.append("name", `${formData.firstName} ${formData.lastName}`);
+        formPayload.append("email", formData.email);
+        formPayload.append("phone", formData.phone);
+        formPayload.append("county", data?.name || "");
+        formPayload.append("message", formData.message || "N/A");
+        formPayload.append("source", `County Page Consultation - ${displayLocation || data?.name || "County"}`);
+
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formPayload,
+        });
+      } catch (emailErr) {
+        console.warn("Web3Forms email dispatch notice:", emailErr);
+      }
 
       setFormSubmitted(true);
       setFormData({ firstName: "", lastName: "", phone: "", email: "", message: "" });

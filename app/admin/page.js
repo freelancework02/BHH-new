@@ -1487,107 +1487,124 @@ export default function AdminPage() {
                 }
 
                 return (
-                  <table className={styles.inquiryTable}>
-                    <thead>
-                      <tr>
-                        <th>Visitor &amp; Device</th>
-                        <th>Location</th>
-                        <th>Pages Looked At</th>
-                        <th>Buttons Clicked</th>
-                        <th>How They Found You</th>
-                        <th>Visit Time</th>
-                        <th>Cookie Consent</th>
-                        <th style={{ textAlign: "right" }}>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filtered.map((s, sIdx) => (
-                        <tr key={s.id || s.sessionId}>
-                          <td>
-                            <div style={{ fontWeight: 700, color: "#1e293b", fontSize: "0.84rem" }}>
-                              Visitor #{filtered.length - sIdx}
-                            </div>
-                            <div style={{ fontSize: "0.74rem", color: "#64748b" }}>
-                              {s.deviceBrowser?.deviceType === "Mobile" ? "📱 Mobile Phone" : s.deviceBrowser?.deviceType === "Tablet" ? "📱 Tablet" : "💻 Computer"} ({s.deviceBrowser?.browser || "Browser"})
-                            </div>
-                          </td>
-
-                          <td>
-                            <div style={{ fontSize: "0.82rem", color: "#1e293b", fontWeight: 600 }}>
-                              {s.approximateLocation?.city || "York Area"}
-                            </div>
-                            <div style={{ fontSize: "0.72rem", color: "#64748b" }}>
-                              {s.approximateLocation?.region || "Pennsylvania"}
-                            </div>
-                          </td>
-
-                          <td>
-                            <div style={{ fontWeight: 700, color: "#5a1a5e", fontSize: "0.85rem" }}>
-                              {s.traffic?.pageCount || s.traffic?.pagesVisited?.length || 1} pages
-                            </div>
-                            <div style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "monospace", maxWidth: "140px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                              {s.traffic?.lastVisitedPage || "/"}
-                            </div>
-                          </td>
-
-                          <td>
-                            <span style={{ fontWeight: 700, background: "#f1f5f9", padding: "0.2rem 0.5rem", borderRadius: "0.35rem", fontSize: "0.78rem" }}>
-                              {s.traffic?.clickCount || s.traffic?.clicks?.length || 0} clicks
-                            </span>
-                          </td>
-
-                          <td>
-                            <div style={{ fontSize: "0.78rem", color: "#475569", maxWidth: "140px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                              {s.traffic?.referralSource?.domain?.includes("google") ? "Google Search" : s.traffic?.referralSource?.domain === "Direct" ? "Direct Website Link" : s.traffic?.referralSource?.domain || "Direct Link"}
-                            </div>
-                          </td>
-
-                          <td>
-                            <span style={{ fontSize: "0.75rem", color: "#64748b" }}>
-                              {s.updatedAt ? new Date(s.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "Recent"}
-                            </span>
-                          </td>
-
-                          <td>
-                            <span
-                              style={{
-                                display: "inline-block",
-                                padding: "0.2rem 0.55rem",
-                                borderRadius: "9999px",
-                                fontSize: "0.72rem",
-                                fontWeight: 700,
-                                background:
-                                  s.consent?.status === "accepted"
-                                    ? "#ecfdf5"
-                                    : s.consent?.status === "declined"
-                                    ? "#fef2f2"
-                                    : "#fffbeb",
-                                color:
-                                  s.consent?.status === "accepted"
-                                    ? "#047857"
-                                    : s.consent?.status === "declined"
-                                    ? "#b91c1c"
-                                    : "#b45309",
-                              }}
-                            >
-                              {s.consent?.status === "accepted" ? "🟢 Accepted" : s.consent?.status === "declined" ? "🔴 Declined" : "🟡 Pending"}
-                            </span>
-                          </td>
-
-                          <td style={{ textAlign: "right" }}>
-                            <button
-                              onClick={() => setSelectedSession(s)}
-                              className={styles.viewDetailBtn}
-                              style={{ background: "#5a1a5e" }}
-                              title="View what pages this visitor explored"
-                            >
-                              <span>View Activity</span>
-                            </button>
-                          </td>
+                  <div style={{ overflowX: "auto" }}>
+                    <table className={styles.table}>
+                      <thead>
+                        <tr>
+                          <th style={{ whiteSpace: "nowrap" }}>Visitor &amp; Device</th>
+                          <th style={{ whiteSpace: "nowrap" }}>Location</th>
+                          <th style={{ whiteSpace: "nowrap" }}>Pages Looked At</th>
+                          <th style={{ whiteSpace: "nowrap" }}>Buttons Clicked</th>
+                          <th style={{ whiteSpace: "nowrap" }}>How They Found You</th>
+                          <th style={{ whiteSpace: "nowrap" }}>Visit Date &amp; Time</th>
+                          <th style={{ whiteSpace: "nowrap" }}>Cookie Consent</th>
+                          <th style={{ textAlign: "right", whiteSpace: "nowrap" }}>Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {filtered.map((s, sIdx) => {
+                          const timeVal = s.updatedAt || s.createdAt || s.sessionInfo?.lastActiveTime || s.sessionInfo?.startTime;
+                          const dateObj = timeVal ? new Date(timeVal) : null;
+
+                          return (
+                            <tr key={s.id || s.sessionId}>
+                              <td>
+                                <div style={{ fontWeight: 700, color: "#1e293b", fontSize: "0.85rem" }}>
+                                  Visitor #{filtered.length - sIdx}
+                                </div>
+                                <div style={{ fontSize: "0.74rem", color: "#64748b", marginTop: "0.15rem" }}>
+                                  {s.deviceBrowser?.deviceType === "Mobile" ? "📱 Mobile Phone" : s.deviceBrowser?.deviceType === "Tablet" ? "📱 Tablet" : "💻 Computer"} ({s.deviceBrowser?.browser || "Browser"})
+                                </div>
+                              </td>
+
+                              <td>
+                                <div style={{ fontSize: "0.83rem", color: "#1e293b", fontWeight: 600 }}>
+                                  {s.approximateLocation?.city || "York Area"}
+                                </div>
+                                <div style={{ fontSize: "0.73rem", color: "#64748b", marginTop: "0.15rem" }}>
+                                  {s.approximateLocation?.region || "Pennsylvania"}
+                                </div>
+                              </td>
+
+                              <td>
+                                <div style={{ fontWeight: 700, color: "#5a1a5e", fontSize: "0.85rem" }}>
+                                  {s.traffic?.pageCount || s.traffic?.pagesVisited?.length || 1} pages
+                                </div>
+                                <div style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "monospace", maxWidth: "150px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginTop: "0.15rem" }}>
+                                  {s.traffic?.lastVisitedPage || "/"}
+                                </div>
+                              </td>
+
+                              <td>
+                                <span style={{ fontWeight: 700, background: "#f1f5f9", color: "#334155", padding: "0.22rem 0.55rem", borderRadius: "0.35rem", fontSize: "0.78rem", display: "inline-block" }}>
+                                  {s.traffic?.clickCount || s.traffic?.clicks?.length || 0} clicks
+                                </span>
+                              </td>
+
+                              <td>
+                                <div style={{ fontSize: "0.8rem", color: "#475569", maxWidth: "160px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                  {s.traffic?.referralSource?.domain?.includes("google") ? "Google Search" : s.traffic?.referralSource?.domain === "Direct" ? "Direct Website Link" : s.traffic?.referralSource?.domain || "Direct Link"}
+                                </div>
+                              </td>
+
+                              <td>
+                                {dateObj ? (
+                                  <div>
+                                    <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#1e293b", whiteSpace: "nowrap" }}>
+                                      {dateObj.toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" })}
+                                    </div>
+                                    <div style={{ fontSize: "0.73rem", color: "#64748b", marginTop: "0.15rem", whiteSpace: "nowrap" }}>
+                                      {dateObj.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true })}
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <span style={{ fontSize: "0.78rem", color: "#94a3b8" }}>Recent</span>
+                                )}
+                              </td>
+
+                              <td>
+                                <span
+                                  style={{
+                                    display: "inline-block",
+                                    padding: "0.22rem 0.6rem",
+                                    borderRadius: "9999px",
+                                    fontSize: "0.73rem",
+                                    fontWeight: 700,
+                                    whiteSpace: "nowrap",
+                                    background:
+                                      s.consent?.status === "accepted"
+                                        ? "#ecfdf5"
+                                        : s.consent?.status === "declined"
+                                        ? "#fef2f2"
+                                        : "#fffbeb",
+                                    color:
+                                      s.consent?.status === "accepted"
+                                        ? "#047857"
+                                        : s.consent?.status === "declined"
+                                        ? "#b91c1c"
+                                        : "#b45309",
+                                  }}
+                                >
+                                  {s.consent?.status === "accepted" ? "🟢 Accepted" : s.consent?.status === "declined" ? "🔴 Declined" : "🟡 Pending"}
+                                </span>
+                              </td>
+
+                              <td style={{ textAlign: "right" }}>
+                                <button
+                                  onClick={() => setSelectedSession(s)}
+                                  className={styles.viewDetailBtn}
+                                  style={{ background: "#5a1a5e", whiteSpace: "nowrap" }}
+                                  title="View what pages this visitor explored"
+                                >
+                                  <span>View Activity</span>
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 );
               })()}
             </div>
@@ -1627,7 +1644,7 @@ export default function AdminPage() {
                       <th>Quick Contact</th>
                       <th>Care Service Needed</th>
                       <th>Location</th>
-                      <th>Date Received</th>
+                      <th>Date &amp; Time Received</th>
                       <th>Status</th>
                       <th style={{ textAlign: "right" }}>Actions</th>
                     </tr>
@@ -1705,22 +1722,32 @@ export default function AdminPage() {
                         {/* Location */}
                         <td>
                           <span style={{ fontSize: "0.85rem", color: "#64748b" }}>
-                            {[inq.city, inq.county, inq.zip].filter(Boolean).join(", ") || "Indiana Area"}
+                            {[inq.city, inq.county, inq.zip].filter(Boolean).join(", ") || "Central PA / York Area"}
                           </span>
                         </td>
 
-                        {/* Date */}
+                        {/* Date & Time */}
                         <td>
-                          <span style={{ fontSize: "0.82rem", color: "#64748b" }}>
-                            {inq.createdAt
-                              ? new Date(inq.createdAt).toLocaleDateString([], {
+                          {inq.createdAt ? (
+                            <div>
+                              <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#1e293b", whiteSpace: "nowrap" }}>
+                                {new Date(inq.createdAt).toLocaleDateString([], {
                                   month: "short",
                                   day: "numeric",
+                                  year: "numeric",
+                                })}
+                              </div>
+                              <div style={{ fontSize: "0.73rem", color: "#64748b", marginTop: "0.15rem", whiteSpace: "nowrap" }}>
+                                {new Date(inq.createdAt).toLocaleTimeString([], {
                                   hour: "2-digit",
                                   minute: "2-digit",
-                                })
-                              : "Recent"}
-                          </span>
+                                  hour12: true,
+                                })}
+                              </div>
+                            </div>
+                          ) : (
+                            <span style={{ fontSize: "0.78rem", color: "#94a3b8" }}>Recent</span>
+                          )}
                         </td>
 
                         {/* Status */}
@@ -1908,7 +1935,7 @@ export default function AdminPage() {
                 <div>
                   <div className={styles.infoItemLabel}>Location / City</div>
                   <div className={styles.infoItemValue}>
-                    {[selectedInquiry.city, selectedInquiry.county, selectedInquiry.zip].filter(Boolean).join(", ") || "Indiana Area"}
+                    {[selectedInquiry.city, selectedInquiry.county, selectedInquiry.zip].filter(Boolean).join(", ") || "Central PA / York Area"}
                   </div>
                 </div>
 
@@ -2010,7 +2037,10 @@ export default function AdminPage() {
                 <div>
                   <h3 className={styles.modalTitle}>Website Visitor Journey &amp; Activity</h3>
                   <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
-                    Visit recorded on {selectedSession.createdAt ? new Date(selectedSession.createdAt).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "Recent"}
+                    Visit recorded on {(() => {
+                      const t = selectedSession.updatedAt || selectedSession.createdAt || selectedSession.sessionInfo?.startTime;
+                      return t ? new Date(t).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "Recent";
+                    })()}
                   </div>
                 </div>
               </div>

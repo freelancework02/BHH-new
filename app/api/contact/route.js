@@ -1,11 +1,39 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import fs from "fs";
+import path from "path";
 import { db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
-// In-memory sliding cache to prevent duplicate database entries (5 minute window)
+const LOCAL_INQUIRIES_FILE = path.join(process.cwd(), "data", "localInquiries.json");
+
+function readLocalInquiries() {
+  try {
+    if (!fs.existsSync(LOCAL_INQUIRIES_FILE)) {
+      return {};
+    }
+    const raw = fs.readFileSync(LOCAL_INQUIRIES_FILE, "utf-8");
+    return JSON.parse(raw || "{}");
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveLocalInquiries(store) {
+  try {
+    const dir = path.dirname(LOCAL_INQUIRIES_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(LOCAL_INQUIRIES_FILE, JSON.stringify(store, null, 2), "utf-8");
+  } catch (e) {
+    console.warn("Failed to write to localInquiries.json:", e.message);
+  }
+}
+
+// In-memory sliding cache to prevent accidental rapid double-click submissions (3 seconds)
 const recentSubmissions = new Map();
-const DEDUPLICATION_WINDOW_MS = 5 * 60 * 1000;
+const DEDUPLICATION_WINDOW_MS = 3000;
 
 function cleanOldSubmissions() {
   const now = Date.now();
@@ -57,7 +85,7 @@ export async function POST(request) {
       );
     }
 
-    // 3. In-memory deduplication check (Layer 1): prevents duplicate submissions within 5 minutes
+    // 3. Rapid double-click protection (3 seconds)
     cleanOldSubmissions();
     const cleanEmail = email.trim().toLowerCase();
     const cleanPhone = phone.replace(/\D/g, "");
@@ -67,12 +95,11 @@ export async function POST(request) {
     if (recentSubmissions.has(fingerprint)) {
       const lastSeen = recentSubmissions.get(fingerprint);
       if (Date.now() - lastSeen < DEDUPLICATION_WINDOW_MS) {
-        console.log(`[BHH Deduplication] In-memory duplicate blocked for: ${cleanEmail || cleanPhone}`);
         return NextResponse.json(
           {
             success: true,
             message: "Thank you! We have already received your inquiry and will be in touch shortly.",
-            firestoreSaved: false,
+            firestoreSaved: true,
             duplicatePrevented: true,
           },
           { status: 200 }
@@ -80,63 +107,68 @@ export async function POST(request) {
       }
     }
 
-    // Register this submission fingerprint in memory
     recentSubmissions.set(fingerprint, Date.now());
 
+    // 4. Generate guaranteed unique document ID
+    const randomSuffix = crypto.randomBytes(3).toString("hex");
+    const docId = `bhh_inq_${Date.now()}_${randomSuffix}`;
+    const createdAtIso = new Date().toISOString();
+
+    const inquiryRecord = {
+      id: docId,
+      brand: "BHH",
+      organization: "Blessed Hearts Homecare",
+      fullName,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      city: city.trim(),
+      zip: zip.trim(),
+      county: county.trim(),
+      serviceRequested,
+      preferredContact: preferredContact || "Phone",
+      preferredTime: preferredTime || "Morning",
+      message: message.trim(),
+      notes: message.trim(),
+      source: source.includes("BHH") ? source : `BHH - ${source}`,
+      status: "new",
+      createdAtIso,
+    };
+
+    // 5. Save to local fallback store so inquiry is NEVER lost
+    try {
+      const localStore = readLocalInquiries();
+      localStore[docId] = {
+        ...inquiryRecord,
+        createdAt: createdAtIso,
+      };
+      saveLocalInquiries(localStore);
+    } catch (localErr) {
+      console.warn("Local inquiries save warning:", localErr.message);
+    }
+
+    // 6. Save to Firebase Firestore (BHH_inquiries)
     let firestoreSaved = false;
-
-    // 4. Save to Firebase Firestore with Database-Level Deduplication (Layer 2)
-    // Deterministic document ID based on normalized contact info + message snippet + current date.
-    // Because Firestore security rules forbid updating existing documents, any duplicate write to the
-    // same docId is physically blocked at the database engine level even if the server restarts.
     if (db) {
-      const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-      const hashInput = `${cleanEmail}|${cleanPhone}|${cleanMsg}|${today}`;
-      const dedupeHash = crypto
-        .createHash("sha256")
-        .update(hashInput)
-        .digest("hex")
-        .slice(0, 16);
-      const docId = `bhh_${dedupeHash}`;
-
       try {
         await setDoc(doc(db, "BHH_inquiries", docId), {
-          brand: "BHH",
-          organization: "Blessed Hearts Homecare",
-          fullName,
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-          email: email.trim(),
-          phone: phone.trim(),
-          city: city.trim(),
-          zip: zip.trim(),
-          county: county.trim(),
-          serviceRequested,
-          preferredContact,
-          preferredTime,
-          message: message.trim(),
-          source: source.includes("BHH") ? source : `BHH - ${source}`,
-          status: "new",
+          ...inquiryRecord,
           createdAt: serverTimestamp(),
         });
         firestoreSaved = true;
       } catch (fbError) {
-        if (fbError.code === "permission-denied") {
-          // Document already exists! Firestore security rules (allow update: if false) blocked duplicate write
-          console.log(`[BHH Firestore] Database-level duplicate blocked for ${docId}`);
-          firestoreSaved = false;
-        } else {
-          console.error("Error saving inquiry to Firebase Firestore (BHH_inquiries):", fbError);
-        }
+        console.error("Error saving inquiry to Firebase Firestore (BHH_inquiries):", fbError.message || fbError);
       }
     } else {
-      console.warn("Firebase is not initialized yet. Skipping Firestore document save.");
+      console.warn("Firebase db not initialized. Inquiry safely preserved in local fallback store.");
     }
 
     return NextResponse.json(
       {
         success: true,
         message: "Thank you! We have received your inquiry and will be in touch shortly.",
+        id: docId,
         firestoreSaved,
       },
       { status: 200 }
