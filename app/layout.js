@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
 import CookieConsent from "@/components/CookieConsent";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
 import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 import Script from "next/script";
 
@@ -235,6 +236,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <Chatbot />
         <CookieConsent />
+        <AccessibilityWidget />
       </body>
     </html>
   );

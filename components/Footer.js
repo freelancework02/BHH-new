@@ -216,6 +216,21 @@ export default function Footer() {
               <span className="footer-legal-dot" aria-hidden="true">•</span>
               <Link href="/terms-conditions">Terms & Conditions</Link>
               <span className="footer-legal-dot" aria-hidden="true">•</span>
+              <Link href="/accessibility">Accessibility Statement</Link>
+              <span className="footer-legal-dot" aria-hidden="true">•</span>
+              <button
+                type="button"
+                className="footer-cookie-btn"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("bhh-open-accessibility"));
+                  }
+                }}
+                aria-label="Open Accessibility Toolbar and Settings"
+              >
+                Accessibility Tools
+              </button>
+              <span className="footer-legal-dot" aria-hidden="true">•</span>
               <button
                 type="button"
                 className="footer-cookie-btn"

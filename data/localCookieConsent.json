@@ -1412,5 +1412,318 @@
     },
     "updatedAt": "2026-10-08T10:38:42.519Z",
     "localSavedAt": "2026-10-08T10:38:42.520Z"
+  },
+  "session_sess_mv0k89y3_g9gqv7e": {
+    "id": "session_sess_mv0k89y3_g9gqv7e",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mv0k89y3_g9gqv7e",
+    "visitorId": "vis_muqwyuel_7z81y7j",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-10-02T12:03:31.392Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-10-09T06:31:19.216Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n1",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:31:46.277Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "100%\nDefault",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:31:47.266Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "High Contrast",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:31:48.632Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Close accessibility menu",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:31:49.649Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n1",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:10.956Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Dark / Invert",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:12.310Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Close accessibility menu",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:14.266Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n1",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:25.044Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Monochrome",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:26.106Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Privacy Choices",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:36.546Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n1",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:38.077Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Default Colors",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:39.320Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Close cookie settings dialog",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:41.225Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:42.268Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "ON\nHighlight Links",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:47.333Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n3",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:56.116Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "OFF\nHighlight Links",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:32:57.364Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "ON\nLarge Cursor",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:00.317Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n3",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:03.037Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "OFF\nLarge Cursor",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:04.163Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n2",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:06.995Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "ON\nDyslexia Font",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:09.608Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n3",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:14.548Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "OFF\nDyslexia Font",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:15.528Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "ON\nReading Guide",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:17.914Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n3",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:21.591Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility\n3",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:26.140Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "OFF\nReading Guide",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:27.178Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Reset",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:30.410Z"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Close accessibility menu",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-09T06:33:31.281Z"
+        }
+      ],
+      "clickCount": 30,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "1920x945",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-09T06:31:19.215Z",
+      "lastActiveTime": "2026-10-09T06:33:34.282Z",
+      "durationSeconds": 135,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-10-09T06:33:34.285Z",
+    "localSavedAt": "2026-10-09T06:33:34.285Z"
   }
 }
