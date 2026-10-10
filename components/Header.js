@@ -8,6 +8,7 @@ import Logo from "./Logo";
 import styles from "./Header.module.css";
 import { navLinks, site } from "@/lib/site";
 import { countiesData } from "@/lib/countiesData";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -139,6 +140,9 @@ export default function Header() {
               </Link>
             );
           })}
+          <div className={styles.mobileLangSection}>
+            <LanguageSwitcher variant="drawer" onLanguageChange={() => setOpen(false)} />
+          </div>
           <Link
             href="/contact-us#contact-form"
             className={`btn btn--gradient ${styles.navCta}`}
@@ -159,6 +163,7 @@ export default function Header() {
         </nav>
 
         <div className={styles.right}>
+          <LanguageSwitcher />
           <a href={site.phoneHref} className={styles.phone}>
             <span>Call us today</span>
             <strong>

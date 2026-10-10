@@ -1719,11 +1719,92 @@
     },
     "sessionInfo": {
       "startTime": "2026-10-09T06:31:19.215Z",
-      "lastActiveTime": "2026-10-09T06:33:34.282Z",
-      "durationSeconds": 135,
-      "lastEventType": "telemetry_update"
+      "lastActiveTime": "2026-10-09T07:09:16.586Z",
+      "durationSeconds": 2277,
+      "lastEventType": "session_end"
     },
-    "updatedAt": "2026-10-09T06:33:34.285Z",
-    "localSavedAt": "2026-10-09T06:33:34.285Z"
+    "updatedAt": "2026-10-09T07:09:17.038Z",
+    "localSavedAt": "2026-10-09T07:09:17.038Z"
+  },
+  "session_sess_mv2brld2_ppdnsiw": {
+    "id": "session_sess_mv2brld2_ppdnsiw",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mv2brld2_ppdnsiw",
+    "visitorId": "vis_muqwyuel_7z81y7j",
+    "consent": {
+      "status": "accepted",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": true
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-10-02T12:03:31.392Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-10-10T12:10:58.339Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [
+        {
+          "tag": "BUTTON",
+          "text": "Accessibility",
+          "href": "",
+          "id": "",
+          "path": "/",
+          "timestamp": "2026-10-10T12:11:16.631Z"
+        }
+      ],
+      "clickCount": 1,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "1920x1080",
+      "viewport": "500x717",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-10-10T12:10:58.334Z",
+      "lastActiveTime": "2026-10-10T12:16:17.961Z",
+      "durationSeconds": 319,
+      "lastEventType": "session_end"
+    },
+    "updatedAt": "2026-10-10T12:16:18.000Z",
+    "localSavedAt": "2026-10-10T12:16:18.000Z"
   }
 }

@@ -199,6 +199,10 @@
   color: var(--pink);
 }
 
+.mobileLangSection {
+  display: none;
+}
+
 @media (min-width: 62.01rem) {
   .dropdownContainer:hover .desktopChevron {
     transform: rotate(180deg);
@@ -310,7 +314,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    padding: 6rem 2rem 3rem;
+    padding: 5.5rem 1.75rem 7rem;
     gap: 1.25rem;
     overflow-y: auto;
     visibility: hidden;
@@ -345,11 +349,21 @@
     border-bottom-color: var(--pink);
   }
 
+  .mobileLangSection {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0 0.25rem;
+  }
+
   .navCta {
     margin-top: 0.75rem;
     text-align: center;
     width: 100%;
     padding: 0.85rem 1.5rem;
+  }
+
+  .right {
+    gap: 0.65rem;
   }
 
   .phone {

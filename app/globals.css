@@ -6899,3 +6899,49 @@ html[data-a11y-animations="paused"] *::after {
   scroll-behavior: auto !important;
 }
 
+/* ====================================================
+   Google Translate Seamless Styling Overrides
+   ==================================================== */
+
+/* Hide default Google Translate banner frame */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  border: none !important;
+}
+
+/* Prevent Google Translate from pushing body down by 40px */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hide Google Translate hover tooltips and balloon frames */
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Remove hover highlight boxes from translated text */
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Keep the native translation combo container offscreen */
+#google_translate_element {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+}
+
+

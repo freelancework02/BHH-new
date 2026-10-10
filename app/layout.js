@@ -237,6 +237,7 @@ export default function RootLayout({ children }) {
         <Chatbot />
         <CookieConsent />
         <AccessibilityWidget />
+        <div id="google_translate_element" style={{ display: "none" }} aria-hidden="true" />
       </body>
     </html>
   );

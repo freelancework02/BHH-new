@@ -1,0 +1,345 @@
+/* ====================================================
+   Blessed Hearts Homecare — Brand-Themed Language Switcher
+   Matches Website Palette: Plum (#5a1a5e), Pink (#ff2d7a),
+   Coral (#ff5a3c), Orange (#ff7a1a), and Signature Gradient
+   ==================================================== */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+/* Trigger Button — Branded Pill with Gradient Icon Badge */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.32rem 0.85rem 0.32rem 0.38rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(255, 45, 122, 0.22);
+  border-radius: 9999px;
+  font-family: var(--font-cta, "Montserrat", sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--plum, #5a1a5e);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(90, 26, 94, 0.05);
+}
+
+.trigger:hover {
+  border-color: var(--pink, #ff2d7a);
+  background: rgba(255, 45, 122, 0.03);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(255, 45, 122, 0.2);
+}
+
+.triggerActive {
+  border-color: var(--pink, #ff2d7a);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 45, 122, 0.16), 0 4px 15px rgba(90, 26, 94, 0.08);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--pink, #ff2d7a);
+  outline-offset: 2px;
+}
+
+/* Circular Icon Wrap — Matches Accessibility Badge Formula with Brand Gradient */
+.iconBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--gradient, linear-gradient(90deg, #ff2d7a 0%, #ff5a3c 50%, #ff7a1a 100%));
+  border-radius: 50%;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(255, 45, 122, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.trigger:hover .iconBadge {
+  transform: rotate(15deg) scale(1.06);
+}
+
+.labelDesktop {
+  display: inline;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+.labelMobile {
+  display: none;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.chevron {
+  color: var(--pink, #ff2d7a);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu Popover — Branded Luxury Card */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border: 1.5px solid rgba(255, 45, 122, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 16px 45px rgba(90, 26, 94, 0.15), 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 0.5rem;
+  z-index: 1050;
+  animation: dropdownSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdownHeader {
+  font-family: var(--font-cta, "Montserrat", sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--plum, #5a1a5e);
+  padding: 0.35rem 0.65rem 0.35rem;
+  border-bottom: 1px solid rgba(90, 26, 94, 0.08);
+  margin-bottom: 0.35rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  font-family: var(--font-cta, "Montserrat", sans-serif);
+  outline: none;
+}
+
+.option:hover {
+  background: rgba(255, 45, 122, 0.06);
+}
+
+.option:focus-visible {
+  outline: 2px solid var(--pink, #ff2d7a);
+}
+
+.optionActive {
+  background: linear-gradient(135deg, rgba(255, 45, 122, 0.08) 0%, rgba(255, 122, 26, 0.06) 100%);
+  border-left: 3px solid var(--pink, #ff2d7a);
+}
+
+.optionText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.optionName {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--plum, #5a1a5e);
+}
+
+.optionActive .optionName {
+  color: var(--pink, #ff2d7a);
+}
+
+.optionSub {
+  font-size: 0.72rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.checkBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--gradient, linear-gradient(90deg, #ff2d7a 0%, #ff5a3c 100%));
+  border-radius: 50%;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 45, 122, 0.35);
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+
+/* ====================================================
+   Mobile Drawer Card Styles (Inside Navigation Menu)
+   ==================================================== */
+
+.drawerCard {
+  background: linear-gradient(135deg, rgba(255, 45, 122, 0.04) 0%, rgba(255, 122, 26, 0.03) 100%);
+  border: 1.5px solid rgba(255, 45, 122, 0.18);
+  border-radius: 18px;
+  padding: 1.1rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(90, 26, 94, 0.04);
+}
+
+.drawerCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.drawerGlobeBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--gradient, linear-gradient(90deg, #ff2d7a 0%, #ff5a3c 100%));
+  border-radius: 50%;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 45, 122, 0.35);
+  flex-shrink: 0;
+}
+
+.drawerTitle {
+  font-family: var(--font-cta, "Montserrat", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--plum, #5a1a5e);
+}
+
+.drawerList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.drawerOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(90, 26, 94, 0.12);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: var(--font-cta, "Montserrat", sans-serif);
+  outline: none;
+}
+
+.drawerOption:hover {
+  border-color: var(--pink, #ff2d7a);
+  background: #ffffff;
+}
+
+.drawerOption:focus-visible {
+  outline: 2px solid var(--pink, #ff2d7a);
+}
+
+.drawerOptionActive {
+  border-color: var(--pink, #ff2d7a);
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(255, 45, 122, 0.2);
+}
+
+.drawerOptionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.drawerOptionName {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--plum, #5a1a5e);
+}
+
+.drawerOptionActive .drawerOptionName {
+  color: var(--pink, #ff2d7a);
+}
+
+.drawerOptionSub {
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.drawerCheckBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--gradient, linear-gradient(90deg, #ff2d7a 0%, #ff5a3c 100%));
+  border-radius: 50%;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 45, 122, 0.35);
+  flex-shrink: 0;
+}
+
+/* Loading Pulse Indicator */
+.loadingPulse {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ====================================================
+   Responsive Adjustments
+   ==================================================== */
+
+@media (max-width: 62rem) {
+  .trigger {
+    padding: 0.28rem 0.65rem 0.28rem 0.32rem;
+    gap: 0.4rem;
+  }
+  
+  .iconBadge {
+    width: 24px;
+    height: 24px;
+  }
+
+  .labelDesktop {
+    display: none;
+  }
+
+  .labelMobile {
+    display: inline;
+    font-size: 0.82rem;
+  }
+  
+  .dropdown {
+    right: 0;
+  }
+}
