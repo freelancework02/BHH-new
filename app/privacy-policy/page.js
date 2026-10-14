@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
       <section className="section">
         <div className="container" style={{ maxWidth: "48rem" }}>
           <p>
-            <em>Last updated: July 2026</em>
+            <em>Last updated: October 2026</em>
           </p>
 
           <p>
@@ -60,6 +60,11 @@ export default function PrivacyPolicyPage() {
             <li>Send you emails</li>
             <li>Find and prevent fraud</li>
           </ul>
+
+          <h2 id="mobile-privacy">Mobile &amp; SMS Privacy</h2>
+          <p>
+            Mobile opt-in information, including phone numbers and SMS consent, will not be shared with third parties for marketing purposes. We use it only to send the messages you asked for.
+          </p>
 
           <h2>Log Files</h2>
           <p>

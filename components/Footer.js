@@ -206,6 +206,12 @@ export default function Footer() {
          ==================================================== */}
       <div className="footer-bottom-bar">
         <div className="container">
+          <div className="footer-nondiscrimination">
+            <p>
+              Blessed Hearts Home Care Agency is an Equal Opportunity Employer and prohibits discrimination and harassment, of any kind, in all matters involving our patients and our employees. Blessed Hearts Home Care Agency does not condition, exclude or deny admission or treatment of any patient, nor assign personnel or facilities, based on race, color, age, religion, sexual orientation, political affiliations, national origin, citizenship status, creed, gender, marital status, medical condition, disability or handicap, or any other basis prohibited by federal, state or local law.
+            </p>
+          </div>
+
           <div className="footer-bottom-flex">
             <div className="footer-copyright">
               <p>© {new Date().getFullYear()} {site.name}. All Rights Reserved.</p>
