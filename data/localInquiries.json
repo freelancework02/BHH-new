@@ -42,5 +42,27 @@
     "status": "new",
     "createdAtIso": "2026-10-08T10:38:19.087Z",
     "createdAt": "2026-10-08T10:38:19.087Z"
+  },
+  "bhh_inq_1791889500000_ammon": {
+    "id": "bhh_inq_1791889500000_ammon",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "fullName": "Ammon Shumway",
+    "firstName": "Ammon",
+    "lastName": "Shumway",
+    "email": "ammon_s@logangrowthcapital.com",
+    "phone": "619-822-1960",
+    "city": "Dallas",
+    "zip": "75231",
+    "county": "",
+    "serviceRequested": "I'm looking for a job",
+    "preferredContact": "Email",
+    "preferredTime": "Morning",
+    "message": "Hi Team,\n\nI'm Ammon, an investment banker at Logan Growth Advisors. We've helped founders sell their businesses across 50+ closed deals totaling over $700M in transaction value.\n\nWe can get founder owned home health, home care, and hospice agencies the best pricing and terms when it comes time for a sale. Our process runs a competitive blind auction among hand-selected investors, and it's driven an average 40%+ valuation increase for our clients.\n\nI'd welcome a conversation with the owner at Blessed Hearts Homecare about what we're seeing in the home health M&A market.\n\nAmmon",
+    "notes": "Hi Team, I'm Ammon, an investment banker at Logan Growth Advisors. We've helped founders sell their businesses across 50+ closed deals totaling over $700M in transaction value. We can get founder owned home health, home care, and hospice agencies the best pricing and terms when it comes time for a sale. Our process runs a competitive blind auction among hand-selected investors, and it's driven an average 40%+ valuation increase for our clients. I'd welcome a conversation with the owner at Blessed Hearts Homecare about what we're seeing in the home health M&A market. Ammon",
+    "source": "BHH - Contact Us Page",
+    "status": "new",
+    "createdAtIso": "2026-10-13T13:45:00.000Z",
+    "createdAt": "2026-10-13T13:45:00.000Z"
   }
 }
