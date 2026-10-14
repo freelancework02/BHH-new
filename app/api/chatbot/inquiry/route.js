@@ -109,7 +109,7 @@ export async function POST(request) {
     }
 
     // 4. Send Email Notification via Web3Forms (runs in parallel so agency owner receives instant email notification)
-    const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+    const accessKey = process.env.WEB3FORMS_ACCESS_KEY || "ae29ff25-607e-4eb5-a6df-e30885a1b4a5";
     if (accessKey) {
       try {
         const transcriptText = Array.isArray(chatTranscript)
