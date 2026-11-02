@@ -27,6 +27,7 @@ export default async function sitemap() {
     { url: `${baseUrl}/privacy-policy`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/terms-conditions`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/accessibility`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/language-assistance`, lastModified: currentDate, changeFrequency: "yearly", priority: 0.4 },
   ];
 
   // 2. Dedicated In-Home Care Service Pages (Canonical URLs configured in app/services/page.js)

@@ -208,7 +208,7 @@ export default function Footer() {
         <div className="container">
           <div className="footer-nondiscrimination">
             <p>
-              Blessed Hearts Home Care Agency is an Equal Opportunity Employer and prohibits discrimination and harassment, of any kind, in all matters involving our patients and our employees. Blessed Hearts Home Care Agency does not condition, exclude or deny admission or treatment of any patient, nor assign personnel or facilities, based on race, color, age, religion, sexual orientation, political affiliations, national origin, citizenship status, creed, gender, marital status, medical condition, disability or handicap, or any other basis prohibited by federal, state or local law.
+              Blessed Hearts Home Care Agency is an Equal Opportunity Employer and prohibits discrimination and harassment, of any kind, in all matters involving our patients and our employees. Blessed Hearts Home Care Agency does not condition, exclude or deny admission or treatment of any patient, nor assign personnel or facilities, based on race, color, age, religion, sexual orientation, political affiliations, national origin, citizenship status, creed, gender, marital status, medical condition, disability or handicap, or any other basis prohibited by federal, state or local law. Free language assistance and interpreter services are available for individuals with Limited English Proficiency (LEP). <Link href="/language-assistance" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: "3px" }}>Notice of Non-Discrimination &amp; Language Assistance</Link>.
             </p>
           </div>
 
@@ -223,6 +223,8 @@ export default function Footer() {
               <Link href="/terms-conditions">Terms & Conditions</Link>
               <span className="footer-legal-dot" aria-hidden="true">•</span>
               <Link href="/accessibility">Accessibility Statement</Link>
+              <span className="footer-legal-dot" aria-hidden="true">•</span>
+              <Link href="/language-assistance">Language Assistance (LEP)</Link>
               <span className="footer-legal-dot" aria-hidden="true">•</span>
               <button
                 type="button"

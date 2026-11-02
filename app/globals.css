@@ -6922,8 +6922,7 @@ html[data-a11y-animations="paused"] *::after {
 /* Hide default Google Translate banner frame */
 .goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
-iframe.goog-te-banner-frame,
-iframe.skiptranslate {
+iframe.goog-te-banner-frame {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -6951,13 +6950,16 @@ body {
   box-shadow: none !important;
 }
 
-/* Keep the native translation combo container offscreen */
+/* Keep the native translation combo container offscreen but active in render tree */
 #google_translate_element {
-  display: none !important;
-  visibility: hidden !important;
   position: absolute !important;
   left: -9999px !important;
   top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 

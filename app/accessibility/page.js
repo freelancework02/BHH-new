@@ -100,6 +100,19 @@ export default function AccessibilityPage() {
             It is compatible with popular assistive technologies including NVDA, JAWS, VoiceOver, and TalkBack.
           </p>
 
+          <h2>Language Assistance &amp; Limited English Proficiency (LEP)</h2>
+          <p>
+            Under Title VI of the Civil Rights Act of 1964, Section 1557 of the Affordable Care Act, and Pennsylvania Department of Human Services Medical Assistance Bulletins <strong>MA Bulletin 99-17-11 and 99-25-01</strong>, {site.name} provides free oral interpretation and translation services to individuals who have Limited English Proficiency (LEP).
+          </p>
+          <p>
+            We support 19+ non-English languages—including Spanish, Chinese Mandarin, Nepali, Russian, Arabic, Haitian Creole, Vietnamese, Ukrainian, Chinese Cantonese, Portuguese, Bengali, French, Cambodian (Khmer), Korean, Gujarati, Hindi, Urdu, Burmese, and Albanian. Free Telecommunications Relay Service is also available via <strong>TTY: 711</strong>.
+          </p>
+          <p style={{ margin: "1rem 0 2rem 0" }}>
+            <Link href="/language-assistance" className="btn btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+              View Notice of Non-Discrimination &amp; Multilingual Taglines →
+            </Link>
+          </p>
+
           <h2>Feedback & Accommodations</h2>
           <p>
             We welcome your feedback on the accessibility of our site. If you encounter any accessibility barriers, require alternative document formats, or need assistance accessing care services, our team is ready to assist you promptly:

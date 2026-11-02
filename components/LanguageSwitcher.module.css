@@ -1,5 +1,6 @@
 /* ====================================================
    Blessed Hearts Homecare — Brand-Themed Language Switcher
+   Supports 20 Languages with Live Search & Scroll
    Matches Website Palette: Plum (#5a1a5e), Pink (#ff2d7a),
    Coral (#ff5a3c), Orange (#ff7a1a), and Signature Gradient
    ==================================================== */
@@ -71,6 +72,10 @@
   display: inline;
   letter-spacing: 0.01em;
   font-weight: 700;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .labelMobile {
@@ -89,20 +94,25 @@
   transform: rotate(180deg);
 }
 
-/* Dropdown Menu Popover — Branded Luxury Card */
+/* ====================================================
+   Dropdown Menu Popover — Branded Luxury Card
+   ==================================================== */
 .dropdown {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  min-width: 220px;
+  width: 280px;
+  max-width: 90vw;
   background: #ffffff;
-  border: 1.5px solid rgba(255, 45, 122, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 16px 45px rgba(90, 26, 94, 0.15), 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1.5px solid rgba(255, 45, 122, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(90, 26, 94, 0.18), 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 0.5rem;
   z-index: 1050;
   animation: dropdownSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: top right;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes dropdownSlideIn {
@@ -117,15 +127,132 @@
 }
 
 .dropdownHeader {
+  padding: 0.25rem 0.35rem 0.5rem;
+  border-bottom: 1px solid rgba(90, 26, 94, 0.08);
+  margin-bottom: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.dropdownHeaderTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-family: var(--font-cta, "Montserrat", sans-serif);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   color: var(--plum, #5a1a5e);
-  padding: 0.35rem 0.65rem 0.35rem;
-  border-bottom: 1px solid rgba(90, 26, 94, 0.08);
-  margin-bottom: 0.35rem;
+}
+
+.languageCountBadge {
+  background: rgba(255, 45, 122, 0.09);
+  color: var(--pink, #ff2d7a);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Search Box Container */
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.65rem;
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.45rem 1.8rem 0.45rem 1.95rem;
+  font-family: var(--font-cta, "Montserrat", sans-serif);
+  font-size: 0.78rem;
+  border: 1px solid rgba(90, 26, 94, 0.15);
+  border-radius: 9999px;
+  background: #fdfafb;
+  color: #2d3748;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--pink, #ff2d7a);
+  background: #ffffff;
+  box-shadow: 0 0 0 2.5px rgba(255, 45, 122, 0.14);
+}
+
+.searchInput::placeholder {
+  color: #a0aec0;
+}
+
+.clearSearchBtn {
+  position: absolute;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: #edf2f7;
+  border: none;
+  border-radius: 50%;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.clearSearchBtn:hover {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+/* Scrollable Dropdown List */
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  max-height: 310px;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 45, 122, 0.3) transparent;
+}
+
+.dropdownList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdownList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdownList::-webkit-scrollbar-thumb {
+  background: rgba(255, 45, 122, 0.25);
+  border-radius: 9999px;
+}
+
+.dropdownList::-webkit-scrollbar-thumb:hover {
+  background: var(--pink, #ff2d7a);
+}
+
+.noResults {
+  padding: 1rem 0.8rem;
+  font-size: 0.78rem;
+  color: #718096;
+  text-align: center;
+  font-style: italic;
 }
 
 .option {
@@ -133,7 +260,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.65rem 0.8rem;
+  padding: 0.52rem 0.75rem;
   border-radius: 10px;
   border: none;
   background: transparent;
@@ -145,7 +272,7 @@
 }
 
 .option:hover {
-  background: rgba(255, 45, 122, 0.06);
+  background: rgba(255, 45, 122, 0.07);
 }
 
 .option:focus-visible {
@@ -153,7 +280,7 @@
 }
 
 .optionActive {
-  background: linear-gradient(135deg, rgba(255, 45, 122, 0.08) 0%, rgba(255, 122, 26, 0.06) 100%);
+  background: linear-gradient(135deg, rgba(255, 45, 122, 0.1) 0%, rgba(255, 122, 26, 0.07) 100%);
   border-left: 3px solid var(--pink, #ff2d7a);
 }
 
@@ -164,9 +291,10 @@
 }
 
 .optionName {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: var(--plum, #5a1a5e);
+  line-height: 1.25;
 }
 
 .optionActive .optionName {
@@ -177,26 +305,26 @@
   font-size: 0.72rem;
   color: #718096;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .checkBadge {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   background: var(--gradient, linear-gradient(90deg, #ff2d7a 0%, #ff5a3c 100%));
   border-radius: 50%;
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(255, 45, 122, 0.35);
   flex-shrink: 0;
-  margin-left: 0.75rem;
+  margin-left: 0.6rem;
 }
 
 /* ====================================================
    Mobile Drawer Card Styles (Inside Navigation Menu)
    ==================================================== */
-
 .drawerCard {
   background: linear-gradient(135deg, rgba(255, 45, 122, 0.04) 0%, rgba(255, 122, 26, 0.03) 100%);
   border: 1.5px solid rgba(255, 45, 122, 0.18);
@@ -205,13 +333,16 @@
   width: 100%;
   margin: 0.5rem 0;
   box-shadow: 0 2px 8px rgba(90, 26, 94, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .drawerCardHeader {
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  margin-bottom: 0.85rem;
+  position: relative;
 }
 
 .drawerGlobeBadge {
@@ -234,13 +365,37 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--plum, #5a1a5e);
+  flex: 1;
+}
+
+.drawerBadgeCount {
+  background: rgba(255, 45, 122, 0.1);
+  color: var(--pink, #ff2d7a);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
 }
 
 .drawerList {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.45rem;
   width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 45, 122, 0.3) transparent;
+}
+
+.drawerList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.drawerList::-webkit-scrollbar-thumb {
+  background: rgba(255, 45, 122, 0.25);
+  border-radius: 9999px;
 }
 
 .drawerOption {
@@ -248,10 +403,10 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.65rem 0.85rem;
   background: #ffffff;
   border: 1.5px solid rgba(90, 26, 94, 0.12);
-  border-radius: 14px;
+  border-radius: 12px;
   cursor: pointer;
   text-align: left;
   transition: all 0.2s ease;
@@ -281,7 +436,7 @@
 }
 
 .drawerOptionName {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--plum, #5a1a5e);
 }
@@ -291,7 +446,7 @@
 }
 
 .drawerOptionSub {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #718096;
   font-weight: 500;
 }
@@ -300,8 +455,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   background: var(--gradient, linear-gradient(90deg, #ff2d7a 0%, #ff5a3c 100%));
   border-radius: 50%;
   color: #ffffff;
@@ -318,7 +473,6 @@
 /* ====================================================
    Responsive Adjustments
    ==================================================== */
-
 @media (max-width: 62rem) {
   .trigger {
     padding: 0.28rem 0.65rem 0.28rem 0.32rem;
@@ -341,5 +495,6 @@
   
   .dropdown {
     right: 0;
+    width: 260px;
   }
 }

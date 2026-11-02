@@ -1,1 +1,578 @@
-{}
+{
+  "session_sess_mvz1906x_zg0v8in": {
+    "id": "session_sess_mvz1906x_zg0v8in",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz1906x_zg0v8in",
+    "visitorId": "vis_mvz1906x_hpkcaf6",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T09:04:48.404Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T09:04:48.403Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "375x667",
+      "viewport": "375x667",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T09:04:48.403Z",
+      "lastActiveTime": "2026-11-02T09:04:48.404Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T09:04:48.408Z",
+    "localSavedAt": "2026-11-02T09:04:48.409Z"
+  },
+  "session_sess_mvz1aih7_yqhohf4": {
+    "id": "session_sess_mvz1aih7_yqhohf4",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz1aih7_yqhohf4",
+    "visitorId": "vis_mvz1aih7_309lc20",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T09:05:48.812Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T09:05:48.811Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "800x600",
+      "viewport": "764x485",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T09:05:48.811Z",
+      "lastActiveTime": "2026-11-02T09:05:48.813Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T09:05:48.943Z",
+    "localSavedAt": "2026-11-02T09:05:48.944Z"
+  },
+  "session_sess_mvz1brhc_hc2vi57": {
+    "id": "session_sess_mvz1brhc_hc2vi57",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz1brhc_hc2vi57",
+    "visitorId": "vis_mvz1brhc_xehpt7b",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T09:06:47.137Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T09:06:47.137Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "800x600",
+      "viewport": "764x485",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T09:06:47.137Z",
+      "lastActiveTime": "2026-11-02T09:06:47.138Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T09:06:47.251Z",
+    "localSavedAt": "2026-11-02T09:06:47.251Z"
+  },
+  "session_sess_mvz1cb5t_wnpid8g": {
+    "id": "session_sess_mvz1cb5t_wnpid8g",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz1cb5t_wnpid8g",
+    "visitorId": "vis_mvz1cb5t_r3ps38o",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T09:07:12.641Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T09:07:12.641Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "800x600",
+      "viewport": "764x485",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T09:07:12.641Z",
+      "lastActiveTime": "2026-11-02T09:07:12.641Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T09:07:12.756Z",
+    "localSavedAt": "2026-11-02T09:07:12.757Z"
+  },
+  "session_sess_mvz1ctw1_uceatvd": {
+    "id": "session_sess_mvz1ctw1_uceatvd",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz1ctw1_uceatvd",
+    "visitorId": "vis_mvz1ctw2_5athlj7",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T09:07:39.022Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T09:07:39.022Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "http://127.0.0.1:3013/",
+        "domain": "127.0.0.1",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "800x600",
+      "viewport": "764x485",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T09:07:39.022Z",
+      "lastActiveTime": "2026-11-02T09:07:39.022Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T09:07:39.028Z",
+    "localSavedAt": "2026-11-02T09:07:39.029Z"
+  },
+  "session_sess_mvz1dnp3_u8823nt": {
+    "id": "session_sess_mvz1dnp3_u8823nt",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz1dnp3_u8823nt",
+    "visitorId": "vis_mvz1dnp3_xqjrr2m",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T09:08:26.188Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T09:08:26.188Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "375x667",
+      "viewport": "375x667",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T09:08:26.188Z",
+      "lastActiveTime": "2026-11-02T09:08:26.188Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T09:08:26.190Z",
+    "localSavedAt": "2026-11-02T09:08:26.191Z"
+  },
+  "session_sess_mvz8a9ze_c6nj110": {
+    "id": "session_sess_mvz8a9ze_c6nj110",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz8a9ze_c6nj110",
+    "visitorId": "vis_mvz8a9ze_06wo73p",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T12:21:49.738Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/language-assistance",
+          "title": "Notice of Non-Discrimination & Language Assistance Services (LEP) | Blessed Hearts Homecare",
+          "timestamp": "2026-11-02T12:21:49.738Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/language-assistance",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "Direct / Bookmark",
+        "domain": "Direct",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/language-assistance"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "800x600",
+      "viewport": "1264x855",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T12:21:49.738Z",
+      "lastActiveTime": "2026-11-02T12:21:49.738Z",
+      "durationSeconds": 0,
+      "lastEventType": "session_start"
+    },
+    "updatedAt": "2026-11-02T12:21:49.740Z",
+    "localSavedAt": "2026-11-02T12:21:49.741Z"
+  },
+  "session_sess_mvz8er5u_z7y0ek5": {
+    "id": "session_sess_mvz8er5u_z7y0ek5",
+    "brand": "BHH",
+    "organization": "Blessed Hearts Homecare",
+    "collection": "BHH-cookie-consent",
+    "sessionId": "sess_mvz8er5u_z7y0ek5",
+    "visitorId": "vis_mvz8er5u_k94uwkg",
+    "consent": {
+      "status": "pending",
+      "categories": {
+        "necessary": true,
+        "analytics": true,
+        "functional": true,
+        "marketing": false
+      },
+      "doNotSellOptOut": false,
+      "gpcHonored": false,
+      "timestamp": "2026-11-02T12:25:22.447Z",
+      "jurisdiction": "USA (CCPA/CPRA Compliant)"
+    },
+    "traffic": {
+      "pagesVisited": [
+        {
+          "path": "/",
+          "title": "Blessed Hearts Homecare | Home Care Services Near York, Pennsylvania | In-Home Senior Care",
+          "timestamp": "2026-11-02T12:25:19.446Z"
+        }
+      ],
+      "pageCount": 1,
+      "lastVisitedPage": "/",
+      "clicks": [],
+      "clickCount": 0,
+      "referralSource": {
+        "referrer": "http://127.0.0.1:3022/",
+        "domain": "127.0.0.1",
+        "utm": {
+          "source": "",
+          "medium": "",
+          "campaign": "",
+          "term": "",
+          "content": ""
+        },
+        "landingPage": "/"
+      }
+    },
+    "deviceBrowser": {
+      "browser": "Google Chrome",
+      "os": "Windows",
+      "deviceType": "Desktop",
+      "screenResolution": "800x600",
+      "viewport": "1264x855",
+      "language": "en-US",
+      "colorScheme": "light"
+    },
+    "approximateLocation": {
+      "country": "United States (Dev)",
+      "region": "Eastern US",
+      "city": "York / South Central PA",
+      "timezone": "Asia/Calcutta",
+      "locale": "en-US",
+      "timezoneOffset": -330,
+      "isLocalhost": true
+    },
+    "sessionInfo": {
+      "startTime": "2026-11-02T12:25:19.445Z",
+      "lastActiveTime": "2026-11-02T12:25:22.447Z",
+      "durationSeconds": 3,
+      "lastEventType": "telemetry_update"
+    },
+    "updatedAt": "2026-11-02T12:25:22.449Z",
+    "localSavedAt": "2026-11-02T12:25:22.450Z"
+  }
+}
