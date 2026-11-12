@@ -2,7 +2,8 @@ import ServicesClient from "./ServicesClient";
 import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 
 export async function generateMetadata({ searchParams }) {
-  const service = searchParams?.service;
+  const resolvedSearchParams = await searchParams;
+  const service = resolvedSearchParams?.service;
 
   const serviceSeo = {
     "companion-care": {
@@ -110,8 +111,9 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-export default function ServicesPage({ searchParams }) {
-  const service = searchParams?.service;
+export default async function ServicesPage({ searchParams }) {
+  const resolvedSearchParams = await searchParams;
+  const service = resolvedSearchParams?.service;
 
   const serviceNames = {
     "companion-care": "Companion Care Services",
@@ -190,7 +192,7 @@ export default function ServicesPage({ searchParams }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServicesClient initialService={searchParams?.service} />
+      <ServicesClient initialService={service} />
     </>
   );
 }

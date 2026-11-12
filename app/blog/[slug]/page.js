@@ -10,7 +10,8 @@ import "../blog.css";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
-  const post = await getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
   if (!post || post.status === "draft") return {};
 
   const canonicalUrl = `/blog/${post.slug}`;
@@ -98,7 +99,8 @@ function formatArticleBody(content) {
 }
 
 export default async function BlogPostPage({ params }) {
-  const post = await getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
   if (!post || post.status === "draft") notFound();
 
   const allBlogs = await getAllBlogs();

@@ -4,9 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "opennextjs-cloudflare build",
+    "build:next": "next build",
     "start": "next start",
     "lint": "next lint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "test:db": "node scripts/test-insert.mjs",
     "test:duplicate": "node scripts/test-duplicate-prevention.mjs",
     "test:db-dedupe": "node scripts/test-db-dedupe-direct.mjs",
@@ -14,17 +19,19 @@
     "seed:admin": "node scripts/seed-admin.mjs"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.17",
     "firebase": "^12.19.0",
     "framer-motion": "^12.42.2",
-    "lucide-react": "^0.383.0",
-    "next": "^14.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "lucide-react": "^1.72.0",
+    "next": "^15.5.29",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-intersection-observer": "^10.0.3",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.5"
+    "eslint-config-next": "^15.5.29",
+    "wrangler": "^4.161.0"
   }
 }
