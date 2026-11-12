@@ -1,4 +1,4 @@
-import { Poppins, Open_Sans, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,23 +8,25 @@ import AccessibilityWidget from "@/components/AccessibilityWidget";
 import { site, defaultOgImages, defaultTwitterImages } from "@/lib/site";
 import Script from "next/script";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["600", "700"],
+const poppins = localFont({
+  src: [
+    { path: "./fonts/poppins-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/poppins-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-heading",
   display: "swap",
 });
 
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "600"],
+const openSans = localFont({
+  src: "./fonts/open-sans.woff2",
+  weight: "300 600",
   variable: "--font-body",
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["500", "600"],
+const montserrat = localFont({
+  src: "./fonts/montserrat.woff2",
+  weight: "500 600",
   variable: "--font-cta",
   display: "swap",
 });
