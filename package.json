@@ -32,6 +32,7 @@
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.5.29",
+    "typescript": "^6.0.3",
     "wrangler": "^4.161.0"
   }
 }
